@@ -9,6 +9,7 @@
 ### SOBRE
 
 - Repositório que abriga o desenvolvimento do Site Institucional da Nexus
+- Este é um projeto acadêmico desenvolvido por estudantes da SPTech, do curso de Análise e Desenvolvimento de Sistemas (ADS).
 
 #
 ### TECNOLOGIAS
