@@ -11,8 +11,8 @@ body {
 #header {
     width: 100%;
     height: 100vh;
-    /* background-image: url('../assets/nexus/menina.png'); */
-    background-image: url('../assets/nexus/menina2.png');
+    background-image: url('../assets/nexus/menina.png');
+    /* background-image: url('../assets/nexus/menina2.png'); */
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
@@ -98,6 +98,40 @@ body {
 }
 
 /* fim do estilo do header */
+
+.container2 {
+    background-color:#262626;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.text-left  {
+    width: 50%;
+    
+    
+}
+
+
+/* .text-left .about-us {
+font-weight: 900;
+font-size: 45px;
+text-decoration: overline;
+text-decoration-color: white;
+text-decoration-style: none;
+text-decoration-thickness: 8px;
+} */
+
+
+.about-us {
+   padding: 0;
+   margin: 0;
+    }
+
 
 .loading-div {
     width: 50px;
@@ -247,6 +281,8 @@ body {
     }
 }
 
+
+
 @media (max-width: 480px) {
     #header {
         background-image: url('../assets/nexus/menina-mobile.jpg');
@@ -279,3 +315,4 @@ body {
         width: 50%;
     }
 }
+
