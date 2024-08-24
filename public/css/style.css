@@ -104,7 +104,7 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    margin-left: 10%;
+    margin-left: 8%;
     color: #FFF;
     font-family: 'Open Sans', sans-serif;
 
@@ -117,8 +117,13 @@ body {
 
 .about-us {
     font-weight: 700;
-    font-size: 45px;
+    font-size: 60px;
     margin: 0;
+}
+
+.img-right {
+    padding-left: 16vh;
+    margin-top: 20vh;
 }
 
 .loading-div {
