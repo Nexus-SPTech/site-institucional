@@ -57,7 +57,7 @@ body {
 
 .header-text {
     width: 50%;
-    margin: 80px 0 0 100px;
+    margin: 0 0 0 5%;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -233,14 +233,14 @@ body {
 }
 
 /* Media queries para responsividade */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     #header {
-        background-image: url('../assets/nexus/menina-mobile.jpg');
+        background-image: url('../assets/nexus/teste.jpg');
     }
 
     .nav {
-        flex-direction: column;
         align-items: flex-start;
+        /* display: none; */
     }
 
     .nav-menu,
@@ -250,21 +250,18 @@ body {
         margin-top: 10px;
     }
 
-    .nav-login {
-        position: static;
-        margin-top: 10px;
-    }
-
     .header-text {
         width: 90%;
         margin-left: 5%;
     }
-
+    
     .header-text h1 {
         font-size: 40px;
     }
-
+    
     .header-text p {
+        color: #000;
+        font-weight: 500;
         width: 100%;
         font-size: 18px;
     }
@@ -272,11 +269,15 @@ body {
     .header-text button {
         width: 50%;
     }
+
+    .img-right{
+        display: none;
+    }
 }
 
 
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     #header {
         background-image: url('../assets/nexus/menina-mobile.jpg');
 
@@ -307,4 +308,4 @@ body {
     .header-text button {
         width: 50%;
     }
-}
+} */
