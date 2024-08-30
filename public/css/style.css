@@ -202,32 +202,28 @@ body {
     background-color: #262626;
     height: 100vh;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-evenly;
     margin-left: 8%;
     color: #FFF;
     font-family: 'Open Sans', sans-serif;
-
 }
 
 .text-left {
     width: 500px;
 }
 
-
-.about-us {
+.text-left h1 {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 70px;
     margin: 0;
+    color: #16A34A;
 }
 
-.about-text{
+.text-left p {
     font-size: 20px;
-}
-
-.img-right {
-    padding-left: 16vh;
-    margin-top: 20vh;
 }
 
 .loading-div {
@@ -292,20 +288,18 @@ body {
         display: flex;
     }
 
-    .header-text h1 {
+    .header-text h1{
         font-size: 50px;
     }
 
     .header-text p {
         width: 100%;
+        font-size: 20px;
+        color: #000;
     }
 
     .header-text button {
         width: 40%;
-    }
-
-    .img-right {
-        display: none;
     }
 
     .nav {
@@ -364,14 +358,14 @@ body {
         margin-left: 5%;
     }
 
-    .header-text h1 {
+    .header-text h1{
         font-size: 40px;
     }
 
     .header-text p {
         color: #000;
-        font-weight: 500;
-        width: 100%;
+        /* font-weight: 500; */
+        width: 50%;
         font-size: 18px;
     }
 
