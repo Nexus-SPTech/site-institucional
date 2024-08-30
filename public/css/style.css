@@ -59,100 +59,99 @@ body {
 }
 
 #menu {
-  z-index: 2;
-  display: none;
-  position: fixed;
-  top: 0;
+    z-index: 2;
+    display: none;
 }
 
 #menu-bar {
-  width: 45px;
-  height: 40px;
-  margin: 30px 0 20px 20px;
-  cursor: pointer;
+    position: fixed;
+    top: 0;
+    width: 45px;
+    height: 40px;
+    margin: 30px 0 20px 20px;
+    cursor: pointer;
 }
 
 .bar {
-  height: 5px;
-  width: 100%;
-  background-color: #16A34A;
-  display: block;
-  border-radius: 5px;
-  transition: 0.3s ease;
+    height: 5px;
+    width: 70%;
+    background-color: #16A34A;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease;
 }
 
 #bar1 {
-  transform: translateY(-4px);
+    transform: translateY(-4px);
 }
 
 #bar3 {
-  transform: translateY(4px);
+    transform: translateY(4px);
 }
 
 .nav-responsive {
-  transition: 0.3s ease;
-  display: none;
+    transition: 0.3s ease;
+    display: none;
 }
 
 .nav-responsive ul {
-  padding: 0 22px;
+    padding: 0 22px;
 }
 
 .nav-responsive li {
-  list-style: none;
-  padding: 12px 0;
+    list-style: none;
+    padding: 12px 0;
 }
 
 .nav-responsive li a {
-  color: white;
-  font-size: 20px;
-  text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
 }
 
 .nav-responsive li a:hover {
-  font-weight: bold;
+    font-weight: bold;
 }
 
-.menu-bg, #menu {
-  top: 0;
-  left: 0;
-  position: absolute;
+.menu-bg,
+#menu {
+    top: 10%;
+    left: 0;
+    position: fixed;
 }
 
 .menu-bg {
-  z-index: 1;
-  width: 0;
-  height: 0;
-  margin: 30px 0 20px 20px;
-  background-color: #16A34A;
-  border-radius: 50%;
-  transition: 0.3s ease;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    background-color: rgb(22, 163, 74);
+    transition: 0.3s ease;
 }
 
 .change {
-  display: block;
+    display: block;
 }
 
 .change .bar {
-  background-color: white;
+    background-color: white;
 }
 
 .change #bar1 {
-  transform: translateY(4px) rotateZ(-45deg);
+    transform: translateY(4px) rotateZ(-45deg);
 }
 
 .change #bar2 {
-  opacity: 0;
+    opacity: 0;
 }
 
 .change #bar3 {
-  transform: translateY(-6px) rotateZ(45deg);
+    transform: translateY(-6px) rotateZ(45deg);
 }
 
 .change-bg {
-  width: 520px;
-  height: 460px;
-  transform: translate(-60%,-30%);
+    width: 520px;
+    height: 100vh;
+    transform: translate(-60%, -10%);
 }
 
 .header-text {
@@ -216,9 +215,14 @@ body {
 
 
 .about-us {
+    text-transform: uppercase;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 70px;
     margin: 0;
+}
+
+.about-text{
+    font-size: 20px;
 }
 
 .img-right {
@@ -284,19 +288,19 @@ body {
         align-items: center;
     }
 
-    #menu{
+    #menu {
         display: flex;
     }
 
-    .header-text h1{
+    .header-text h1 {
         font-size: 50px;
     }
 
-    .header-text p{
+    .header-text p {
         width: 100%;
     }
 
-    .header-text button{
+    .header-text button {
         width: 40%;
     }
 
