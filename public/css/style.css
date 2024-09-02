@@ -16,7 +16,6 @@ body {
 #header {
     width: 100%;
     height: 100vh;
-    /* background-image: url('../assets/nexus/menina.png'); */
     background-image: url('../assets/nexus/menina2.png');
     background-size: cover;
     background-position: top;
@@ -328,19 +327,22 @@ transition: 1s;
 
 .container3 {
     display: flex;
+    flex-direction: column;
 }
 
 .solution-text{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     align-items: center;
+    margin-bottom: 5%;
 }
 
 .solution-text h1 {
     font-size: 70px;
     margin-bottom: 0;
-    color: #16A34A;
+    color: #16A33A;
     text-transform: uppercase;
 }
 
@@ -348,6 +350,42 @@ transition: 1s;
     width: 60%;
     color: #FFF;
     font-size: 18px;
+}
+
+.cards{
+    color: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 250px;
+    height: 300px;
+}
+
+.card:nth-child(even){
+    background-color: #363636;
+    margin-top: 30px;
+}
+
+.card:nth-child(odd){
+    background-color: #16A34A;
+}
+
+.card-image{
+    width: 80px;
+    margin: 30px 0 0 40px;
+}
+
+.card-text{
+    margin: 0 30px 0 30px;
+}
+
+.card-text p{
+    font-weight: 200;
 }
 
 .loading-div {
