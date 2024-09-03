@@ -375,6 +375,22 @@ transition: 1s;
     background-color: #16A34A;
 }
 
+.card:nth-child(even):hover{
+    transform: translateY(-20px);
+    transition: .3s;
+}
+
+.card:nth-child(odd):hover{
+    transform: translateY(20px);
+    transition: .3s;
+}
+
+.card:hover .card-image{
+    transform: rotate(8deg);
+    width: 90px;
+    transition: .2s;
+}
+
 .card-image{
     width: 80px;
     margin: 30px 0 0 40px;
