@@ -70,47 +70,23 @@
     </section>
 
     <div class="slider">
-
-        <div class="slides">
-
-            <input type="radio" name="radio-btn" id="radio1">
-            <input type="radio" name="radio-btn" id="radio2">
-            <input type="radio" name="radio-btn" id="radio3">
-            <input type="radio" name="radio-btn" id="radio4">
-
-            <div class="slide first">
-                <img src="../public/assets/nexus/Nossas Parceiras.png" alt="imagem 1">
-            </div>
-
-            <div class="slide">
-                <img src="../public/assets/nexus/Nossas Parceiras 2.png" alt="imagem 2">
-            </div>
-
-            <div class="slide">
-                <img src="../public/assets/nexus/Nossas Parceiras 3.png" alt="imagem 3">
-            </div>
-
-            <div class="slide">
-                <img src="../public/assets/nexus/Nossas Parceiras (1).png" alt="imagem 4">
-            </div>
+        <h1>ALGUNS DOS NOSSOS PARCEIROS</h1>
         
-            <div class="navigation-auto">
-
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-                <div class="auto-btn4"></div>
-
-            </div>
+        <div class="carrosel-container">
+            <img style="opacity: 0;" src="./assets/nexus/stripe.png" alt="">
+            <img style="opacity: 0;" src="./assets/nexus/aws.png" alt="">
+            <img  style="opacity: 0;" src="./assets/nexus/reddit.png" alt="">
+            <img  style="opacity: 0;" src="./assets/nexus/descomplica-logo-2.png" alt="">
 
         </div>
+        <div class="carrosel-container2">
+            <img style="opacity: 0;"  src="./assets/nexus/alura.png" alt="">
+            <img style="opacity: 0;" src="./assets/nexus/Fiap.png" alt="">
+            <img style="opacity: 0;" src="./assets/nexus/ebac.png" alt="">
+            <img style="opacity: 0;" src="./assets/nexus/senai.png" alt="">
 
-        <div class="manual-navigation">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
         </div>
+        
 
 
     </div>
@@ -205,21 +181,5 @@
     }
 
 
-    let count = 1;
-    document.getElementById("radio1").checked = true;
-
-    setInterval(function () {
-        nextImage();
-    }, 2000)
-
-
-    function nextImage() {
-        count++;
-        if (count > 4) {
-            count = 1;
-        }
-        document.getElementById("radio" + count).checked = true;
-    }
-
-
+    
 </script>
