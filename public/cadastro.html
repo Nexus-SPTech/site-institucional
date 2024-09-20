@@ -17,13 +17,13 @@
           <h2 class="title">Entre Na Sua Conta</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Usuário" />
+            <input type="text" placeholder="Usuário"  id="input_usuarioLogin"/>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" />
+            <input type="password" placeholder="Senha" id="input_senhaLogin" />
           </div>
-          <input type="submit" value="Login" class="btn solid" />
+          <input type="submit" value="Login" class="btn solid" onclick="entrar()" />
           <p class="back-text">Voltar para tela inicial</p>
           <div class="back-media">
             <a href="index.html" class="back-icon">
@@ -35,21 +35,21 @@
           <h2 class="title">Crie sua conta!</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Usuário" />
+            <input type="text" id="input_nome" placeholder="Usuário" />
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" />
+            <input type="email" id="input_email" placeholder="Email" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Senha" />
+            <input type="password" id="input_senha" placeholder="Senha" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirmar senha" />
+            <input type="password" id="input_confirmarSenha" placeholder="Confirmar senha" />
           </div>
-          <input type="submit" class="btn" value="Cadastre-se" />
+          <input type="submit" class="btn" value="Cadastre-se" onclick="cadastrar()" />
           <p class="back-text">Voltar para tela inicial</p>
           <div class="back-media">
             <a href="index.html" class="back-icon">
@@ -68,7 +68,7 @@
             Descubra como turbinar seus resultados com dados escolares precisos. Identifique as dificuldades dos alunos
             e personalize o ensino como nunca antes.
           </p>
-          <button class="btn transparent" id="sign-up-btn">
+          <button  class="btn transparent" id="sign-up-btn" >
             Cadastre-se
           </button>
         </div>
