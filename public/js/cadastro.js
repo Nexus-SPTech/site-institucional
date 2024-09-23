@@ -110,10 +110,10 @@ function cadastrar() {
 let tentativas = 3;
 function entrar() {
 
-    const usuarioVar = input_usuarioLogin.value;
+    const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
 
-    if (usuarioVar == "" || senhaVar == "") {
+    if (emailVar == "" || senhaVar == "") {
         Swal.fire({
             title: "Não foi possível realizar o login!",
             text: "Preencha todos os campos",
@@ -132,7 +132,7 @@ function entrar() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                usuarioServer: usuarioVar,
+                emailServer: emailVar,
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
