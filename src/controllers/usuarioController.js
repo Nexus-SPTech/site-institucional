@@ -2,16 +2,16 @@ var usuarioModel = require("../models/usuarioModel");
 var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
-    var usuario = req.body.usuarioServer;
+    var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
-    if (usuario == undefined) {
+    if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(usuario, senha)
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
