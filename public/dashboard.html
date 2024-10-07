@@ -18,8 +18,8 @@
                 <li onclick="mostrarinsights()">Insights</li>
             </div>
             <div class="exit">
-                <p>Sair</p>
-            </div>
+                <p onclick="sair()">Sair</p>           
+ </div>
         </div>
         <div class="content">
             <div class="header">
@@ -317,6 +317,11 @@ chart.render();
 var name_user = sessionStorage.NOME_USUARIO;
 
 nome_user.innerHTML += `${name_user}`;
+
+function sair(){
+    sessionStorage.clear;
+    window.location.href = "./index.html";
+}
     
     </script>
 </body>
