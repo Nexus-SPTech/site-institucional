@@ -210,3 +210,12 @@ border: 1px solid;
       width: 200px;
   }
 }
+
+.exit{
+  cursor: pointer;
+   width: 100%;
+   height: 30px;
+ }
+ .exit p{
+   color: #f5f5f5;
+ }

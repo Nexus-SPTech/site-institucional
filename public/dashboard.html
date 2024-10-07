@@ -11,14 +11,14 @@
     <div class="container">
         <div class="nav-lateral" id="nav">
             <div class="profile">
-                <p>Bem vindo, <b>Usuário!</b></p>
+                <p>Bem vindo, <b id="name_user"></b></p>
             </div>
             <div class="menu">
                 <li onclick="mostrardashboard()">Dashboard</li>
                 <li onclick="mostrarinsights()">Insights</li>
             </div>
             <div class="exit">
-                <p>Sair</p>
+                <p onclick="sair()">Sair</p>
             </div>
         </div>
         <div class="content">
@@ -294,7 +294,7 @@ var options = {
     colors: ['#1ab7ea'], // Cor da linha
     title: {
         text: 'Desempenho entre Regiões Metropolitanas',
-        align: 'center',
+       
         style: {
             fontSize: '18px',
             fontWeight: 'bold',
@@ -313,6 +313,15 @@ var options = {
 
 var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
 chart.render();
+
+var nome_user = sessionStorage.NOME_USUARIO;
+
+name_user.innerHTML += `${nome_user}`;
+
+function sair(){
+    sessionStorage.clear;
+    window.location.href = "./index.html";
+}
 
     
     </script>
