@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboards.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <title>Dashboard Responsiva</title>
+    <title>Dashboard</title>
 </head>
 <body>
     <div class="container">
         <div class="nav-lateral" id="nav">
             <div class="profile">
-                <p>Bem vindo, <b id="nome_user"></b></p>
+                <p>Bem vindo, <b>Usuário!</b></p>
             </div>
             <div class="menu">
                 <li onclick="mostrardashboard()">Dashboard</li>
                 <li onclick="mostrarinsights()">Insights</li>
             </div>
             <div class="exit">
-                <p onclick="sair()">Sair</p>           
- </div>
+                <p>Sair</p>
+            </div>
         </div>
         <div class="content">
             <div class="header">
@@ -294,7 +294,7 @@ var options = {
     colors: ['#1ab7ea'], // Cor da linha
     title: {
         text: 'Desempenho entre Regiões Metropolitanas',
-        
+        align: 'center',
         style: {
             fontSize: '18px',
             fontWeight: 'bold',
@@ -314,14 +314,6 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
 chart.render();
 
-var name_user = sessionStorage.NOME_USUARIO;
-
-nome_user.innerHTML += `${name_user}`;
-
-function sair(){
-    sessionStorage.clear;
-    window.location.href = "./index.html";
-}
     
     </script>
 </body>
