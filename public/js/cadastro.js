@@ -172,7 +172,7 @@ function entrar() {
                             console.log("I was closed by the timer");
                         }
                         setTimeout(function () {
-                            window.location = "dash.html";
+                            window.location = "dashboard.html";
                         }, 5000); // apenas para exibir o loading
                     });
 
