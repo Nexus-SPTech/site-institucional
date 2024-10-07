@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <title>Dashboard Responsiva</title>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-lateral" id="nav">
+            <div class="profile">
+                <p>Bem vindo, <b>Usuário!</b></p>
+            </div>
+            <div class="menu">
+                <li onclick="mostrardashboard()">Dashboard</li>
+                <li onclick="mostrarinsights()">Insights</li>
+            </div>
+            <div class="exit">
+                <p>Sair</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <div class="hamburguer" onclick="toggleMenu()">&#9776;</div>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="dashboard" id="dashboard">
+                <div class="kpi">
+                    <div class="box1">
+                        <div class="box1-icone">
+                            <img width="40px" src="../public/assets/nexus/notas.png" alt="">
+                        </div>
+                        <div class="box1-conteudo">
+                            <h1>MELHOR APROVEITAMENTO: <b>Língua Portuguesa: 39.02%</b></h1>
+                        </div>
+                    </div>
+    
+                    <div class="box2">
+                        <div class="box2-icone">
+                            <img width="40px" src="../public/assets/nexus/materias.png" alt="">
+                        </div>
+                        <div class="box2-conteudo">
+                            <h1>MÉDIA DE ACERTO EM TODAS AS MATÉRIAS: <b>30.40%</b></h1>
+                        </div>
+                    </div>
+    
+                    <div class="box3">
+                        <div class="box3-icone">
+                            <img width="40px" src="../public/assets/nexus/area.png" alt="">
+                        </div>
+                        <div class="box3-conteudo">
+                            <h1>MATÉRIA COM MAIOR DIFICULDADE DE APRENDIZADO: <B>FÍSICA</B></h1>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div id="grafico1">
+                </div>
+                <div id="grafico2">
+                </div>
+                <div id="grafico3">
+                    <div id="redesmunicipais"></div>
+                    <div id="estatistica-fm">
+                        <P>APROVEITAMENTO POR GÊNEROS</P>
+                        <span class="feminino"> 
+                        <img src="../public/assets/nexus/woman.png" alt=""> <p>Feminino: <b>30.66%</b> </p>
+                        </span>
+                        <span class="masculino"> <img src="../public/assets/nexus/man.png" alt=""> <p>Masculino: <b>29.93%</b> </p></span>
+                        </div>
+                    
+                </div>
+
+
+            </div>
+            <div class="insights" id="insights" style="display: none;">
+                <h2>Insights</h2>
+                <p>Aqui estão os insights...</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+    const nav = document.getElementById("nav");
+    nav.classList.toggle("hidden");
+}
+
+function mostrardashboard() {
+    document.getElementById("dashboard").style.display = "block";
+    document.getElementById("insights").style.display = "none";
+}
+
+function mostrarinsights() {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("insights").style.display = "block";
+}
+
+
+// ##################################################
+var options = {
+    series: [{
+        data: [39.01, 26.21, 22.52, 23.76, 27.07, 37.42, 30.73, 29.66, 37.23]
+    }],
+    chart: {
+        type: 'bar',
+        height: 200,
+        width: 1300,
+    },
+    title: {
+        text: 'Aproveitamento SARESP Ensino Médio (2023)',
+        style: {
+            fontSize: '16px',
+            color: '#333'
+        }
+    },
+    plotOptions: {
+        bar: {
+            borderRadius: 4,
+            borderRadiusApplication: 'end',
+            horizontal: true,
+            // Configuração do degradê
+            dataLabels: {
+                position: 'bottom' // Posiciona as porcentagens
+            }
+        }
+    },
+    colors: ['#00bcd4', '#80d8ff'], // Cores base para o degradê
+    dataLabels: {
+        enabled: true,
+        style: {
+            colors: ['#F5F5F5'], // Cor das porcentagens
+            fontSize: '0px'
+        }
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shade: 'dark',
+            type: 'horizontal',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#80d8ff'], // Azul bebê
+            inverseColors: true,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 50, 100],
+            colorStops: []
+        }
+    },
+    xaxis: {
+        categories: ['Língua Portuguesa', 'Biologia', 'Física', 'Química', 'Matemática', 'Geografia', 'História', 'Filosofia', 'Sociologia'],
+        tickAmount: 10,
+        max: 100,
+        labels: {
+            style: {
+                colors: '#333',
+                fontSize: '14px' // Cor dos rótulos do eixo X
+            },
+            formatter: function (val) {
+                return val + "%"; // Formata os valores para exibir com "%"
+            }
+        }
+    },
+    yaxis: {
+        labels: {
+            style: {
+                colors: '#333',
+                fontSize: '13px' // Cor dos rótulos do eixo Y
+            }
+        }
+    }
+};
+
+var chart = new ApexCharts(document.querySelector("#grafico1"), options);
+chart.render();
+    
+    // ###################################################
+    var options = {
+    series: [
+        {
+            name: 'Língua Portuguesa',
+            data: [34.76, 46.33, 36.40]
+        },
+        {
+            name: 'Biologia',
+            data: [27.47, 29.51, 20.71]
+        },
+        {
+            name: 'Física',
+            data: [19.89, 26.50, 21.52]
+        },
+        {
+            name: 'Química',
+            data: [22.90, 22.76, 26.09]
+        },
+        {
+            name: 'Matemática',
+            data: [28.82, 25.59, 26.43]
+        },
+        {
+            name: 'Geografia',
+            data: [44.58, 32.53, 33.34]
+        },
+        {
+            name: 'História',
+            data: [31.79, 28.95, 31.34]
+        },
+        {
+            name: 'Filosofia',
+            data: [27.07, 28.02, 35.08]
+        },
+        {
+            name: 'Sociologia',
+            data: [42.05, 37.51, 30.40]
+        }
+    ],
+    chart: {
+        type: 'bar',
+        height: 220,
+        stacked: false,
+    },
+    xaxis: {
+        categories: ['EM-1ª série', 'EM-2ª série', 'EM-3ª série'],
+    },
+    yaxis: {
+        labels: {
+            formatter: function (val) {
+                return val + "%"; // Adiciona o símbolo de porcentagem aos rótulos
+            }
+        },
+        tickAmount: 4, // Define o número de marcas para 0, 30, 60, 90
+        max: 100, // Define o valor máximo do eixo Y
+        min: 0 // Define o valor mínimo do eixo Y
+    },
+    dataLabels: {
+        enabled: true, // Habilita a exibição das porcentagens dentro das barras
+        style: {
+            fontSize: '10px', // Define o tamanho da fonte
+            colors: ['#000'], // Define a cor da fonte
+        },
+        formatter: function (val) {
+            return val + "%"; // Formata os dados das barras para mostrar como porcentagem
+        }
+    },
+    title: {
+        text: 'Aproveitamento SARESP (Matérias x Séries)'
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shade: 'light',
+            type: 'vertical',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#80d8ff'], // Cor do final do degradê (azul bebê)
+            inverseColors: false,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+        }
+    }
+};
+
+var chart = new ApexCharts(document.querySelector("#grafico2"), options);
+chart.render();
+
+
+// ###########################################################
+var options = {
+    series: [{
+        name: 'Desempenho',
+        data: [31.62, 30.58, 30.21, 30.11, 29.88, 29.89]
+    }],
+    chart: {
+        height: 220,
+        width: 600,
+        type: 'line',
+    },
+    stroke: {
+        curve: 'smooth', // Opção para suavizar a linha
+        width: 2
+    },
+    xaxis: {
+        categories: ['Campinas', 'Litoral Norte', 'São Paulo', 'Sorocaba', 'Baixada Santista', 'Ribeirão Preto'],
+        title: {
+            text: 'Regiões Metropolitanas'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Desempenho'
+        }
+    },
+    colors: ['#1ab7ea'], // Cor da linha
+    title: {
+        text: 'Desempenho entre Regiões Metropolitanas',
+        align: 'center',
+        style: {
+            fontSize: '18px',
+            fontWeight: 'bold',
+            color: '#333'
+        }
+    },
+    responsive: [{
+        breakpoint: 480,
+        options: {
+            legend: {
+                show: false
+            }
+        }
+    }]
+};
+
+var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
+chart.render();
+
+    
+    </script>
+</body>
+</html>
