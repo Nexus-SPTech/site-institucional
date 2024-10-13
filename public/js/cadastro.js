@@ -109,7 +109,8 @@ function cadastrar() {
 
 let tentativas = 3;
 function entrar() {
-
+    
+    event.preventDefault()
     const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
 
@@ -142,16 +143,14 @@ function entrar() {
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.EMAIL_USUARIO = json.email;
 
                     let timerInterval;
                     Swal.fire({
                         title: "Login Realizado!",
-                        html: "Redirecionando para dashboard e,<b></b> millisegundos.",
+                        html: "Redirecionando para dashboard em: <b></b> millisegundos.",
                         icon: "success",
                         background: "rgb(32, 32, 32)",
                         timer: 2000,
@@ -167,13 +166,12 @@ function entrar() {
                             clearInterval(timerInterval);
                         }
                     }).then((result) => {
-                        /* Read more about handling dismissals below */
                         if (result.dismiss === Swal.DismissReason.timer) {
                             console.log("I was closed by the timer");
                         }
                         setTimeout(function () {
                             window.location = "dashboard.html";
-                        }, 5000); // apenas para exibir o loading
+                        }, 500);
                     });
 
                 });
@@ -184,11 +182,10 @@ function entrar() {
                     console.log("Houve um erro ao tentar realizar o login!");
                     tentativas--;
 
-                    i = tentativas;
-
+                    // i = tentativas;
                     Swal.fire({
                         title: "Não foi possível realizar o login!",
-                        text: `Credenciais incorretas! tentativas restantes: ${i}`,
+                        text: `Credenciais incorretas! tentativas restantes: ${i - 1}`,
                         icon: "error",
                         color: "#FFF",
                         confirmButtonColor: '#16a34a',
@@ -200,7 +197,7 @@ function entrar() {
                         let timerInterval;
                         Swal.fire({
                             title: "Usuario bloqueado!",
-                            html: "Voltando para home page em <b></b> millissegundo.",
+                            html: "Voltando para página inicial em: <b></b> millissegundos.",
                             timer: 2000,
                             timerProgressBar: true,
                             icon: "error",
@@ -220,7 +217,7 @@ function entrar() {
                                 console.log("I was closed by the timer");
                             }
                             setTimeout(function () {
-                            }, 2000);
+                            }, 500);
                             window.location.href = 'index.html';
                         });
 
