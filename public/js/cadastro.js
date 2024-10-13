@@ -11,6 +11,8 @@ sign_in_btn.addEventListener("click", () => {
 });
 
 function cadastrar() {
+    event.preventDefault();
+
     const nomeVar = input_nome.value;
     const emailVar = input_email.value;
     const senhaVar = input_senha.value;
@@ -90,7 +92,7 @@ function cadastrar() {
 
                 setTimeout(() => {
                     window.location = "cadastro.html";
-                }, "2000");
+                }, "3000");
 
                 limparFormulario();
 
@@ -109,7 +111,7 @@ function cadastrar() {
 
 let tentativas = 3;
 function entrar() {
-    
+
     event.preventDefault()
     const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
