@@ -197,12 +197,46 @@ border: 1px solid;
   padding-left: 5px;
 }
 
-.dashboard, .insights {
+.dashboard, .insights , .configuracoes{
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.desempenho{
+  padding-left: 10px;
+  width: 600px;
+  height: auto;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.desempenho-2{
+  margin-top: 5px;
+  padding-left: 10px;
+  width: 600px;
+  height: auto;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+.desempenho-3{
+  margin-top: 5px;
+  padding-left: 10px;
+  width: 600px;
+  height: auto;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.desempenho-4{
+  margin-top: 5px;
+  padding-left: 10px;
+  width: 600px;
+  height: auto;
+  border: 1px solid #333;
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {
