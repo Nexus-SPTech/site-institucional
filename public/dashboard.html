@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboards.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Dashboard</title>
 </head>
+
 <body>
     <div class="container">
         <div class="nav-lateral" id="nav">
@@ -15,9 +19,12 @@
                 <p>Bem vindo(a), <b id="name_user"></b></p>
             </div>
             <div class="menu">
-                <li onclick="mostrardashboard()"><i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i> Dashboard</li>
-                <li onclick="mostrarinsights()"><i class="fa-duotone fa-solid fa-chart-simple" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Insights</li>
-                <li onclick="mostrarconfig()"><i class="fa-duotone fa-solid fa-gear" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Configurações</li>
+                <li onclick="mostrardashboard()"><i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
+                    Dashboard</li>
+                <li onclick="mostrarinsights()"><i class="fa-duotone fa-solid fa-chart-simple"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Insights</li>
+                <li onclick="mostrarconfig()"><i class="fa-duotone fa-solid fa-gear"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Configurações</li>
             </div>
             <div class="exit">
                 <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> Sair</p>
@@ -38,7 +45,7 @@
                             <h1>MELHOR APROVEITAMENTO: <b>Língua Portuguesa: 39.02%</b></h1>
                         </div>
                     </div>
-    
+
                     <div class="box2">
                         <div class="box2-icone">
                             <img width="40px" src="./assets/nexus/materias.png" alt="">
@@ -47,14 +54,14 @@
                             <h1>MÉDIA DE ACERTO EM TODAS AS MATÉRIAS: <b>30.40%</b></h1>
                         </div>
                     </div>
-    
+
                     <div class="box3">
                         <div class="box3-icone">
                             <img width="40px" src="./assets/nexus/area.png" alt="">
                         </div>
                         <div class="box3-conteudo">
                             <h1>MATÉRIA COM MAIOR DIFICULDADE DE APRENDIZADO: <B>FÍSICA</B></h1>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -67,338 +74,368 @@
                     <div id="redesmunicipais"></div>
                     <div id="estatistica-fm">
                         <P>APROVEITAMENTO POR GÊNEROS</P>
-                        <span class="feminino"> 
-                        <img src="./assets/nexus/woman.png" alt=""> <p>Feminino: <b>30.66%</b> </p>
+                        <span class="feminino">
+                            <img src="./assets/nexus/woman.png" alt="">
+                            <p>Feminino: <b>30.66%</b> </p>
                         </span>
-                        <span class="masculino"> <img src="./assets/nexus/man.png" alt=""> <p>Masculino: <b>29.93%</b> </p></span>
-                        </div>
-                    
+                        <span class="masculino"> <img src="./assets/nexus/man.png" alt="">
+                            <p>Masculino: <b>29.93%</b> </p>
+                        </span>
+                    </div>
+
                 </div>
 
 
             </div>
             <div class="insights" id="insights" style="display: none;">
                 <h2>Insights</h2>
-                
+
                 <div class="desempenho">
                     <div class="desempenho-conteudo">
-                    <h1 style="color:black; font-weight: bold;">DESEMPENHO GERAL:</h1>
-                    <p style="color: black;"> <b>Língua Portuguesa:</b> A Língua Portuguesa se destaca como a matéria com maior aproveitamento, o que pode indicar um foco maior no ensino dessa disciplina ou uma maior facilidade dos alunos em relação a ela. <br><br>
-                        <b>Dificuldade em Física:</b> Por outro lado, a Física aparece como a matéria com maior dificuldade de aprendizado. Isso pode ser um indicativo de que os estudantes encontram mais desafios nessa área, seja por falta de interesse, dificuldade de compreensão dos conceitos ou até mesmo por uma abordagem menos eficaz no ensino. <br><br>
-                        <b>Média Geral:</b> A média de acerto em todas as matérias está abaixo de 50%, o que sinaliza uma necessidade de aprimoramento no ensino em diversas áreas.</p>
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO GERAL:</h1>
+                        <p style="color: black;"> <b>Língua Portuguesa:</b> A Língua Portuguesa se destaca como a
+                            matéria com maior aproveitamento, o que pode indicar um foco maior no ensino dessa
+                            disciplina ou uma maior facilidade dos alunos em relação a ela. <br><br>
+                            <b>Dificuldade em Física:</b> Por outro lado, a Física aparece como a matéria com maior
+                            dificuldade de aprendizado. Isso pode ser um indicativo de que os estudantes encontram mais
+                            desafios nessa área, seja por falta de interesse, dificuldade de compreensão dos conceitos
+                            ou até mesmo por uma abordagem menos eficaz no ensino. <br><br>
+                            <b>Média Geral:</b> A média de acerto em todas as matérias está abaixo de 50%, o que
+                            sinaliza uma necessidade de aprimoramento no ensino em diversas áreas.
+                        </p>
                     </div>
 
                 </div>
-                
+
                 <div class="desempenho-2">
                     <div class="desempenho-conteudo-2">
-                    <h1 style="color:black; font-weight: bold;">DESEMPENHO POR SÉRIE E MATÉRIA:</h1>
-                    <p style="color: black;"> <b>Variação entre as Séries:</b> O desempenho varia significativamente entre as séries, com a primeira série apresentando, em geral, um aproveitamento menor do que as séries subsequentes. Isso pode estar relacionado à adaptação ao ensino médio ou a lacunas no aprendizado das séries anteriores. <br><br>
-                        <b>Desempenho por Matéria:</b>  As matérias apresentam desempenhos distintos, com algumas se destacando positivamente e outras negativamente. Essa variação pode estar relacionada à complexidade da matéria, à qualidade do ensino ou ao interesse dos alunos. <br><br>
-                    </p>
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR SÉRIE E MATÉRIA:</h1>
+                        <p style="color: black;"> <b>Variação entre as Séries:</b> O desempenho varia significativamente
+                            entre as séries, com a primeira série apresentando, em geral, um aproveitamento menor do que
+                            as séries subsequentes. Isso pode estar relacionado à adaptação ao ensino médio ou a lacunas
+                            no aprendizado das séries anteriores. <br><br>
+                            <b>Desempenho por Matéria:</b> As matérias apresentam desempenhos distintos, com algumas se
+                            destacando positivamente e outras negativamente. Essa variação pode estar relacionada à
+                            complexidade da matéria, à qualidade do ensino ou ao interesse dos alunos. <br><br>
+                        </p>
                     </div>
 
                 </div>
 
                 <div class="desempenho-3">
                     <div class="desempenho-conteudo-2">
-                    <h1 style="color:black; font-weight: bold;">DESEMPENHO POR GÊNERO:</h1>
-                    <p style="color: black;"> <b>Leve Diferença entre os Sexos:</b>  As mulheres apresentaram um levemente melhor desempenho em comparação aos homens. No entanto, essa diferença é pequena e pode não ser estatisticamente significativa. <br><br>
-                    </p>
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR GÊNERO:</h1>
+                        <p style="color: black;"> <b>Leve Diferença entre os Sexos:</b> As mulheres apresentaram um
+                            levemente melhor desempenho em comparação aos homens. No entanto, essa diferença é pequena e
+                            pode não ser estatisticamente significativa. <br><br>
+                        </p>
                     </div>
 
                 </div>
 
                 <div class="desempenho-4">
                     <div class="desempenho-conteudo-4">
-                    <h1 style="color:black; font-weight: bold;">POSSÍVEIS CAUSAS E IMPLICAÇÕES:</h1>
-                    <p style="color: black;"> <b>Qualidade do Ensino:</b> A qualidade do ensino, incluindo a formação dos professores, os recursos disponíveis nas escolas e a metodologia utilizada, exerce um papel fundamental no desempenho dos alunos. <br><br>
-                        <b>Fatores Socioeconômicos:</b> O nível socioeconômico dos alunos, o acesso a recursos como internet e computadores e o apoio familiar também influenciam o desempenho escolar. <br><br>
-                    </p>
+                        <h1 style="color:black; font-weight: bold;">POSSÍVEIS CAUSAS E IMPLICAÇÕES:</h1>
+                        <p style="color: black;"> <b>Qualidade do Ensino:</b> A qualidade do ensino, incluindo a
+                            formação dos professores, os recursos disponíveis nas escolas e a metodologia utilizada,
+                            exerce um papel fundamental no desempenho dos alunos. <br><br>
+                            <b>Fatores Socioeconômicos:</b> O nível socioeconômico dos alunos, o acesso a recursos como
+                            internet e computadores e o apoio familiar também influenciam o desempenho escolar. <br><br>
+                        </p>
                     </div>
 
                 </div>
 
-                
 
-        </div>
-
-        <div class="configuracoes" id="configuracoes" style="display: none;">
-
-            <div class="box-config">
-<div class="user-left"> <div class="icon"></div>  </div>
-<div class="text-right">  
-  <p>  NOME: Bob da Silva <br>
-    CARGO: Professor <br>
-    EMAIL: bobsilva@gmail.com</p>
-    <div class="button-radio">
-
-
-        <h4>Selecione a opção desejada:</h4>
-      <p> dashboard <input type="radio" name="input_dash" value="0">
-        insights <input type="radio" name="input_insights" value="1"> 
-        sair   <input type="radio" name="input_sair" value="2"> </p>
-     </div>
- </div>
-
- 
 
             </div>
-            
+
+            <div class="configuracoes" id="configuracoes" style="display: none;">
+
+                <div class="box-config">
+
+                    <div class="exit-user"><img src="../public/assets/nexus/icons8-x-64.png" alt=""></div>
+
+                    <div class="organization">
+                        <div class="user-left">
+                            <div class="icon"></div>
+                        </div>
+                        <div class="text-right">
+
+
+
+                            <p> NOME: Bob da Silva <br>
+                                CARGO: Professor <br>
+                                EMAIL: bobsilva@gmail.com</p>
+                            <div class="button-radio">
+
+
+                                <h4>Selecione a opção desejada:</h4>
+                                <p> dashboard <input type="radio" name="input_dash" value="0">
+                                    insights <input type="radio" name="input_insights" value="1">
+                                    admin <input type="radio" name="input_sair" value="2"> </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
         </div>
-
-
-    </div>
-    <script>
-        function toggleMenu() {
-    const nav = document.getElementById("nav");
-    nav.classList.toggle("hidden");
-}
-function mostrarconfig() {
-    document.getElementById("configuracoes").style.display = "block"
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("insights").style.display = "none";
-}
-
-function mostrardashboard() {
-    document.getElementById("dashboard").style.display = "block";
-    document.getElementById("insights").style.display = "none";
-    document.getElementById("configuracoes").style.display = "none"
-}
-
-function mostrarinsights() {
-    document.getElementById("configuracoes").style.display = "none"
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("insights").style.display = "block";
-}
-
-
-// ##################################################
-var options = {
-    series: [{
-        data: [39.01, 26.21, 22.52, 23.76, 27.07, 37.42, 30.73, 29.66, 37.23]
-    }],
-    chart: {
-        type: 'bar',
-        height: 200,
-        width: 1300,
-    },
-    title: {
-        text: 'Aproveitamento SARESP Ensino Médio (2023)',
-        style: {
-            fontSize: '16px',
-            color: '#333'
-        }
-    },
-    plotOptions: {
-        bar: {
-            borderRadius: 4,
-            borderRadiusApplication: 'end',
-            horizontal: true,
-            // Configuração do degradê
-            dataLabels: {
-                position: 'bottom' // Posiciona as porcentagens
+        <script>
+            function toggleMenu() {
+                const nav = document.getElementById("nav");
+                nav.classList.toggle("hidden");
             }
-        }
-    },
-    colors: ['#00bcd4', '#80d8ff'], // Cores base para o degradê
-    dataLabels: {
-        enabled: true,
-        style: {
-            colors: ['#F5F5F5'], // Cor das porcentagens
-            fontSize: '0px'
-        }
-    },
-    fill: {
-        type: 'gradient',
-        gradient: {
-            shade: 'dark',
-            type: 'horizontal',
-            shadeIntensity: 0.5,
-            gradientToColors: ['#80d8ff'], // Azul bebê
-            inverseColors: true,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 50, 100],
-            colorStops: []
-        }
-    },
-    xaxis: {
-        categories: ['Língua Portuguesa', 'Biologia', 'Física', 'Química', 'Matemática', 'Geografia', 'História', 'Filosofia', 'Sociologia'],
-        tickAmount: 10,
-        max: 100,
-        labels: {
-            style: {
-                colors: '#333',
-                fontSize: '14px' // Cor dos rótulos do eixo X
-            },
-            formatter: function (val) {
-                return val + "%"; // Formata os valores para exibir com "%"
+            function mostrarconfig() {
+                document.getElementById("configuracoes").style.display = "block"
+                document.getElementById("dashboard").style.display = "none";
+                document.getElementById("insights").style.display = "none";
             }
-        }
-    },
-    yaxis: {
-        labels: {
-            style: {
-                colors: '#333',
-                fontSize: '13px' // Cor dos rótulos do eixo Y
+
+            function mostrardashboard() {
+                document.getElementById("dashboard").style.display = "block";
+                document.getElementById("insights").style.display = "none";
+                document.getElementById("configuracoes").style.display = "none"
             }
-        }
-    }
-};
 
-var chart = new ApexCharts(document.querySelector("#grafico1"), options);
-chart.render();
-    
-    // ###################################################
-    var options = {
-    series: [
-        {
-            name: 'Língua Portuguesa',
-            data: [34.76, 46.33, 36.40]
-        },
-        {
-            name: 'Biologia',
-            data: [27.47, 29.51, 20.71]
-        },
-        {
-            name: 'Física',
-            data: [19.89, 26.50, 21.52]
-        },
-        {
-            name: 'Química',
-            data: [22.90, 22.76, 26.09]
-        },
-        {
-            name: 'Matemática',
-            data: [28.82, 25.59, 26.43]
-        },
-        {
-            name: 'Geografia',
-            data: [44.58, 32.53, 33.34]
-        },
-        {
-            name: 'História',
-            data: [31.79, 28.95, 31.34]
-        },
-        {
-            name: 'Filosofia',
-            data: [27.07, 28.02, 35.08]
-        },
-        {
-            name: 'Sociologia',
-            data: [42.05, 37.51, 30.40]
-        }
-    ],
-    chart: {
-        type: 'bar',
-        height: 220,
-        stacked: false,
-    },
-    xaxis: {
-        categories: ['EM-1ª série', 'EM-2ª série', 'EM-3ª série'],
-    },
-    yaxis: {
-        labels: {
-            formatter: function (val) {
-                return val + "%"; // Adiciona o símbolo de porcentagem aos rótulos
+            function mostrarinsights() {
+                document.getElementById("configuracoes").style.display = "none"
+                document.getElementById("dashboard").style.display = "none";
+                document.getElementById("insights").style.display = "block";
             }
-        },
-        tickAmount: 4, // Define o número de marcas para 0, 30, 60, 90
-        max: 100, // Define o valor máximo do eixo Y
-        min: 0 // Define o valor mínimo do eixo Y
-    },
-    dataLabels: {
-        enabled: true, // Habilita a exibição das porcentagens dentro das barras
-        style: {
-            fontSize: '10px', // Define o tamanho da fonte
-            colors: ['#000'], // Define a cor da fonte
-        },
-        formatter: function (val) {
-            return val + "%"; // Formata os dados das barras para mostrar como porcentagem
-        }
-    },
-    title: {
-        text: 'Aproveitamento SARESP (Matérias x Séries)'
-    },
-    fill: {
-        type: 'gradient',
-        gradient: {
-            shade: 'light',
-            type: 'vertical',
-            shadeIntensity: 0.5,
-            gradientToColors: ['#80d8ff'], // Cor do final do degradê (azul bebê)
-            inverseColors: false,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 100]
-        }
-    }
-};
-
-var chart = new ApexCharts(document.querySelector("#grafico2"), options);
-chart.render();
 
 
-// ###########################################################
-var options = {
-    series: [{
-        name: 'Desempenho',
-        data: [31.62, 30.58, 30.21, 30.11, 29.88, 29.89]
-    }],
-    chart: {
-        height: 220,
-        width: 600,
-        type: 'line',
-    },
-    stroke: {
-        curve: 'smooth', // Opção para suavizar a linha
-        width: 2
-    },
-    xaxis: {
-        categories: ['Campinas', 'Litoral Norte', 'São Paulo', 'Sorocaba', 'Baixada Santista', 'Ribeirão Preto'],
-        title: {
-            text: 'Regiões Metropolitanas'
-        }
-    },
-    yaxis: {
-        title: {
-            text: 'Desempenho'
-        }
-    },
-    colors: ['#1ab7ea'], // Cor da linha
-    title: {
-        text: 'Desempenho entre Regiões Metropolitanas',
-       
-        style: {
-            fontSize: '18px',
-            fontWeight: 'bold',
-            color: '#333'
-        }
-    },
-    responsive: [{
-        breakpoint: 480,
-        options: {
-            legend: {
-                show: false
+            // ##################################################
+            var options = {
+                series: [{
+                    data: [39.01, 26.21, 22.52, 23.76, 27.07, 37.42, 30.73, 29.66, 37.23]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 200,
+                    width: 1300,
+                },
+                title: {
+                    text: 'Aproveitamento SARESP Ensino Médio (2023)',
+                    style: {
+                        fontSize: '16px',
+                        color: '#333'
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        borderRadiusApplication: 'end',
+                        horizontal: true,
+                        // Configuração do degradê
+                        dataLabels: {
+                            position: 'bottom' // Posiciona as porcentagens
+                        }
+                    }
+                },
+                colors: ['#00bcd4', '#80d8ff'], // Cores base para o degradê
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        colors: ['#F5F5F5'], // Cor das porcentagens
+                        fontSize: '0px'
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#80d8ff'], // Azul bebê
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 50, 100],
+                        colorStops: []
+                    }
+                },
+                xaxis: {
+                    categories: ['Língua Portuguesa', 'Biologia', 'Física', 'Química', 'Matemática', 'Geografia', 'História', 'Filosofia', 'Sociologia'],
+                    tickAmount: 10,
+                    max: 100,
+                    labels: {
+                        style: {
+                            colors: '#333',
+                            fontSize: '14px' // Cor dos rótulos do eixo X
+                        },
+                        formatter: function (val) {
+                            return val + "%"; // Formata os valores para exibir com "%"
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: '#333',
+                            fontSize: '13px' // Cor dos rótulos do eixo Y
+                        }
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#grafico1"), options);
+            chart.render();
+
+            // ###################################################
+            var options = {
+                series: [
+                    {
+                        name: 'Língua Portuguesa',
+                        data: [34.76, 46.33, 36.40]
+                    },
+                    {
+                        name: 'Biologia',
+                        data: [27.47, 29.51, 20.71]
+                    },
+                    {
+                        name: 'Física',
+                        data: [19.89, 26.50, 21.52]
+                    },
+                    {
+                        name: 'Química',
+                        data: [22.90, 22.76, 26.09]
+                    },
+                    {
+                        name: 'Matemática',
+                        data: [28.82, 25.59, 26.43]
+                    },
+                    {
+                        name: 'Geografia',
+                        data: [44.58, 32.53, 33.34]
+                    },
+                    {
+                        name: 'História',
+                        data: [31.79, 28.95, 31.34]
+                    },
+                    {
+                        name: 'Filosofia',
+                        data: [27.07, 28.02, 35.08]
+                    },
+                    {
+                        name: 'Sociologia',
+                        data: [42.05, 37.51, 30.40]
+                    }
+                ],
+                chart: {
+                    type: 'bar',
+                    height: 220,
+                    stacked: false,
+                },
+                xaxis: {
+                    categories: ['EM-1ª série', 'EM-2ª série', 'EM-3ª série'],
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function (val) {
+                            return val + "%"; // Adiciona o símbolo de porcentagem aos rótulos
+                        }
+                    },
+                    tickAmount: 4, // Define o número de marcas para 0, 30, 60, 90
+                    max: 100, // Define o valor máximo do eixo Y
+                    min: 0 // Define o valor mínimo do eixo Y
+                },
+                dataLabels: {
+                    enabled: true, // Habilita a exibição das porcentagens dentro das barras
+                    style: {
+                        fontSize: '10px', // Define o tamanho da fonte
+                        colors: ['#000'], // Define a cor da fonte
+                    },
+                    formatter: function (val) {
+                        return val + "%"; // Formata os dados das barras para mostrar como porcentagem
+                    }
+                },
+                title: {
+                    text: 'Aproveitamento SARESP (Matérias x Séries)'
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'light',
+                        type: 'vertical',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#80d8ff'], // Cor do final do degradê (azul bebê)
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#grafico2"), options);
+            chart.render();
+
+
+            // ###########################################################
+            var options = {
+                series: [{
+                    name: 'Desempenho',
+                    data: [31.62, 30.58, 30.21, 30.11, 29.88, 29.89]
+                }],
+                chart: {
+                    height: 220,
+                    width: 600,
+                    type: 'line',
+                },
+                stroke: {
+                    curve: 'smooth', // Opção para suavizar a linha
+                    width: 2
+                },
+                xaxis: {
+                    categories: ['Campinas', 'Litoral Norte', 'São Paulo', 'Sorocaba', 'Baixada Santista', 'Ribeirão Preto'],
+                    title: {
+                        text: 'Regiões Metropolitanas'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Desempenho'
+                    }
+                },
+                colors: ['#1ab7ea'], // Cor da linha
+                title: {
+                    text: 'Desempenho entre Regiões Metropolitanas',
+
+                    style: {
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    }
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        legend: {
+                            show: false
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
+            chart.render();
+
+            var nome_user = sessionStorage.NOME_USUARIO;
+
+            name_user.innerHTML += `${nome_user}`;
+
+            function sair() {
+                sessionStorage.clear();
+                window.location.href = "./index.html";
             }
-        }
-    }]
-};
 
-var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
-chart.render();
 
-var nome_user = sessionStorage.NOME_USUARIO;
-
-name_user.innerHTML += `${nome_user}`;
-
-function sair(){
-    sessionStorage.clear();
-    window.location.href = "./index.html";
-}
-
-    
-    </script>
+        </script>
 </body>
+
 </html>
