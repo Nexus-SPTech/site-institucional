@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
     <title>Dashboard</title>
 </head>
 
@@ -152,9 +154,13 @@
 
             <div class="configuracoes" id="configuracoes" style="display: none;">
 
-                <div class="box-config">
+                <div class="box-config" id="boxconfig">
 
-                    <div class="exit-user"><img src="../public/assets/nexus/icons8-x-64.png" alt=""></div>
+                    <div class="exit-user">
+                        <div class="img_alt">
+                            <img src="../public/assets/nexus/icons8-x-64.png" onclick="removerUsuario()">
+                        </div>
+                    </div>
 
                     <div class="organization">
                         <div class="user-left">
@@ -171,9 +177,9 @@
 
 
                                 <h4>Selecione a opção desejada:</h4>
-                                <p> dashboard <input type="radio" name="input_dash" value="0">
-                                    insights <input type="radio" name="input_insights" value="1">
-                                    admin <input type="radio" name="input_sair" value="2"> </p>
+                                <p> dashboard <input type="radio" name="input_config" onclick="uncheckRadio()">
+                                    insights <input type="radio" name="input_config" onclick="uncheckRadio()">
+                                    admin <input type="radio" name="input_config" onclick="uncheckRadio()"> </p>
                             </div>
                         </div>
                     </div>
@@ -433,6 +439,34 @@
                 sessionStorage.clear();
                 window.location.href = "./index.html";
             }
+
+            function removerUsuario() {
+
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Tem certeza que deseja excluir o usuário!",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        boxconfig.style = `display: none`;
+                    }
+
+                })
+            }
+
+            function disableOtherRadios(selectedRadio) {
+        
+        const radioInputs = document.querySelectorAll('input[name="input_config"]');
+        radioInputs.forEach(function (radio) {
+            if (radio !== selectedRadio) {
+                radio.disabled = true;
+            }
+        });
+    }
 
 
         </script>
