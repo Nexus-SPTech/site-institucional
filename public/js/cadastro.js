@@ -66,7 +66,7 @@ function cadastrar() {
         });
     }
     else {
-        fetch("/usuarios/cadastrar", {
+        fetch("/usuarios/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -129,7 +129,7 @@ function entrar() {
         return false;
     }
     else {
-        fetch("/usuarios/autenticar", {
+        fetch("/usuarios/authenticate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -139,14 +139,13 @@ function entrar() {
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
                 console.log(resposta);
 
                 resposta.json().then(json => {
                     sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
                     sessionStorage.EMAIL_USUARIO = json.email;
 
                     let timerInterval;
@@ -227,10 +226,6 @@ function entrar() {
 
                     }
                     break;
-                    resposta.text().then(texto => {
-                        console.error(texto);
-
-                    });
                 }
             }
         }).catch(function (erro) {

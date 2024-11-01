@@ -3,15 +3,28 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
-//Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
-router.post("/cadastrar", function (req, res) {
-    usuarioController.cadastrar(req, res);
-})
-
-router.post("/autenticar", function (req, res) {
-    usuarioController.autenticar(req, res);
+router.post("/register", function (req, res) {
+    usuarioController.register(req, res);
 });
 
+router.post("/authenticate", function (req, res) {
+    usuarioController.authenticate(req, res);
+});
 
+router.get("/get", function (req, res) {
+    usuarioController.getAllUsers(req, res);
+});
+
+router.get("/getById/:id", function (req, res) {
+    usuarioController.getUserById(req, res);
+});
+
+router.put("/update/:id", function (req, res) {
+    usuarioController.updateUser(req, res);
+});
+
+router.delete("/delete/:id", function (req, res) {
+    usuarioController.deleteUser(req, res);
+});
 
 module.exports = router;

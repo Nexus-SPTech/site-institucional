@@ -158,7 +158,7 @@
 
                     <div class="exit-user">
                         <div class="img_alt">
-                            <img src="../public/assets/nexus/icons8-x-64.png" onclick="removerUsuario()">
+                            <img src="./assets/nexus/icons8-x-64.png">
                         </div>
                     </div>
 
@@ -459,14 +459,14 @@
             }
 
             function disableOtherRadios(selectedRadio) {
-        
-        const radioInputs = document.querySelectorAll('input[name="input_config"]');
-        radioInputs.forEach(function (radio) {
-            if (radio !== selectedRadio) {
-                radio.disabled = true;
+
+                const radioInputs = document.querySelectorAll('input[name="input_config"]');
+                radioInputs.forEach(function (radio) {
+                    if (radio !== selectedRadio) {
+                        radio.disabled = true;
+                    }
+                });
             }
-        });
-    }
 
 
         </script>
