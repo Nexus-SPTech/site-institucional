@@ -35,7 +35,6 @@ function authenticate(req, res) {
                 }
             );
     }
-
 }
 
 function register(req, res) {
@@ -87,9 +86,9 @@ function getAllUsers(req, res) {
 }
 
 function getUserById(req, res) {
-    var id = req.params.id;
+    var idUsuario = req.params.idUsuario;
 
-    usuarioModel.getUserById(id)
+    usuarioModel.getUserById(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length == 1) {
@@ -108,11 +107,11 @@ function getUserById(req, res) {
 }
 
 function updateUser(req, res) {
-    var id = req.params.id;
+    var idUsuario = req.params.idUsuario;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
 
-    usuarioModel.updateUser(id, nome, email)
+    usuarioModel.updateUser(idUsuario, nome, email)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -127,9 +126,9 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-    var id = req.params.id;
+    var idUsuario = req.params.idUsuario;
 
-    usuarioModel.deleteUser(id)
+    usuarioModel.deleteUser(idUsuario)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -138,7 +137,7 @@ function deleteUser(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log("\nHouve um erro ao deletar o usuário! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
+                // res.status(500).json(erro.sqlMessage);
             }
         );
 }

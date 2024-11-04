@@ -1,318 +1,428 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
-
-    
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/style.css" />
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- scripts do Chart.js - 2022-1 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <title>Dashboard</title>
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-
 <body>
-
-    <div class="janela">
-        <div class="header-left">
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    <div class="container">
+        <div class="nav-lateral" id="nav">
+            <div class="profile">
+                <p>Bem vindo(a), <b id="name_user"></b></p>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
+            <div class="menu">
+                <a onclick="mostrardashboard()">
+                    <i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
+                    Dashboard
+                </a>
+                <li onclick="mostrarinsights()">
+                    <i class="fa-duotone fa-solid fa-chart-simple"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Insights
+                </li>
+                <li onclick="mostrarUsuarios()">
+                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Usuários
+                </li>
+                <a href="./gestaoUsuarios.html">
+                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Empresas
                 </a>
             </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+            <div class="exit">
+                <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> Sair</p>
             </div>
         </div>
-    </div>
+        <div class="content">
+            <div class="header">
+                <div class="hamburguer" onclick="toggleMenu()">&#9776;</div>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="dashboard" id="dashboard">
+                <div class="kpi">
+                    <div class="box1">
+                        <div class="box1-icone">
+                            <img width="40px" src="./assets/nexus/notas.png" alt="">
+                        </div>
+                        <div class="box1-conteudo">
+                            <h1>MELHOR APROVEITAMENTO: <b>Língua Portuguesa: 39.02%</b></h1>
+                        </div>
+                    </div>
+
+                    <div class="box2">
+                        <div class="box2-icone">
+                            <img width="40px" src="./assets/nexus/materias.png" alt="">
+                        </div>
+                        <div class="box2-conteudo">
+                            <h1>MÉDIA DE ACERTO EM TODAS AS MATÉRIAS: <b>30.40%</b></h1>
+                        </div>
+                    </div>
+
+                    <div class="box3">
+                        <div class="box3-icone">
+                            <img width="40px" src="./assets/nexus/area.png" alt="">
+                        </div>
+                        <div class="box3-conteudo">
+                            <h1>MATÉRIA COM MAIOR DIFICULDADE DE APRENDIZADO: <B>FÍSICA</B></h1>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="grafico1">
+                </div>
+                <div id="grafico2">
+                </div>
+                <div id="grafico3">
+                    <div id="redesmunicipais"></div>
+                    <div id="estatistica-fm">
+                        <P>APROVEITAMENTO POR GÊNEROS</P>
+                        <span class="feminino">
+                            <img src="./assets/nexus/woman.png" alt="">
+                            <p>Feminino: <b>30.66%</b> </p>
+                        </span>
+                        <span class="masculino"> <img src="./assets/nexus/man.png" alt="">
+                            <p>Masculino: <b>29.93%</b> </p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="insights" id="insights" style="display: none;">
+                <h2>Insights</h2>
+                <div class="desempenho">
+                    <div class="desempenho-conteudo">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO GERAL:</h1>
+                        <p style="color: black;"> <b>Língua Portuguesa:</b> A Língua Portuguesa se destaca como a
+                            matéria com maior aproveitamento, o que pode indicar um foco maior no ensino dessa
+                            disciplina ou uma maior facilidade dos alunos em relação a ela. <br><br>
+                            <b>Dificuldade em Física:</b> Por outro lado, a Física aparece como a matéria com maior
+                            dificuldade de aprendizado. Isso pode ser um indicativo de que os estudantes encontram mais
+                            desafios nessa área, seja por falta de interesse, dificuldade de compreensão dos conceitos
+                            ou até mesmo por uma abordagem menos eficaz no ensino. <br><br>
+                            <b>Média Geral:</b> A média de acerto em todas as matérias está abaixo de 50%, o que
+                            sinaliza uma necessidade de aprimoramento no ensino em diversas áreas.
+                        </p>
+                    </div>
+                </div>
+                <div class="desempenho-2">
+                    <div class="desempenho-conteudo-2">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR SÉRIE E MATÉRIA:</h1>
+                        <p style="color: black;"> <b>Variação entre as Séries:</b> O desempenho varia significativamente
+                            entre as séries, com a primeira série apresentando, em geral, um aproveitamento menor do que
+                            as séries subsequentes. Isso pode estar relacionado à adaptação ao ensino médio ou a lacunas
+                            no aprendizado das séries anteriores. <br><br>
+                            <b>Desempenho por Matéria:</b> As matérias apresentam desempenhos distintos, com algumas se
+                            destacando positivamente e outras negativamente. Essa variação pode estar relacionada à
+                            complexidade da matéria, à qualidade do ensino ou ao interesse dos alunos. <br><br>
+                        </p>
+                    </div>
+                </div>
+                <div class="desempenho-3">
+                    <div class="desempenho-conteudo-2">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR GÊNERO:</h1>
+                        <p style="color: black;"> <b>Leve Diferença entre os Sexos:</b> As mulheres apresentaram um
+                            levemente melhor desempenho em comparação aos homens. No entanto, essa diferença é pequena e
+                            pode não ser estatisticamente significativa. <br><br>
+                        </p>
+                    </div>
+                </div>
+                <div class="desempenho-4">
+                    <div class="desempenho-conteudo-4">
+                        <h1 style="color:black; font-weight: bold;">POSSÍVEIS CAUSAS E IMPLICAÇÕES:</h1>
+                        <p style="color: black;"> <b>Qualidade do Ensino:</b> A qualidade do ensino, incluindo a
+                            formação dos professores, os recursos disponíveis nas escolas e a metodologia utilizada,
+                            exerce um papel fundamental no desempenho dos alunos. <br><br>
+                            <b>Fatores Socioeconômicos:</b> O nível socioeconômico dos alunos, o acesso a recursos como
+                            internet e computadores e o apoio familiar também influenciam o desempenho escolar. <br><br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="configuracoes" id="configuracoes" style="display: none;">
+
+                <div class="box-config" id="boxconfig">
+
+                    <div class="exit-user">
+                        <div class="img_alt">
+                            <img src="./assets/nexus/icons8-x-64.png">
+                        </div>
+                    </div>
+
+                    <div class="organization">
+                        <div class="user-left">
+                            <div class="icon"></div>
+                        </div>
+                        <div class="text-right">
+                            <p> NOME: Bob da Silva <br>
+                                CARGO: Professor <br>
+                                EMAIL: bobsilva@gmail.com</p>
+                            <div class="button-radio">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function toggleMenu() {
+                const nav = document.getElementById("nav");
+                nav.classList.toggle("hidden");
+            }
+
+            // ##################################################
+            var options = {
+                series: [{
+                    data: [39.01, 26.21, 22.52, 23.76, 27.07, 37.42, 30.73, 29.66, 37.23]
+                }],
+                chart: {
+                    type: 'bar',
+                    height: 200,
+                    width: 1300,
+                },
+                title: {
+                    text: 'Aproveitamento SARESP Ensino Médio (2023)',
+                    style: {
+                        fontSize: '16px',
+                        color: '#333'
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4,
+                        borderRadiusApplication: 'end',
+                        horizontal: true,
+                        // Configuração do degradê
+                        dataLabels: {
+                            position: 'bottom' // Posiciona as porcentagens
+                        }
+                    }
+                },
+                colors: ['#00bcd4', '#80d8ff'], // Cores base para o degradê
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        colors: ['#F5F5F5'], // Cor das porcentagens
+                        fontSize: '0px'
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#80d8ff'], // Azul bebê
+                        inverseColors: true,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 50, 100],
+                        colorStops: []
+                    }
+                },
+                xaxis: {
+                    categories: ['Língua Portuguesa', 'Biologia', 'Física', 'Química', 'Matemática', 'Geografia', 'História', 'Filosofia', 'Sociologia'],
+                    tickAmount: 10,
+                    max: 100,
+                    labels: {
+                        style: {
+                            colors: '#333',
+                            fontSize: '14px' // Cor dos rótulos do eixo X
+                        },
+                        formatter: function (val) {
+                            return val + "%"; // Formata os valores para exibir com "%"
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        style: {
+                            colors: '#333',
+                            fontSize: '13px' // Cor dos rótulos do eixo Y
+                        }
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#grafico1"), options);
+            chart.render();
+
+            // ###################################################
+            var options = {
+                series: [
+                    {
+                        name: 'Língua Portuguesa',
+                        data: [34.76, 46.33, 36.40]
+                    },
+                    {
+                        name: 'Biologia',
+                        data: [27.47, 29.51, 20.71]
+                    },
+                    {
+                        name: 'Física',
+                        data: [19.89, 26.50, 21.52]
+                    },
+                    {
+                        name: 'Química',
+                        data: [22.90, 22.76, 26.09]
+                    },
+                    {
+                        name: 'Matemática',
+                        data: [28.82, 25.59, 26.43]
+                    },
+                    {
+                        name: 'Geografia',
+                        data: [44.58, 32.53, 33.34]
+                    },
+                    {
+                        name: 'História',
+                        data: [31.79, 28.95, 31.34]
+                    },
+                    {
+                        name: 'Filosofia',
+                        data: [27.07, 28.02, 35.08]
+                    },
+                    {
+                        name: 'Sociologia',
+                        data: [42.05, 37.51, 30.40]
+                    }
+                ],
+                chart: {
+                    type: 'bar',
+                    height: 220,
+                    stacked: false,
+                },
+                xaxis: {
+                    categories: ['EM-1ª série', 'EM-2ª série', 'EM-3ª série'],
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function (val) {
+                            return val + "%"; // Adiciona o símbolo de porcentagem aos rótulos
+                        }
+                    },
+                    tickAmount: 4, // Define o número de marcas para 0, 30, 60, 90
+                    max: 100, // Define o valor máximo do eixo Y
+                    min: 0 // Define o valor mínimo do eixo Y
+                },
+                dataLabels: {
+                    enabled: true, // Habilita a exibição das porcentagens dentro das barras
+                    style: {
+                        fontSize: '10px', // Define o tamanho da fonte
+                        colors: ['#000'], // Define a cor da fonte
+                    },
+                    formatter: function (val) {
+                        return val + "%"; // Formata os dados das barras para mostrar como porcentagem
+                    }
+                },
+                title: {
+                    text: 'Aproveitamento SARESP (Matérias x Séries)'
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'light',
+                        type: 'vertical',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#80d8ff'], // Cor do final do degradê (azul bebê)
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#grafico2"), options);
+            chart.render();
 
 
+            // ###########################################################
+            var options = {
+                series: [{
+                    name: 'Desempenho',
+                    data: [31.62, 30.58, 30.21, 30.11, 29.88, 29.89]
+                }],
+                chart: {
+                    height: 220,
+                    width: 600,
+                    type: 'line',
+                },
+                stroke: {
+                    curve: 'smooth', // Opção para suavizar a linha
+                    width: 2
+                },
+                xaxis: {
+                    categories: ['Campinas', 'Litoral Norte', 'São Paulo', 'Sorocaba', 'Baixada Santista', 'Ribeirão Preto'],
+                    title: {
+                        text: 'Regiões Metropolitanas'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Desempenho'
+                    }
+                },
+                colors: ['#1ab7ea'], // Cor da linha
+                title: {
+                    text: 'Desempenho entre Regiões Metropolitanas',
+
+                    style: {
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    }
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        legend: {
+                            show: false
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
+            chart.render();
+
+            var nome_user = sessionStorage.NOME_USUARIO;
+
+            name_user.innerHTML += `${nome_user}`;
+
+            function sair() {
+                sessionStorage.clear();
+                window.location.href = "./index.html";
+            }
+
+            function removerUsuario() {
+
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Tem certeza que deseja excluir o usuário!",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        boxconfig.style = `display: none`;
+                    }
+
+                })
+            }
+        </script>
 </body>
 
 </html>
-
-<script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-    let proximaAtualizacao;
-
-    window.onload = exibirAquariosDoUsuario();
-
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
-
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
-
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
-
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-
-        alterarTitulo(idAquario)
-
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico(resposta, idAquario);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
-
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'Umidade',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
-
-
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
-
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                        dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
-</script>

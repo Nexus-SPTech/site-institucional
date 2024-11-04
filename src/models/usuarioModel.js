@@ -17,14 +17,19 @@ function register(nome, email, senha) {
 
 function getAllUsers() {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, fkCargo FROM usuario;
+        SELECT idUsuario, nomeUsuario, email, cargo.nome, empresa.nomeEmpresa FROM usuario
+        JOIN cargo ON fkCargo = idCargo
+        JOIN empresa ON fkEmpresa = idEmpresa;
     `;
     return database.executar(instrucaoSql);
 }
 
 function getUserById(idUsuario) {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, fkCargo FROM usuario WHERE idUsuario = '${idUsuario}';
+        SELECT idUsuario, nomeUsuario, email, cargo.nome, empresa.nomeEmpresa FROM usuario
+        JOIN cargo ON fkCargo = idCargo
+        JOIN empresa ON fkEmpresa = idEmpresa
+        WHERE idUsuario = ${idUsuario};
     `;
     return database.executar(instrucaoSql);
 }
