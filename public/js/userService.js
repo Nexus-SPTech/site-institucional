@@ -18,7 +18,7 @@ function populateUsers() {
                 row.insertCell(0).innerHTML = user.idUsuario;
                 row.insertCell(1).innerHTML = user.nomeUsuario;
                 row.insertCell(2).innerHTML = user.email;
-                row.insertCell(3).innerHTML = user.nome == undefined ? 'Não definido' : user.nome;
+                row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
                 row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
                 row.insertCell(5).innerHTML = `<i class="fa-solid fa-pen"></i>`;
                 row.insertCell(6).innerHTML = `<i class="fa-solid fa-trash"></i>`;
