@@ -17,9 +17,9 @@ function register(nome, email, senha) {
 
 function getAllUsers() {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, cargo.nome, empresa.nomeEmpresa FROM usuario
-        JOIN cargo ON fkCargo = idCargo
-        JOIN empresa ON fkEmpresa = idEmpresa;
+    SELECT idUsuario, nomeUsuario, email, cargo.nome AS nomeCargo, empresa.nomeEmpresa FROM usuario
+    LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
+    LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa;
     `;
     return database.executar(instrucaoSql);
 }

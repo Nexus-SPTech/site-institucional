@@ -35,7 +35,7 @@ body {
   transform: translateX(-100%);
 }
 
-.menu li {
+.menu a {
   list-style: none;
   color: #f5f5f5;
   padding: 10px 0;
@@ -43,7 +43,7 @@ body {
   transition: color 0.3s;
 }
 
-.menu li:hover {
+.menu a:hover {
   color: #ffffff;
 }
 
@@ -255,12 +255,6 @@ body {
   height: auto;
   border: 1px solid #333;
   border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-  .nav-lateral {
-    width: 200px;
-  }
 }
 
 .configuracoes {

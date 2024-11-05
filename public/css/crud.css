@@ -1,33 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
     background-color: #f4f4f4;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.users{
+    width: 100%;
+    padding: 20px;
 }
 
 h1, h2 {
     color: #333;
-}
-
-form {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"], input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 button {
@@ -46,7 +40,6 @@ button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 table, th, td {
@@ -62,6 +55,68 @@ th {
     background-color: #f2f2f2;
 }
 
-button + button {
-    margin-left: 10px;
+.nav-lateral {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* position: fixed; */
+    padding: 20px;
+}
+
+.nav-lateral .profile {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.nav-lateral .profile p {
+    margin: 0;
+}
+
+.nav-lateral .menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-lateral .menu a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-lateral .menu a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.nav-lateral .menu a:hover {
+    background-color: #444;
+}
+
+.nav-lateral .exit {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav-lateral .exit p {
+    color: #f5f5f5;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-lateral .exit p:hover {
+    background-color: #444;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,28 +8,60 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/crud.css">
+    <!-- <link rel="stylesheet" href="../css/dashboards.css"> -->
     <title>Gestão de usuários</title>
 </head>
-<body>
-    <h1>Gestão de Usuários</h1>
-    <div>
-        <h2>Lista de Usuários</h2>
-        <table id="userTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Cargo</th>
-                    <th>Empresa</th>
-                    <th><i class="fa-solid fa-trash"></i></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
 
+<body>
+    <div class="content">
+        <div class="nav-lateral" id="nav">
+            <div class="profile">
+                <p>Bem vindo(a), <b id="name_user"></b></p>
+            </div>
+            <div class="menu">
+                <a onclick="mostrardashboard()">
+                    <i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
+                    Dashboard
+                </a>
+                <a onclick="mostrarinsights()">
+                    <i class="fa-duotone fa-solid fa-chart-simple"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Insights
+                </a>
+                <a href="./gestaoUsuarios.html">
+                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Usuários
+                </a>
+                <a href="./gestaoUsuarios.html">
+                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Empresas
+                </a>
+            </div>
+            <div class="exit">
+                <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> Sair</p>
+            </div>
+        </div>
+        <div class="users">
+            <h1>Gestão de Usuários</h1>
+            <h2>Lista de Usuários</h2>
+            <table id="userTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Cargo</th>
+                        <th>Empresa</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="../js/userService.js"></script>
 </body>
+
 </html>

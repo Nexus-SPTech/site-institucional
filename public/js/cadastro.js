@@ -112,7 +112,7 @@ function cadastrar() {
 let tentativas = 3;
 function entrar() {
 
-    event.preventDefault()
+    event.preventDefault();
     const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
 
@@ -171,7 +171,7 @@ function entrar() {
                             console.log("I was closed by the timer");
                         }
                         setTimeout(function () {
-                            window.location = "dashboard.html";
+                            window.location = "./dashboard/dashboard.html";
                         }, 500);
                     });
 
