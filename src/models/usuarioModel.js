@@ -24,12 +24,12 @@ function getAllUsers() {
     return database.executar(instrucaoSql);
 }
 
-function getUserById(idUsuario) {
+function getUserByName(nomeUsuario) {
     var instrucaoSql = `
         SELECT idUsuario, nomeUsuario, email, cargo.nome, empresa.nomeEmpresa FROM usuario
-        JOIN cargo ON fkCargo = idCargo
-        JOIN empresa ON fkEmpresa = idEmpresa
-        WHERE idUsuario = ${idUsuario};
+        LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
+        LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa
+        WHERE nomeUsuario like "%${nomeUsuario}%";
     `;
     return database.executar(instrucaoSql);
 }
@@ -52,7 +52,7 @@ module.exports = {
     authenticate,
     register,
     getAllUsers,
-    getUserById,
+    getUserByName,
     updateUser,
     deleteUser
 };

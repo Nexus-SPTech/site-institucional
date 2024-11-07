@@ -85,10 +85,10 @@ function getAllUsers(req, res) {
         );
 }
 
-function getUserById(req, res) {
-    var idUsuario = req.params.idUsuario;
+function getUserByName(req, res) {
+    var nomeUsuario = req.params.nomeUsuario;
 
-    usuarioModel.getUserById(idUsuario)
+    usuarioModel.getUserByName(nomeUsuario)
         .then(
             function (resultado) {
                 if (resultado.length == 1) {
@@ -146,7 +146,7 @@ module.exports = {
     authenticate,
     register,
     getAllUsers,
-    getUserById,
+    getUserByName,
     updateUser,
     deleteUser
 }

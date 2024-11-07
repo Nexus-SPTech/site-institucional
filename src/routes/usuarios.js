@@ -15,8 +15,8 @@ router.get("/get", function (req, res) {
     usuarioController.getAllUsers(req, res);
 });
 
-router.get("/getById/:id", function (req, res) {
-    usuarioController.getUserById(req, res);
+router.get("/getByName/:nomeUsuario", function (req, res) {
+    usuarioController.getUserByName(req, res);
 });
 
 router.put("/update/:id", function (req, res) {
