@@ -46,8 +46,8 @@
             <div class="search">
                 <h2>Pesquisar usuarios</h2>
                 <input type="search" id="search-users">
-                <a onclick="getUserByName('ru')"><i class="fa-solid fa-magnifying-glass"></i></a>
-
+                <a onclick="getUserByName(document.getElementById('search-users').value)"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <span id="error"></span>
             </div>
             <div class="get-all">
                 <h2>Lista de Usuários</h2>

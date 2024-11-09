@@ -20,8 +20,8 @@ function getAll() {
                 row.insertCell(2).innerHTML = user.email;
                 row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
                 row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                row.insertCell(5).innerHTML = `<a><i class="fa-solid fa-pen"></i></a>`;
-                row.insertCell(6).innerHTML = `<a><i class="fa-solid fa-trash"></i></a>`;
+                row.insertCell(5).innerHTML = `<a ><i class="fa-solid fa-pen"></i></a>`;
+                row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
             });
         })
     }).catch(function (error) {
@@ -30,24 +30,49 @@ function getAll() {
 }
 
 function getUserByName(nomeUsuario) {
-    fetch("/usuarios/getByName/" + nomeUsuario, {
+    if(!nomeUsuario) {
+        document.getElementById('error').innerHTML = "O campo de busca não pode estar vazio";
+        getAll();
+        return;
+    }
+
+    fetch(`/usuarios/getByName/${nomeUsuario}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
         response.json().then(json => {
-            json.forEach(user => {
-                const row = userTable.insertRow();
-                row.insertCell(0).innerHTML = user.idUsuario;
-                row.insertCell(1).innerHTML = user.nomeUsuario;
-                row.insertCell(2).innerHTML = user.email;
-                row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
-                row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                row.insertCell(5).innerHTML = `<a><i class="fa-solid fa-pen"></i></a>`;
-                row.insertCell(6).innerHTML = `<a><i class="fa-solid fa-trash"></i></a>`;
-            });
-        })
+            if (json.length > 0) {
+                userTable.innerHTML = '';
+                json.forEach(user => {
+                    const row = userTable.insertRow();
+                    row.insertCell(0).innerHTML = user.idUsuario;
+                    row.insertCell(1).innerHTML = user.nomeUsuario;
+                    row.insertCell(2).innerHTML = user.email;
+                    row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
+                    row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
+                    row.insertCell(5).innerHTML = `<a><i class="fa-solid fa-pen"></i></a>`;
+                    row.insertCell(6).innerHTML = `<a onclick="deleteUser()><i class="fa-solid fa-trash"></i></a>`;
+                });
+            } else {
+                document.getElementById('error').innerHTML = "Usuário não encontrado";
+            }
+        });
+    }).catch(function (error) {
+        console.log("error: ", error);
+    });
+}
+
+function deleteUser(idUsuario) {
+    fetch(`/usuarios/delete/${idUsuario}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (response) {
+        console.log("response delet: ", response);
+        getAll();
     }).catch(function (error) {
         console.log("error: ", error);
     });

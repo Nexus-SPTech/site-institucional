@@ -19,11 +19,11 @@ router.get("/getByName/:nomeUsuario", function (req, res) {
     usuarioController.getUserByName(req, res);
 });
 
-router.put("/update/:id", function (req, res) {
+router.put("/update/:idUsuario", function (req, res) {
     usuarioController.updateUser(req, res);
 });
 
-router.delete("/delete/:id", function (req, res) {
+router.delete("/delete/:idUsuario", function (req, res) {
     usuarioController.deleteUser(req, res);
 });
 

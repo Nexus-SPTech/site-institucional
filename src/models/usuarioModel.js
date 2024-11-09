@@ -36,14 +36,14 @@ function getUserByName(nomeUsuario) {
 
 function updateUser(idUsuario, nome, email, cargo) {
     var instrucaoSql = `
-        UPDATE usuario SET nomeUsuario = '${nome}', email = '${email}, fkCargo = '${cargo}' WHERE idUsuario = ${idUsuario};
+        UPDATE usuario SET nomeUsuario = '${nome}', email = '${email}, fkCargo = '${cargo}' WHERE idUsuario = "${idUsuario}";
     `;
     return database.executar(instrucaoSql);
 }
 
 function deleteUser(idUsuario) {
     var instrucaoSql = `
-        DELETE FROM usuario WHERE idUsuario = ${idUsuario};
+        DELETE FROM usuario WHERE idUsuario = "${idUsuario}";
     `;
     return database.executar(instrucaoSql);
 }

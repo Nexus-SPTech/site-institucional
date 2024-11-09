@@ -89,21 +89,15 @@ function getUserByName(req, res) {
     var nomeUsuario = req.params.nomeUsuario;
 
     usuarioModel.getUserByName(nomeUsuario)
-        .then(
-            function (resultado) {
-                if (resultado.length == 1) {
-                    res.json(resultado[0]);
-                } else {
-                    res.status(404).send("Usuário não encontrado!");
-                }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao buscar o usuário! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
+        .then((resultado) => {
+            res.json(resultado);
+            console.log(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            console.log("\nHouve um erro ao buscar o usuário! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function updateUser(req, res) {
@@ -137,7 +131,7 @@ function deleteUser(req, res) {
             function (erro) {
                 console.log(erro);
                 console.log("\nHouve um erro ao deletar o usuário! Erro: ", erro.sqlMessage);
-                // res.status(500).json(erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
             }
         );
 }
