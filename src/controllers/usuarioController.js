@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModel");
+const usuarioModel = require("../models/usuarioModel");
 
 function authenticate(req, res) {
     var email = req.body.emailServer;

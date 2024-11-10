@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -74,53 +74,156 @@ body {
 .nav-lateral .exit p:hover {
     background-color: #444;
 }
+
 .content {
     width: 100%;
     display: flex;
     text-align: center;
 }
 
-.users{
-    width: 100%;
+.users {
+    flex: 1;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
-    color: #333;
+.users h1 {
+    font-size: 24px;
+    color: #1d3557;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
+/* Barra de busca e botão de adicionar */
+.search-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-user input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.search-user button {
+    background-color: #495057;
+    color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-button:hover {
-    background-color: #218838;
+.search-user button:hover {
+    background-color: #343a40;
 }
 
-table {
+/* Tabela de usuários */
+.table-users {
     width: 100%;
     border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
+.table-users th,
+.table-users td {
+    padding: 12px;
     text-align: left;
 }
 
-th {
-    background-color: #f2f2f2;
+.table-users th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-bottom: 2px solid #dee2e6;
 }
 
-.search {
-    margin: 20px 0;
+.table-users tr:nth-child(even) {
+    background-color: #f8f9fa;
 }
 
+.table-users tr:hover {
+    background-color: #e9ecef;
+}
+
+.table-users td {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Estilos para o status do usuário */
+.status {
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+.status.ativo {
+    background-color: #90e0ef;
+    color: #0077b6;
+}
+
+.status.inativo {
+    background-color: #ffadad;
+    color: #d90429;
+}
+
+/* Função e perfil */
+.role,
+.profile {
+    font-weight: bold;
+    color: #495057;
+    background-color: #d8e3e7;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Botões de ação */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons .edit,
+.action-buttons .delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+.action-buttons .edit {
+    background-color: #007bff;
+}
+
+.action-buttons .edit:hover {
+    background-color: #0056b3;
+}
+
+.action-buttons .delete {
+    background-color: #dc3545;
+}
+
+.action-buttons .delete:hover {
+    background-color: #c82333;
+}

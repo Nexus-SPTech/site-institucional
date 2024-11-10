@@ -11,7 +11,7 @@ router.post("/authenticate", function (req, res) {
     usuarioController.authenticate(req, res);
 });
 
-router.get("/get", function (req, res) {
+router.get("/getAll", function (req, res) {
     usuarioController.getAllUsers(req, res);
 });
 
@@ -23,7 +23,7 @@ router.put("/update/:idUsuario", function (req, res) {
     usuarioController.updateUser(req, res);
 });
 
-router.delete("/delete/:idUsuario", function (req, res) {
+router.put("/delete/:idUsuario", function (req, res) {
     usuarioController.deleteUser(req, res);
 });
 
