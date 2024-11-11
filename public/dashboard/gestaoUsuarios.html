@@ -15,6 +15,24 @@
 </head>
 
 <body>
+    <div class="modalAdd" id="modalAdd">
+        <div class="container">
+                <i class="fa-solid fa-xmark" onclick="mudarAdd()"></i>
+                <h2 id="add-user-title">Adicionar Usuário</h2>
+            <form id="form-user">
+                <input type="text" id="name" placeholder="Nome" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <select id="role" required>
+                    <option value="" disabled selected>Cargo</option>
+                </select>
+                <select id="company" required>
+                    <option value="" disabled selected>Empresa</option>
+                </select>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
     <div class="content">
         <div class="nav-lateral" id="nav">
             <div class="profile">
@@ -53,22 +71,10 @@
                 <span id="error"></span>
             </div>
             <div class="add-user">
-                <button onclick="ShowAddUserForm()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar
+                <button onclick="mudarAdd()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar
                     Usuário</button>
                 <div class="add-user-form" id="add-user-form">
-                    <h2 id="add-user-title">Adicionar Usuário</h2>
-                    <form id="form-user">
-                        <input type="text" id="name" placeholder="Nome" required>
-                        <input type="email" id="email" placeholder="Email" required>
-                        <input type="password" id="password" placeholder="Senha" required>
-                        <select id="role" required>
-                            <option value="" disabled selected>Cargo</option>
-                        </select>
-                        <select id="company" required>
-                            <option value="" disabled selected>Empresa</option>
-                        </select>
-                        <button type="submit">Adicionar</button>
-                    </form>
+
                 </div>
             </div>
             <div class="get-all">

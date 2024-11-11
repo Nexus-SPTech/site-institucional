@@ -79,7 +79,7 @@ function deleteUser(idUsuario) {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Sim, deletar",
-        cancelButtonText: "Não, cancelar"    
+        cancelButtonText: "Não, cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire({
@@ -153,4 +153,12 @@ function ShowAddUserForm() {
 
 getAll();
 
+function mudarAdd() {
+    const display = window.getComputedStyle(modalAdd).display;
 
+    if (display === "none") {
+        modalAdd.style.display = "flex";
+    } else {
+        modalAdd.style.display = "none";
+    }
+}

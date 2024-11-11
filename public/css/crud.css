@@ -227,3 +227,80 @@ body {
 .action-buttons .delete:hover {
     background-color: #c82333;
 }
+
+.modalAdd {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: 82%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 400px;
+        height: 400px;
+        border-radius: 15px;
+        justify-content: center;
+        padding: 10px;
+
+        i {
+            cursor: pointer;
+            margin-left: 10px;
+            text-align:left;
+            font-size: 30px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        form {
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            input,
+            select {
+                padding: 5px;
+                border: solid black 1px;
+                outline: none;
+                border-radius: 15px;
+                height: 30px;
+                width: 50%;
+
+                option {
+                    background-color: white;
+                    color: black;
+                }
+            }
+
+            button {
+                width: 150px;
+                background-color: #16a34a;
+                border: none;
+                outline: none;
+                height: 30px;
+                border-radius: 49px;
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: 600;
+                margin: 10px 0;
+                cursor: pointer;
+                transition: 0.5s;
+            }
+
+            button:hover {
+                background-color: rgb(0, 66, 24);
+            }
+        }
+    }
+}
