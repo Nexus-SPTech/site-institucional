@@ -1,6 +1,6 @@
 var database = require("../database/config")
 
-function register(nome, email, senha) {
+function add(nome, email, senha) {
     var instrucaoSql = `
         INSERT INTO usuario (nomeUsuario, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
@@ -36,7 +36,7 @@ function deleteCompany(idEmpresa) {
 }
 
 module.exports = {
-    register,
+    add,
     getAllCompanies,
     getCompanieByName,
     updateCompany,

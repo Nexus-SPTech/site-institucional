@@ -1,7 +1,61 @@
 const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
 const userName = document.getElementById('name_user');
-
+const rolesSelect = document.getElementById('role');
+const companySelect = document.getElementById('company');
 userName.innerHTML = sessionStorage.NOME_USUARIO;
+
+function addUser() {
+    const name = document.getElementById('new-user-name').value;
+    const email = document.getElementById('new-user-email').value;
+    const password = document.getElementById('new-user-password').value;
+    const role = document.getElementById('new-user-role').value;
+    const company = document.getElementById('new-user-company').value;
+
+    if (!name || !email || !password || !role || !company) {
+        Swal.fire({
+            title: "Erro ao adicionar o usuário!",
+            text: "Preencha todos os campos",
+            icon: "error"
+        });
+        return;
+    }
+
+    const user = {
+        nomeUsuario: name,
+        email: email,
+        senha: password,
+        idCargo: role,
+        idEmpresa: company
+    };
+
+    fetch(`/usuarios/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(function (response) {
+        if (response.status === 200) {
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário adicionado com sucesso",
+                icon: "success"
+            });
+            getAll();
+            document.getElementById('add-user-form').style.display = 'none';
+            document.getElementById('show-form-button').style.display = 'block';
+            document.getElementById('add-user-title').style.display = 'none';
+        } else {
+            Swal.fire({
+                title: "Erro!",
+                text: "Erro ao adicionar usuário",
+                icon: "error"
+            });
+        }
+    }).catch(function (error) {
+        console.log("error: ", error);
+    });
+}
 
 function getAll() {
     userTable.innerHTML = '';
@@ -21,7 +75,7 @@ function getAll() {
                     row.insertCell(2).innerHTML = user.email;
                     row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
                     row.insertCell(4).innerHTML = user.nomeEmpresa == undefined || user.isDeletedCompany ? 'Não definida' : user.nomeEmpresa;
-                    row.insertCell(5).innerHTML = `<a ><i class="fa-solid fa-pen"></i></a>`;
+                    row.insertCell(5).innerHTML = `<a onclick="showUpdateModal()"><i class="fa-solid fa-pen"></i></a>`;
                     row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
                 }
             });
@@ -55,7 +109,7 @@ function getUserByName(nomeUsuario) {
                         row.insertCell(2).innerHTML = user.email;
                         row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
                         row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                        row.insertCell(5).innerHTML = `<a><i class="fa-solid fa-pen"></i></a>`;
+                        row.insertCell(5).innerHTML = `<a onclick="showUpdateModal(user.nomeUsuario, user.email, user.nomeCargo, user.nomeEmpresa)"><i class="fa-solid fa-pen"></i></a>`;
                         row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
                     } else {
                         document.getElementById('error').innerHTML = "Usuário não encontrado";
@@ -65,6 +119,58 @@ function getUserByName(nomeUsuario) {
                 document.getElementById('error').innerHTML = "Usuário não encontrado";
             }
         });
+    }).catch(function (error) {
+        console.log("error: ", error);
+    });
+}
+
+function updateUser(idUsuario) {
+    const name = document.getElementById('update-user-name').value;
+    const email = document.getElementById('update-user-email').value;
+    const role = document.getElementById('update-user-role').value;
+    const company = document.getElementById('update-user-company').value;
+
+    if (!name || !email || !role || !company) {
+        Swal.fire({
+            title: "Erro ao atualizar o usuário!",
+            text: "Preencha todos os campos",
+            icon: "error"
+        });
+        return;
+    }
+
+    const user = {
+        idUsuario: idUsuario,
+        nomeUsuario: name,
+        email: email,
+        idCargo: role,
+        idEmpresa: company
+    };
+
+    fetch(`/usuarios/update/${idUsuario}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(function (response) {
+        if (response.status === 200) {
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário atualizado com sucesso",
+                icon: "success"
+            });
+            getAll();
+            document.getElementById('add-user-form').style.display = 'none';
+            document.getElementById('show-form-button').style.display = 'block';
+            document.getElementById('add-user-title').style.display = 'none';
+        } else {
+            Swal.fire({
+                title: "Erro!",
+                text: "Erro ao atualizar usuário",
+                icon: "error"
+            });
+        }
     }).catch(function (error) {
         console.log("error: ", error);
     });
@@ -109,11 +215,11 @@ function populateCompanies() {
         }
     }).then(function (response) {
         response.json().then(json => {
-            const companySelect = document.getElementById('company');
             json.forEach(company => {
                 const option = document.createElement('option');
                 option.value = company.idEmpresa;
                 option.innerHTML = company.nomeEmpresa;
+                option.id = "update-user-company";
                 companySelect.appendChild(option);
             });
         });
@@ -129,12 +235,13 @@ function populateRoles() {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
-        response.json().then(json => {
-            const rolesSelect = document.getElementById('role');
+        response.json().then(json => { 
             json.forEach(role => {
+                console.log("role: ", role);
                 const option = document.createElement('option');
                 option.value = role.idCargo;
-                option.innerHTML = role.nome;
+                option.innerHTML = role.nomeCargo;
+                option.id = "update-user-role";
                 rolesSelect.appendChild(option);
             });
         });
@@ -143,22 +250,40 @@ function populateRoles() {
     });
 }
 
-function ShowAddUserForm() {
-    document.getElementById('add-user-form').style.display = 'block';
-    document.getElementById('show-form-button').style.display = 'none';
-    document.getElementById('add-user-title').style.display = 'block';
-    populateCompanies();
-    populateRoles();
+function showAddModal() {
+    const modal = document.getElementById('add-modal');
+    rolesSelect.options.selectedIndex = 0;
+    companySelect.options.selectedIndex = 0;
+
+    if(rolesSelect.options.length === 1) {
+        populateCompanies();
+        populateRoles();
+    }
+    
+    if (modal.style.display === "none") {
+        modal.style.display = "flex";
+    } else {
+        modal.style.display = "none";
+    }
+}
+
+function showUpdateModal(nome, email, cargo, empresa) {
+    document.getElementById('update-user-name').setAttribute('value', nome);
+    document.getElementById('update-user-email').setAttribute('value', email);
+    document.getElementById('update-user-role').setAttribute('value', cargo);
+    document.getElementById('update-user-company').setAttribute('value', empresa);
+    const modal = document.getElementById('update-modal');
+
+    if(rolesSelect.options.length === 1) {
+        populateCompanies();
+        populateRoles();
+    }
+    
+    if (modal.style.display === "none") {
+        modal.style.display = "flex";
+    } else {
+        modal.style.display = "none";
+    }
 }
 
 getAll();
-
-function mudarAdd() {
-    const display = window.getComputedStyle(modalAdd).display;
-
-    if (display === "none") {
-        modalAdd.style.display = "flex";
-    } else {
-        modalAdd.style.display = "none";
-    }
-}

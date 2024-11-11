@@ -66,7 +66,7 @@ function cadastrar() {
         });
     }
     else {
-        fetch("/usuarios/register", {
+        fetch("/usuarios/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

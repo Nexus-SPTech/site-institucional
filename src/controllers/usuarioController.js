@@ -37,10 +37,10 @@ function authenticate(req, res) {
     }
 }
 
-function register(req, res) {
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+function add(req, res) {
+    var nome = req.body.nomeUsuario;
+    var email = req.body.email;
+    var senha = req.body.senha;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -52,7 +52,7 @@ function register(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.register(nome, email, senha)
+        usuarioModel.add(nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -138,7 +138,7 @@ function deleteUser(req, res) {
 
 module.exports = {
     authenticate,
-    register,
+    add,
     getAllUsers,
     getUserByName,
     updateUser,

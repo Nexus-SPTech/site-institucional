@@ -228,14 +228,14 @@ body {
     background-color: #c82333;
 }
 
-.modalAdd {
+.add-modal, .update-modal {
     position: fixed;
     top: 0;
     left: 250px;
     width: 82%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 

@@ -3,8 +3,8 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
-router.post("/register", function (req, res) {
-    usuarioController.register(req, res);
+router.post("/add", function (req, res) {
+    usuarioController.add(req, res);
 });
 
 router.post("/authenticate", function (req, res) {

@@ -1,6 +1,6 @@
 const empresaModel = require('../models/empresaModel');
 
-function register(req, res) {
+function add(req, res) {
     var nomeEmpresa = req.body.nomeServer;
     var cnpj = req.body.cnpjServer;
 
@@ -11,7 +11,7 @@ function register(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else {
 
-        empresaModel.register(nomeEmpresa, cnpj)
+        empresaModel.add(nomeEmpresa, cnpj)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -96,7 +96,7 @@ function deleteCompany(req, res) {
 }
 
 module.exports = {
-    register,
+    add,
     getAllCompanies,
     getByName,
     updateCompany,

@@ -3,8 +3,8 @@ var router = express.Router();
 
 var empresasController = require("../controllers/empresaController");
 
-router.post("/register", function (req, res) {
-    empresasController.register(req, res);
+router.post("/add", function (req, res) {
+    empresasController.add(req, res);
 });
 
 router.get("/getAll", function (req, res) {

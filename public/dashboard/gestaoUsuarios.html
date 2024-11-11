@@ -15,24 +15,6 @@
 </head>
 
 <body>
-    <div class="modalAdd" id="modalAdd">
-        <div class="container">
-                <i class="fa-solid fa-xmark" onclick="mudarAdd()"></i>
-                <h2 id="add-user-title">Adicionar Usuário</h2>
-            <form id="form-user">
-                <input type="text" id="name" placeholder="Nome" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Senha" required>
-                <select id="role" required>
-                    <option value="" disabled selected>Cargo</option>
-                </select>
-                <select id="company" required>
-                    <option value="" disabled selected>Empresa</option>
-                </select>
-                <button type="submit">Adicionar</button>
-            </form>
-        </div>
-    </div>
     <div class="content">
         <div class="nav-lateral" id="nav">
             <div class="profile">
@@ -71,10 +53,43 @@
                 <span id="error"></span>
             </div>
             <div class="add-user">
-                <button onclick="mudarAdd()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar
-                    Usuário</button>
-                <div class="add-user-form" id="add-user-form">
-
+                <div class="add-modal" id="add-modal">
+                    <div class="container">
+                        <i class="fa-solid fa-xmark" onclick="showAddModal()"></i>
+                        <h2 id="add-user-title">Adicionar Usuário</h2>
+                        <form id="form-user">
+                            <input type="text" id="new-user-name" placeholder="Nome" required>
+                            <input type="email" id="new-user-email" placeholder="Email" required>
+                            <input type="password" id="new-user-password" placeholder="Senha" required>
+                            <select id="new-user-role role" required>
+                                <option selected disabled>Selecione um cargo</option>
+                            </select>
+                            <select id="new-user-company company" required>
+                                <option selected disabled>Selecione uma empresa</option>
+                            </select>
+                            <button type="submit" onclick="addUser()">Adicionar</button>
+                        </form>
+                    </div>
+                </div>
+                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Usuário</button>
+            </div>
+            <div class="update-user">
+                <div class="update-modal" id="update-modal">
+                    <div class="container">
+                        <i class="fa-solid fa-xmark" onclick="showUpdateModal()"></i>
+                        <h2 id="update-user-title">Editar Usuário</h2>
+                        <form id="form-user">
+                            <input type="text" id="update-user-name" placeholder="Nome" required>
+                            <input type="email" id="update-user-email" placeholder="Email" required>
+                            <select id="role" required>
+                                <option selected disabled id="update-user-role">Selecione um cargo</option>
+                            </select>
+                            <select id="update-user-company company" required>
+                                <option selected disabled id="update-user-company">Selecione uma empresa</option>
+                            </select>
+                            <button type="update-user-submit" onclick="UpdateUser()">Editar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="get-all">

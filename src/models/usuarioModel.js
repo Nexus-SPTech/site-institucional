@@ -7,16 +7,16 @@ function authenticate(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-function register(nome, email, senha) {
+function add(nome, email, senha) {
     var instrucaoSql = `
-        INSERT INTO usuario (nomeUsuario, email, senha, deletado) VALUES (deafult, '${nome}', '${email}', '${senha}', false);
+        INSERT INTO usuario (nomeUsuario, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     return database.executar(instrucaoSql);
 }
 
 function getAllUsers() {
     var instrucaoSql = `
-    SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nome AS nomeCargo, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
+    SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nomeCargo, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
     LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
     LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa;
     `;
@@ -25,7 +25,7 @@ function getAllUsers() {
 
 function getUserByName(nomeUsuario) {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nome, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
+        SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nomeCargo, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
         LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
         LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa
         WHERE nomeUsuario like "%${nomeUsuario}%";
@@ -49,7 +49,7 @@ function deleteUser(idUsuario) {
 
 module.exports = {
     authenticate,
-    register,
+    add,
     getAllUsers,
     getUserByName,
     updateUser,
