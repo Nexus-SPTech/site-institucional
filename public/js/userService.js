@@ -235,9 +235,8 @@ function populateRoles() {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
-        response.json().then(json => { 
+        response.json().then(json => {
             json.forEach(role => {
-                console.log("role: ", role);
                 const option = document.createElement('option');
                 option.value = role.idCargo;
                 option.innerHTML = role.nomeCargo;
@@ -252,14 +251,14 @@ function populateRoles() {
 
 function showAddModal() {
     const modal = document.getElementById('add-modal');
-    rolesSelect.options.selectedIndex = 0;
-    companySelect.options.selectedIndex = 0;
 
-    if(rolesSelect.options.length === 1) {
+    if (rolesSelect.options.length === 1 && companySelect.options.length === 1) {
         populateCompanies();
         populateRoles();
+        companySelect.options.selectedIndex = 0;
+        rolesSelect.options.selectedIndex = 0;
     }
-    
+
     if (modal.style.display === "none") {
         modal.style.display = "flex";
     } else {
@@ -274,11 +273,11 @@ function showUpdateModal(nome, email, cargo, empresa) {
     document.getElementById('update-user-company').setAttribute('value', empresa);
     const modal = document.getElementById('update-modal');
 
-    if(rolesSelect.options.length === 1) {
+    if (rolesSelect.options.length === 1) {
         populateCompanies();
         populateRoles();
     }
-    
+
     if (modal.style.display === "none") {
         modal.style.display = "flex";
     } else {
