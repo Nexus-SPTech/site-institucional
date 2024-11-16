@@ -16,7 +16,7 @@ function add(nome, email, senha) {
 
 function getAllUsers() {
     var instrucaoSql = `
-    SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nomeCargo, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
+    SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.idCargo, cargo.nomeCargo, empresa.idEmpresa, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
     LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
     LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa;
     `;
@@ -25,7 +25,7 @@ function getAllUsers() {
 
 function getUserByName(nomeUsuario) {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.nomeCargo, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
+        SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.idCargo, cargo.nomeCargo, empresa.idEmpresa, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
         LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
         LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa
         WHERE nomeUsuario like "%${nomeUsuario}%";
@@ -33,9 +33,9 @@ function getUserByName(nomeUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function updateUser(idUsuario, nome, email, cargo, empresa, isDeleted) {
+function updateUser(idUsuario, nome, email, idCargo, idEmpresa) {
     var instrucaoSql = `
-        UPDATE usuario SET nomeUsuario = '${nome}', email = '${email}', fkCargo = '${cargo}', fkEmpresa = '${empresa}', deletado = ${isDeleted} WHERE idUsuario = '${idUsuario}';
+        UPDATE usuario SET nomeUsuario = '${nome}', email = '${email}', fkCargo = ${idCargo}, fkEmpresa = ${idEmpresa} WHERE idUsuario = ${idUsuario};
     `;
     return database.executar(instrucaoSql);
 }

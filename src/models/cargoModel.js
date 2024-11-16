@@ -7,6 +7,8 @@ function getAllRoles() {
     return database.executar(instrucaoSql);
 }
 
+
+
 module.exports = {
     getAllRoles
 };

@@ -102,10 +102,12 @@ function getUserByName(req, res) {
 
 function updateUser(req, res) {
     var idUsuario = req.params.idUsuario;
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
+    var nome = req.body.nomeUsuario;
+    var email = req.body.email;
+    var idCargo = req.body.idCargo;
+    var idEmpresa = req.body.idEmpresa;
 
-    usuarioModel.updateUser(idUsuario, nome, email)
+    usuarioModel.updateUser(idUsuario, nome, email, idCargo, idEmpresa)
         .then(
             function (resultado) {
                 res.json(resultado);

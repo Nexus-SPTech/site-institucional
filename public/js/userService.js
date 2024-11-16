@@ -1,15 +1,19 @@
 const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
-const userName = document.getElementById('name_user');
-const rolesSelect = document.getElementById('role');
-const companySelect = document.getElementById('company');
-userName.innerHTML = sessionStorage.NOME_USUARIO;
+const userName = document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
+
+const newUserRoleSelect = document.getElementById('new-role-select');
+const newUserCompanySelect = document.getElementById('new-company-select');
+
+const updateUserRoleSelect = document.getElementById('update-role-select');
+const updateUserCompanySelect = document.getElementById('update-company-select');
+
 
 function addUser() {
     const name = document.getElementById('new-user-name').value;
     const email = document.getElementById('new-user-email').value;
     const password = document.getElementById('new-user-password').value;
-    const role = document.getElementById('new-user-role').value;
-    const company = document.getElementById('new-user-company').value;
+    const role = newUserRoleSelect.value;
+    const company = newUserCompanySelect.value;
 
     if (!name || !email || !password || !role || !company) {
         Swal.fire({
@@ -39,17 +43,22 @@ function addUser() {
             Swal.fire({
                 title: "Sucesso!",
                 text: "Usuário adicionado com sucesso",
-                icon: "success"
+                icon: "success",
+                confirmButtonColor: '#16a34a',
+                background: "rgb(32, 32, 32)"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                    getAll();
+                }
             });
-            getAll();
-            document.getElementById('add-user-form').style.display = 'none';
-            document.getElementById('show-form-button').style.display = 'block';
-            document.getElementById('add-user-title').style.display = 'none';
         } else {
             Swal.fire({
                 title: "Erro!",
                 text: "Erro ao adicionar usuário",
-                icon: "error"
+                icon: "error",
+                confirmButtonColor: '#16a34a',
+                background: "rgb(32, 32, 32)"
             });
         }
     }).catch(function (error) {
@@ -74,8 +83,8 @@ function getAll() {
                     row.insertCell(1).innerHTML = user.nomeUsuario;
                     row.insertCell(2).innerHTML = user.email;
                     row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
-                    row.insertCell(4).innerHTML = user.nomeEmpresa == undefined || user.isDeletedCompany ? 'Não definida' : user.nomeEmpresa;
-                    row.insertCell(5).innerHTML = `<a onclick="showUpdateModal()"><i class="fa-solid fa-pen"></i></a>`;
+                    row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
+                    row.insertCell(5).innerHTML = `<a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a>`;
                     row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
                 }
             });
@@ -109,7 +118,7 @@ function getUserByName(nomeUsuario) {
                         row.insertCell(2).innerHTML = user.email;
                         row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
                         row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                        row.insertCell(5).innerHTML = `<a onclick="showUpdateModal(user.nomeUsuario, user.email, user.nomeCargo, user.nomeEmpresa)"><i class="fa-solid fa-pen"></i></a>`;
+                        row.insertCell(5).innerHTML = `<a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a>`;
                         row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
                     } else {
                         document.getElementById('error').innerHTML = "Usuário não encontrado";
@@ -124,23 +133,18 @@ function getUserByName(nomeUsuario) {
     });
 }
 
-function updateUser(idUsuario) {
+function updateUser(event) {
+    event.preventDefault();
+    const idUsuario = document.getElementById('update-user-id').value;
     const name = document.getElementById('update-user-name').value;
     const email = document.getElementById('update-user-email').value;
-    const role = document.getElementById('update-user-role').value;
-    const company = document.getElementById('update-user-company').value;
+    const role = document.getElementById('update-role-select').value;
+    const company = document.getElementById('update-company-select').value;
 
-    if (!name || !email || !role || !company) {
-        Swal.fire({
-            title: "Erro ao atualizar o usuário!",
-            text: "Preencha todos os campos",
-            icon: "error"
-        });
-        return;
-    }
+    console.log('role: ', role);
+    console.log('company: ', company);
 
     const user = {
-        idUsuario: idUsuario,
         nomeUsuario: name,
         email: email,
         idCargo: role,
@@ -153,27 +157,34 @@ function updateUser(idUsuario) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(user)
-    }).then(function (response) {
-        if (response.status === 200) {
-            Swal.fire({
-                title: "Sucesso!",
-                text: "Usuário atualizado com sucesso",
-                icon: "success"
-            });
-            getAll();
-            document.getElementById('add-user-form').style.display = 'none';
-            document.getElementById('show-form-button').style.display = 'block';
-            document.getElementById('add-user-title').style.display = 'none';
-        } else {
-            Swal.fire({
-                title: "Erro!",
-                text: "Erro ao atualizar usuário",
-                icon: "error"
-            });
-        }
-    }).catch(function (error) {
-        console.log("error: ", error);
-    });
+    })
+        .then(function (response) {
+            if (response) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Usuário editado com sucesso",
+                    icon: "success",
+                    confirmButtonColor: '#16a34a',
+                    background: "rgb(32, 32, 32)"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                        getAll();
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Erro ao editar usuário",
+                    icon: "error",
+                    confirmButtonColor: '#16a34a',
+                    background: "rgb(32, 32, 32)"
+                });
+            }
+        })
+        .catch(function (error) {
+            console.log("error: ", error);
+        });
 }
 
 function deleteUser(idUsuario) {
@@ -207,7 +218,7 @@ function deleteUser(idUsuario) {
     });
 }
 
-function populateCompanies() {
+function populateCompanies(callFrom) {
     fetch(`/empresas/getAll`, {
         method: "GET",
         headers: {
@@ -220,7 +231,7 @@ function populateCompanies() {
                 option.value = company.idEmpresa;
                 option.innerHTML = company.nomeEmpresa;
                 option.id = "update-user-company";
-                companySelect.appendChild(option);
+                callFrom == "add" ? newUserCompanySelect.appendChild(option) : updateUserCompanySelect.appendChild(option);
             });
         });
     }).catch(function (error) {
@@ -228,7 +239,7 @@ function populateCompanies() {
     });
 }
 
-function populateRoles() {
+function populateRoles(callFrom) {
     fetch(`/cargos/getAll`, {
         method: "GET",
         headers: {
@@ -241,7 +252,7 @@ function populateRoles() {
                 option.value = role.idCargo;
                 option.innerHTML = role.nomeCargo;
                 option.id = "update-user-role";
-                rolesSelect.appendChild(option);
+                callFrom == "add" ? newUserRoleSelect.appendChild(option) : updateUserRoleSelect.appendChild(option);
             });
         });
     }).catch(function (error) {
@@ -251,38 +262,65 @@ function populateRoles() {
 
 function showAddModal() {
     const modal = document.getElementById('add-modal');
+    const callFrom = 'add';
 
-    if (rolesSelect.options.length === 1 && companySelect.options.length === 1) {
-        populateCompanies();
-        populateRoles();
-        companySelect.options.selectedIndex = 0;
-        rolesSelect.options.selectedIndex = 0;
+    if (newUserCompanySelect.options.length === 1 && newUserRoleSelect.options.length === 1) {
+        populateCompanies(callFrom);
+        populateRoles(callFrom);
     }
 
-    if (modal.style.display === "none") {
+    if (window.getComputedStyle(modal).display == "none") {
         modal.style.display = "flex";
     } else {
         modal.style.display = "none";
     }
 }
 
-function showUpdateModal(nome, email, cargo, empresa) {
+function showUpdateModal(id, nome, email, cargo, empresa) {
+    document.getElementById('update-user-id').setAttribute('value', id);
     document.getElementById('update-user-name').setAttribute('value', nome);
     document.getElementById('update-user-email').setAttribute('value', email);
-    document.getElementById('update-user-role').setAttribute('value', cargo);
-    document.getElementById('update-user-company').setAttribute('value', empresa);
-    const modal = document.getElementById('update-modal');
 
-    if (rolesSelect.options.length === 1) {
-        populateCompanies();
-        populateRoles();
+    const roleSelect = document.getElementById("update-role-select");
+    if (!cargo) {
+        roleSelect.options[0].selected = true;
+    } else {
+        for (let option of roleSelect.options) {
+            if (option.value === cargo) {
+                option.selected = true;
+                break;
+            }
+        }
     }
 
-    if (modal.style.display === "none") {
+    const companySelect = document.getElementById("update-company-select");
+    if (!empresa) {
+        companySelect.options[0].selected = true;
+    } else {
+        for (let option of companySelect.options) {
+            if (option.value === empresa) {
+                option.selected = true;
+                break;
+            }
+        }
+    }
+
+    console.log('cargo: ', cargo);
+
+    const modal = document.getElementById('update-modal');
+    const callFrom = 'update';
+
+    if (updateUserCompanySelect.options.length === 1 && updateUserRoleSelect.options.length === 1) {
+        populateCompanies(callFrom);
+        populateRoles(callFrom);
+    }
+
+    if (window.getComputedStyle(modal).display == "none") {
         modal.style.display = "flex";
     } else {
         modal.style.display = "none";
     }
 }
+
 
 getAll();
