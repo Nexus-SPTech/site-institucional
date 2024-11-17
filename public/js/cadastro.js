@@ -19,6 +19,13 @@ function cadastrar() {
     const confirmacaoSenhaVar = input_confirmarSenha.value;
     const indice_arroba = emailVar.indexOf('@');
     const indice_ponto = emailVar.indexOf('.');
+    const user = {
+        nomeUsuario: nomeVar,
+        email: emailVar,
+        senha: senhaVar,
+        idEmpresa: null,
+        idCargo: null,
+    }
 
     if (
         nomeVar == "" ||
@@ -71,11 +78,7 @@ function cadastrar() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
+            body: JSON.stringify(user),
         }).then(function (resposta) {
             console.log("resposta: ", resposta);
 

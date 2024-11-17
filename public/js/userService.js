@@ -49,7 +49,6 @@ function addUser() {
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.reload();
-                    getAll();
                 }
             });
         } else {
@@ -79,13 +78,15 @@ function getAll() {
             json.forEach(user => {
                 if (!user.isDeletedUser) {
                     const row = userTable.insertRow();
-                    row.insertCell(0).innerHTML = user.idUsuario;
-                    row.insertCell(1).innerHTML = user.nomeUsuario;
-                    row.insertCell(2).innerHTML = user.email;
-                    row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
-                    row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                    row.insertCell(5).innerHTML = `<a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a>`;
-                    row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
+                    row.innerHTML = `
+                    <td>${user.idUsuario}</td>
+                    <td>${user.nomeUsuario}</td>
+                    <td>${user.email}</td>
+                    <td>${user.nomeCargo || 'Não definido'}</td>
+                    <td>${user.nomeEmpresa || 'Não definida'}</td>
+                    <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
+                    <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
+                `;
                 }
             });
         })
@@ -113,13 +114,15 @@ function getUserByName(nomeUsuario) {
                 json.forEach(user => {
                     if (!user.isDeletedUser) {
                         const row = userTable.insertRow();
-                        row.insertCell(0).innerHTML = user.idUsuario;
-                        row.insertCell(1).innerHTML = user.nomeUsuario;
-                        row.insertCell(2).innerHTML = user.email;
-                        row.insertCell(3).innerHTML = user.nomeCargo == undefined ? 'Não definido' : user.nomeCargo;
-                        row.insertCell(4).innerHTML = user.nomeEmpresa == undefined ? 'Não definida' : user.nomeEmpresa;
-                        row.insertCell(5).innerHTML = `<a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a>`;
-                        row.insertCell(6).innerHTML = `<a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a>`;
+                        row.innerHTML = `
+                        <td>${user.idUsuario}</td>
+                        <td>${user.nomeUsuario}</td>
+                        <td>${user.email}</td>
+                        <td>${user.nomeCargo || 'Não definido'}</td>
+                        <td>${user.nomeEmpresa || 'Não definida'}</td>
+                        <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
+                    `;
                     } else {
                         document.getElementById('error').innerHTML = "Usuário não encontrado";
                     }
@@ -140,10 +143,7 @@ function updateUser(event) {
     const email = document.getElementById('update-user-email').value;
     const role = document.getElementById('update-role-select').value;
     const company = document.getElementById('update-company-select').value;
-
-    console.log('role: ', role);
-    console.log('company: ', company);
-
+    
     const user = {
         nomeUsuario: name,
         email: email,
@@ -193,8 +193,9 @@ function deleteUser(idUsuario) {
         text: "Essa ação não poderá ser desfeita!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: '#16a34a',
         cancelButtonColor: "#d33",
+        background: "rgb(32, 32, 32)",
         confirmButtonText: "Sim, deletar",
         cancelButtonText: "Não, cancelar"
     }).then((result) => {
@@ -202,7 +203,9 @@ function deleteUser(idUsuario) {
             Swal.fire({
                 title: "Deletado!",
                 text: "Esse usuário foi deletado.",
-                icon: "success"
+                icon: "success",
+                confirmButtonColor: '#16a34a',
+                background: "rgb(32, 32, 32)",
             });
             fetch(`/usuarios/delete/${idUsuario}`, {
                 method: "PUT",
@@ -304,8 +307,6 @@ function showUpdateModal(id, nome, email, cargo, empresa) {
             }
         }
     }
-
-    console.log('cargo: ', cargo);
 
     const modal = document.getElementById('update-modal');
     const callFrom = 'update';

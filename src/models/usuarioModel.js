@@ -7,9 +7,9 @@ function authenticate(email, senha) {
     return database.executar(instrucaoSql);
 }
 
-function add(nome, email, senha) {
+function add(nome, email, senha, idCargo, idEmpresa) {
     var instrucaoSql = `
-        INSERT INTO usuario (nomeUsuario, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO usuario (nomeUsuario, email, senha, fkEmpresa, fkCargo) VALUES ('${nome}', '${email}', '${senha}', ${idEmpresa}, ${idCargo});
     `;
     return database.executar(instrucaoSql);
 }

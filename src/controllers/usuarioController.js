@@ -38,10 +38,12 @@ function authenticate(req, res) {
 }
 
 function add(req, res) {
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-console.log(nome, email, senha)
+    let nome = req.body.nomeUsuario;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let idCargo = req.body.idCargo;
+    let idEmpresa = req.body.idEmpresa;
+
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -51,8 +53,7 @@ console.log(nome, email, senha)
         res.status(400).send("Sua senha está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.add(nome, email, senha)
+        usuarioModel.add(nome, email, senha, idCargo, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
