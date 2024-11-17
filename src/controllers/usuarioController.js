@@ -38,10 +38,10 @@ function authenticate(req, res) {
 }
 
 function add(req, res) {
-    var nome = req.body.nomeUsuario;
-    var email = req.body.email;
-    var senha = req.body.senha;
-
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+console.log(nome, email, senha)
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -56,6 +56,7 @@ function add(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    console.log(resultado)
                 }
             ).catch(
                 function (erro) {
