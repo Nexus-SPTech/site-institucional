@@ -1,15 +1,18 @@
 * {
   box-sizing: border-box;
 }
-.profile p{
-color: #f5f5f5;
+
+.profile p {
+  color: #f5f5f5;
 }
-h1{
+
+h1 {
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
   color: #f5f5f5;
   font-weight: normal;
 }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -32,7 +35,7 @@ body {
   transform: translateX(-100%);
 }
 
-.menu li {
+.menu a {
   list-style: none;
   color: #f5f5f5;
   padding: 10px 0;
@@ -40,7 +43,7 @@ body {
   transition: color 0.3s;
 }
 
-.menu li:hover {
+.menu a:hover {
   color: #ffffff;
 }
 
@@ -59,7 +62,8 @@ body {
   cursor: pointer;
   font-size: 24px;
 }
-.kpi{
+
+.kpi {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -69,21 +73,23 @@ body {
   height: 100px;
 }
 
-.box1{
+.box1 {
   display: flex;
-  width:240px ;
+  width: 240px;
   height: 100%;
   border-radius: 7px;
-  background: linear-gradient(90deg, rgba(113,5,172,1) 0%, rgba(163,49,226,1) 100%);
+  background: linear-gradient(90deg, rgba(113, 5, 172, 1) 0%, rgba(163, 49, 226, 1) 100%);
 }
-.box1-icone{
+
+.box1-icone {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40%;
   height: 100%;
 }
-.box1-conteudo{
+
+.box1-conteudo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,21 +99,23 @@ body {
 
 
 
-.box2{
+.box2 {
   display: flex;
-  width:240px ;
+  width: 240px;
   height: 100%;
   border-radius: 7px;
-  background: linear-gradient(90deg, rgba(5,144,172,1) 0%, rgba(49,217,226,1) 100%);
+  background: linear-gradient(90deg, rgba(5, 144, 172, 1) 0%, rgba(49, 217, 226, 1) 100%);
 }
-.box2-icone{
+
+.box2-icone {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40%;
   height: 100%;
 }
-.box2-conteudo{
+
+.box2-conteudo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,21 +124,23 @@ body {
 }
 
 
-.box3{
+.box3 {
   display: flex;
-  width:240px ;
+  width: 240px;
   height: 100%;
   border-radius: 7px;
   background: linear-gradient(90deg, rgb(220, 143, 42) 0%, rgb(255, 179, 0) 100%);
 }
-.box3-icone{
+
+.box3-icone {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40%;
   height: 100%;
 }
-.box3-conteudo{
+
+.box3-conteudo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,35 +148,39 @@ body {
   height: 100%;
 }
 
-#grafico1{
+#grafico1 {
   width: 100%;
   height: 200px;
 
 }
-#grafico2{
+
+#grafico2 {
   width: 100%;
   height: 200px;
 
 }
-#grafico3{
+
+#grafico3 {
   display: flex;
   align-items: center;
   width: 100%;
   height: 200px;
-  
+
 }
-#estatistica-fm{
+
+#estatistica-fm {
   width: 300px;
   height: 65%;
   border-radius: 5px;
-border: 1px solid;
+  border: 1px solid;
 }
-#estatistica-fm p{
+
+#estatistica-fm p {
   color: #333;
   text-align: center;
 }
 
-.feminino{
+.feminino {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 5px;
@@ -174,30 +188,33 @@ border: 1px solid;
   height: 25px;
 }
 
-.feminino p{
+.feminino p {
   margin: 0;
   padding: 0;
   color: #333;
 }
 
-.masculino{
+.masculino {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
   height: 25px;
-  
+
 }
 
-.masculino p{
+.masculino p {
   margin: 0;
   padding: 0;
   color: #333;
 }
-.masculino img{
+
+.masculino img {
   padding-left: 5px;
 }
 
-.dashboard, .insights , .configuracoes{
+.dashboard,
+.insights,
+.configuracoes {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -205,7 +222,7 @@ border: 1px solid;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.desempenho{
+.desempenho {
   padding-left: 10px;
   width: 600px;
   height: auto;
@@ -213,15 +230,7 @@ border: 1px solid;
   border-radius: 5px;
 }
 
-.desempenho-2{
-  margin-top: 5px;
-  padding-left: 10px;
-  width: 600px;
-  height: auto;
-  border: 1px solid #333;
-  border-radius: 5px;
-}
-.desempenho-3{
+.desempenho-2 {
   margin-top: 5px;
   padding-left: 10px;
   width: 600px;
@@ -230,7 +239,7 @@ border: 1px solid;
   border-radius: 5px;
 }
 
-.desempenho-4{
+.desempenho-3 {
   margin-top: 5px;
   padding-left: 10px;
   width: 600px;
@@ -239,10 +248,13 @@ border: 1px solid;
   border-radius: 5px;
 }
 
-@media (max-width: 768px) {
-  .nav-lateral {
-      width: 200px;
-  }
+.desempenho-4 {
+  margin-top: 5px;
+  padding-left: 10px;
+  width: 600px;
+  height: auto;
+  border: 1px solid #333;
+  border-radius: 5px;
 }
 
 .configuracoes {
@@ -253,25 +265,25 @@ border: 1px solid;
   margin-bottom: 20px;
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - 40px); 
-  flex-grow: 1; 
+  min-height: calc(100vh - 40px);
+  flex-grow: 1;
   box-sizing: border-box;
-overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 
 .box-config {
   /* display: flex;
   flex-direction: column; */
-  width: 50% ;
+  width: 50%;
   height: 40%;
   border-radius: 10px;
-  background: linear-gradient(90deg, rgba(5,144,172,1) 0%, rgba(49,217,226,1) 100%);
-  box-shadow: 3px 3px 15px rgba(19, 18, 18, 0.2); 
+  background: linear-gradient(90deg, rgba(5, 144, 172, 1) 0%, rgba(49, 217, 226, 1) 100%);
+  box-shadow: 3px 3px 15px rgba(19, 18, 18, 0.2);
 
 }
 
-.box-config .organization{
+.box-config .organization {
   display: flex;
   height: 60%;
   align-items: center;
@@ -279,42 +291,42 @@ overflow-x: hidden;
 
 }
 
-.box-config .exit-user{
- height: 20%;
-width: 100%;
-text-align: right;
+.box-config .exit-user {
+  height: 20%;
+  width: 100%;
+  text-align: right;
 
-img{
-  width: 30px;
-  margin-right: 10px;
-  margin-top: 10px;
+  img {
+    width: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
 }
 
-}
-
-.img_alt{
+.img_alt {
   cursor: pointer;
 }
 
 
- .user-left{
+.user-left {
   display: flex;
   width: 35%;
   height: 100%;
   border-radius: 5px;
   background-color: white;
   margin-left: 30px;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
 .user-left .icon {
-background-image: url('../assets/nexus/icon-violet.png');
-width: 90px;
-min-height: 90px;
-background-size: cover;
-background-position: top;
-background-repeat: no-repeat;
+  background-image: url('../assets/nexus/icon-violet.png');
+  width: 90px;
+  min-height: 90px;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 .box-config .text-right {
@@ -323,29 +335,27 @@ background-repeat: no-repeat;
   padding-left: 20px;
   color: white;
   flex-direction: column;
-  
+
 }
 
-
-
-
 .button-radio h4 {
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .button-radio p {
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 .button-radio input[type="radio"] {
-  margin-right: 5px; 
+  margin-right: 5px;
 }
 
-.exit{
+.exit {
   cursor: pointer;
-   width: 100%;
-   height: 30px;
- }
- .exit p{
-   color: #f5f5f5;
- }
+  width: 100%;
+  height: 30px;
+}
+
+.exit p {
+  color: #f5f5f5;
+}

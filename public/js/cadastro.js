@@ -19,6 +19,13 @@ function cadastrar() {
     const confirmacaoSenhaVar = input_confirmarSenha.value;
     const indice_arroba = emailVar.indexOf('@');
     const indice_ponto = emailVar.indexOf('.');
+    const user = {
+        nomeUsuario: nomeVar,
+        email: emailVar,
+        senha: senhaVar,
+        idEmpresa: null,
+        idCargo: null,
+    }
 
     if (
         nomeVar == "" ||
@@ -66,16 +73,12 @@ function cadastrar() {
         });
     }
     else {
-        fetch("/usuarios/cadastrar", {
+        fetch("/usuarios/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
+            body: JSON.stringify(user),
         }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
@@ -112,7 +115,7 @@ function cadastrar() {
 let tentativas = 3;
 function entrar() {
 
-    event.preventDefault()
+    event.preventDefault();
     const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
 
@@ -129,7 +132,7 @@ function entrar() {
         return false;
     }
     else {
-        fetch("/usuarios/autenticar", {
+        fetch("/usuarios/authenticate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -139,14 +142,13 @@ function entrar() {
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
                 console.log(resposta);
 
                 resposta.json().then(json => {
                     sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
                     sessionStorage.EMAIL_USUARIO = json.email;
 
                     let timerInterval;
@@ -172,7 +174,7 @@ function entrar() {
                             console.log("I was closed by the timer");
                         }
                         setTimeout(function () {
-                            window.location = "dashboard.html";
+                            window.location = "./dashboard/dashboard.html";
                         }, 500);
                     });
 
@@ -227,10 +229,6 @@ function entrar() {
 
                     }
                     break;
-                    resposta.text().then(texto => {
-                        console.error(texto);
-
-                    });
                 }
             }
         }).catch(function (erro) {
