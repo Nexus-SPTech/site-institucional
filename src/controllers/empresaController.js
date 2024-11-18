@@ -47,7 +47,7 @@ function getAllCompanies(req, res) {
 function getByName(req, res) {
     var nomeEmpresa = req.params.nomeEmpresa;
 
-    empresaModel.getByName(nomeEmpresa)
+    empresaModel.getCompanyByName(nomeEmpresa)
         .then((resultado) => {
             res.json(resultado);
             console.log(resultado);
@@ -60,9 +60,9 @@ function getByName(req, res) {
 }
 
 function updateCompany(req, res) {
-    var idEmpresa = req.params.idEmpresa;
-    var nomeEmpresa = req.body.nomeServer;
-    var cnpj = req.body.cnpjServer;
+    const idEmpresa = req.params.idEmpresa;
+    const nomeEmpresa = req.body.nomeEmpresa;
+    const cnpj = req.body.cnpj;
 
     empresaModel.updateCompany(idEmpresa, nomeEmpresa, cnpj)
         .then(

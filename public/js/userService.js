@@ -323,5 +323,9 @@ function showUpdateModal(id, nome, email, cargo, empresa) {
     }
 }
 
+function sair() {
+    sessionStorage.clear();
+    window.location.href = "./index.html";
+}
 
 getAll();
