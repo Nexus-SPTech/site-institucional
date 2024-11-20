@@ -1,23 +1,22 @@
 const empresaModel = require('../models/empresaModel');
 
 function add(req, res) {
-    var nomeEmpresa = req.body.nomeServer;
-    var cnpj = req.body.cnpjServer;
+    var nomeEmpresa = req.body.nomeEmpresa;
+    var cnpj = req.body.cnpj;
 
     // Faça as validações dos valores
     if (nomeEmpresa == undefined) {
-        res.status(400).send("Seu nome está undefined!");
+        res.status(400).send("nome está undefined!");
     } else if (cnpj == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("cpnj está undefined!");
     } else {
-
         empresaModel.add(nomeEmpresa, cnpj)
             .then(
-                function (resultado) {
+                (resultado) => {
                     res.json(resultado);
                 }
             ).catch(
-                function (erro) {
+                (erro) => {
                     console.log(erro);
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",

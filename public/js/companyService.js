@@ -2,27 +2,21 @@ const userTable = document.getElementById('userTable').getElementsByTagName('tbo
 const userName = document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 
 function addCompany() {
-    const name = document.getElementById('new-user-name').value;
-    const email = document.getElementById('new-user-email').value;
-    const password = document.getElementById('new-user-password').value;
-    const role = newUserRoleSelect.value;
-    const company = newUserCompanySelect.value;
+    const name = document.getElementById('new-company-name').value;
+    const cnpj = document.getElementById('new-company-cnpj').value;
 
-    if (!name || !email || !password || !role || !company) {
+    if (!name || !cnpj) {
         Swal.fire({
-            title: "Erro ao adicionar o usuário!",
+            title: "Erro ao adicionar a empresa!",
             text: "Preencha todos os campos",
             icon: "error"
         });
         return;
     }
 
-    const user = {
-        nomeUsuario: name,
-        email: email,
-        senha: password,
-        idCargo: role,
-        idEmpresa: company
+    const company = {
+        nomeEmpresa: name,
+        cnpj: cnpj,
     };
 
     fetch(`/empresas/add`, {
@@ -30,12 +24,12 @@ function addCompany() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(company)
     }).then(function (response) {
         if (response.status === 200) {
             Swal.fire({
                 title: "Sucesso!",
-                text: "Usuário adicionado com sucesso",
+                text: "Empresa adicionada com sucesso",
                 icon: "success",
                 confirmButtonColor: '#16a34a',
                 background: "rgb(32, 32, 32)"
@@ -47,7 +41,7 @@ function addCompany() {
         } else {
             Swal.fire({
                 title: "Erro!",
-                text: "Erro ao adicionar usuário",
+                text: "Erro ao adicionar empresa",
                 icon: "error",
                 confirmButtonColor: '#16a34a',
                 background: "rgb(32, 32, 32)"
