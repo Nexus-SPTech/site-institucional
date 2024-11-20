@@ -141,43 +141,51 @@ function entrar() {
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
-        }).then(function (resposta) {
+        }).then((response) => {
+            if (response.ok) {
+                console.log(response);
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.nomeUsuario;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-
-                    let timerInterval;
-                    Swal.fire({
-                        title: "Login Realizado!",
-                        html: "Redirecionando para dashboard em: <b></b> millisegundos.",
-                        icon: "success",
-                        background: "rgb(32, 32, 32)",
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading();
-                            const timer = Swal.getPopup().querySelector("b");
-                            timerInterval = setInterval(() => {
-                                timer.textContent = `${Swal.getTimerLeft()}`;
-                            }, 100);
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval);
-                        }
-                    }).then((result) => {
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            console.log("I was closed by the timer");
-                        }
-                        setTimeout(function () {
-                            window.location = "./dashboard/dashboard.html";
-                        }, 500);
-                    });
-
+                response.json().then(user => {
+                    if(!user.isDeleted) {
+                        sessionStorage.ID_USUARIO = user.idUsuario;
+                        sessionStorage.NOME_USUARIO = user.nomeUsuario;
+                        sessionStorage.EMAIL_USUARIO = user.email;
+                        let timerInterval;
+                        Swal.fire({
+                            title: "Login Realizado!",
+                            html: "Redirecionando para dashboard em: <b></b> millisegundos.",
+                            icon: "success",
+                            background: "rgb(32, 32, 32)",
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                                const timer = Swal.getPopup().querySelector("b");
+                                timerInterval = setInterval(() => {
+                                    timer.textContent = `${Swal.getTimerLeft()}`;
+                                }, 100);
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval);
+                            }
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
+                            setTimeout(function () {
+                                window.location = "./dashboard/dashboard.html";
+                            }, 500);
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Não foi possível realizar o login!",
+                            text: "Este usuário está inativo!",
+                            icon: "error",
+                            color: "#FFF",
+                            confirmButtonColor: '#16a34a',
+                            background: "rgb(32, 32, 32)"
+                        });
+                    }
                 });
 
             } else {
@@ -186,7 +194,6 @@ function entrar() {
                     console.log("Houve um erro ao tentar realizar o login!");
                     tentativas--;
 
-                    // i = tentativas;
                     Swal.fire({
                         title: "Não foi possível realizar o login!",
                         text: `Credenciais incorretas! tentativas restantes: ${i - 1}`,
