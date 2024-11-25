@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../css/crud.css">
-    <title>Gestão de Empresas</title>
+    <title>Gestão de Cargos</title>
 </head>
 <body>
     <div class="content">
@@ -31,7 +31,7 @@
                     <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Usuários
                 </a>
-                <a href="#">
+                <a href="gestao-empresas.html">
                     <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Empresas
                 </a>
@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="users">
-            <h1>GESTÃO DE EMPRESAS</h1>
+            <h1>GESTÃO DE Cargos</h1>
             <div class="search-user">
                 <h2>Pesquisar empresa</h2>
                 <input type="search" id="search-users">
@@ -65,7 +65,7 @@
                         </form>
                     </div>
                 </div>
-                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Empresas</button>
+                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Cargos</button>
             </div>
             <div class="update-user">
                 <div class="update-modal" id="update-modal">
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="get-all">
-                <h2>Lista de Empresas</h2>
+                <h2>Lista de Cargos</h2>
                 <table id="userTable" class="table-users">
                     <thead>
                         <tr>    
