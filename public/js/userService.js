@@ -76,7 +76,6 @@ function getAll() {
         console.log("response: ", response);
         response.json().then(json => {
             json.forEach(user => {
-                if (!user.isDeletedUser) {
                     const row = userTable.insertRow();
                     row.innerHTML = `
                     <td>${user.idUsuario}</td>
@@ -87,7 +86,6 @@ function getAll() {
                     <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
                     <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
                 `;
-                }
             });
         })
     }).catch(function (error) {
@@ -97,7 +95,6 @@ function getAll() {
 
 function getUserByName(nomeUsuario) {
     if (!nomeUsuario) {
-        document.getElementById('error').innerHTML = "O campo de busca não pode estar vazio";
         getAll();
         return;
     }
@@ -108,11 +105,10 @@ function getUserByName(nomeUsuario) {
             "Content-Type": "application/json"
         }
     }).then(function (response) {
-        response.json().then(json => {
-            if (json.length > 0) {
+        response.json().then(users => {
+            if (users.length > 0) {
                 userTable.innerHTML = '';
-                json.forEach(user => {
-                    if (!user.isDeletedUser) {
+                users.forEach(user => {
                         const row = userTable.insertRow();
                         row.innerHTML = `
                         <td>${user.idUsuario}</td>
@@ -123,9 +119,6 @@ function getUserByName(nomeUsuario) {
                         <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
                         <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
                     `;
-                    } else {
-                        document.getElementById('error').innerHTML = "Usuário não encontrado";
-                    }
                 });
             } else {
                 document.getElementById('error').innerHTML = "Usuário não encontrado";

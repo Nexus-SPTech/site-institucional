@@ -27,6 +27,7 @@ function addCompany() {
         body: JSON.stringify(company)
     }).then(function (response) {
         if (response.status === 200) {
+            
             Swal.fire({
                 title: "Sucesso!",
                 text: "Empresa adicionada com sucesso",
@@ -63,16 +64,14 @@ function getAll() {
         console.log("response: ", response);
         response.json().then(json => {
             json.forEach(company => {
-                if (!company.isDeleted) {
-                    const row = userTable.insertRow();
-                    row.innerHTML = `
+                const row = userTable.insertRow();
+                row.innerHTML = `
                     <td>${company.idEmpresa}</td>
                     <td>${company.nomeEmpresa}</td>
                     <td>${company.cnpj}</td>
                     <td><a onclick="showUpdateModal('${company.idEmpresa}', '${company.nomeEmpresa}', '${company.cnpj}')"><i class="fa-solid fa-pen"></i></a></td>
                     <td><a onclick="deleteCompany(${company.idEmpresa})"><i class="fa-solid fa-trash"></i></a></td>
                 `;
-                }
             });
         })
     }).catch(function (error) {
@@ -82,7 +81,6 @@ function getAll() {
 
 function getCompanyByName(nomeEmpresa) {
     if (!nomeEmpresa) {
-        document.getElementById('error').innerHTML = "O campo de busca não pode estar vazio";
         getAll();
         return;
     }
@@ -97,7 +95,6 @@ function getCompanyByName(nomeEmpresa) {
             if (json.length > 0) {
                 userTable.innerHTML = '';
                 json.forEach(company => {
-                    if (!company.isDeleted) {
                         const row = userTable.insertRow();
                         row.innerHTML = `
                         <td>${company.idEmpresa}</td>
@@ -106,12 +103,9 @@ function getCompanyByName(nomeEmpresa) {
                         <td><a onclick="showUpdateModal('${company.idEmpresa}', '${company.nomeEmpresa}', '${company.cnpj}')"><i class="fa-solid fa-pen"></i></a></td>
                         <td><a onclick="deleteCompany(${company.idEmpresa})"><i class="fa-solid fa-trash"></i></a></td>
                     `;
-                    } else {
-                        document.getElementById('error').innerHTML = "Empresa não encontrada";
-                    }
                 });
             } else {
-                document.getElementById('error').innerHTML = "Empresa não encontrado";
+                document.getElementById('error').innerHTML = "Empresa não encontrada";
             }
         });
     }).catch(function (error) {
@@ -124,7 +118,7 @@ function updateCompany(event) {
     const idEmpresa = document.getElementById('update-company-id').value;
     const name = document.getElementById('update-company-name').value;
     const cnpj = document.getElementById('update-company-cnpj').value;
-    
+
     const company = {
         nomeEmpresa: name,
         cnpj: cnpj,

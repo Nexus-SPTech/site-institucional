@@ -9,14 +9,14 @@ function add(nomeEmpresa, cpnj) {
 
 function getAllCompanies() {
     var instrucaoSql = `
-    SELECT idEmpresa, nomeEmpresa, cnpj, deletado as 'isDeleted' FROM empresa;
+    SELECT idEmpresa, nomeEmpresa, cnpj, deletado AS 'isDeleted' FROM empresa WHERE deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
 
 function getCompanyByName(nomeEmpresa) {
     var instrucaoSql = `
-        SELECT * FROM empresa WHERE nomeEmpresa like "%${nomeEmpresa}%";
+        SELECT idEmpresa, nomeEmpresa, cnpj, deletado AS 'isDeleted' FROM empresa WHERE nomeEmpresa like "%${nomeEmpresa}%" AND deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
