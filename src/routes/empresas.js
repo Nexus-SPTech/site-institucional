@@ -12,7 +12,7 @@ router.get("/getAll", function (req, res) {
 });
 
 router.get("/getByName/:nomeEmpresa", function (req, res) {
-    empresasController.getCompanyByName(req, res);
+    empresasController.getByName(req, res);
 });
 
 router.put("/update/:idEmpresa", function (req, res) {

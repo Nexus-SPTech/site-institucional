@@ -1,29 +1,29 @@
 var database = require("../database/config")
 
-function add(nome, email, senha) {
+function add(nomeEmpresa, cpnj) {
     var instrucaoSql = `
-        INSERT INTO usuario (nomeUsuario, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO empresa (nomeEmpresa, cnpj) VALUES ('${nomeEmpresa}', '${cpnj}');
     `;
     return database.executar(instrucaoSql);
 }
 
 function getAllCompanies() {
     var instrucaoSql = `
-    SELECT * FROM empresa;
+    SELECT idEmpresa, nomeEmpresa, cnpj, deletado AS 'isDeleted' FROM empresa WHERE deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
 
-function getCompanieByName(nomeEmpresa) {
+function getCompanyByName(nomeEmpresa) {
     var instrucaoSql = `
-        SELECT * FROM empresa WHERE nomeEmpresa like "%${nomeEmpresa}%";
+        SELECT idEmpresa, nomeEmpresa, cnpj, deletado AS 'isDeleted' FROM empresa WHERE nomeEmpresa like "%${nomeEmpresa}%" AND deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
 
 function updateCompany(idEmpresa, nomeEmpresa, cpnj) {
     var instrucaoSql = `
-        UPDATE empresa SET nomeEmpresa = '${nomeEmpresa}', cnpj = '${cpnj}' WHERE idEmpresa = "${idEmpresa}";
+        UPDATE empresa SET nomeEmpresa = '${nomeEmpresa}', cnpj = '${cpnj}' WHERE idEmpresa = '${idEmpresa}';
     `;
     return database.executar(instrucaoSql);
 }
@@ -38,7 +38,7 @@ function deleteCompany(idEmpresa) {
 module.exports = {
     add,
     getAllCompanies,
-    getCompanieByName,
+    getCompanyByName,
     updateCompany,
     deleteCompany
 };

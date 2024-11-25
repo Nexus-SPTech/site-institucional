@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../css/crud.css">
-    <!-- <link rel="stylesheet" href="../css/dashboards.css"> -->
-    <title>Gestão de usuários</title>
+    <title>Gestão de Empresas</title>
 </head>
-
 <body>
     <div class="content">
         <div class="nav-lateral" id="nav">
@@ -21,22 +18,26 @@
                 <p>Bem vindo(a), <b id="name_user"></b></p>
             </div>
             <div class="menu">
-                <a onclick="mostrardashboard()">
+                <a href="dashboard.html">
                     <i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
                     Dashboard
                 </a>
-                <a onclick="mostrarinsights()">
+                <a>
                     <i class="fa-duotone fa-solid fa-chart-simple"
                         style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Insights
                 </a>
-                <a href="./gestaoUsuarios.html">
+                <a href="gestao-usuarios.html">
                     <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
-                    Usuários
+                    Gestão de Usuários
                 </a>
-                <a href="./gestaoUsuarios.html">
-                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
-                    Empresas
+                <a href="#">
+                    <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Gestão de Empresas
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-shield" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Gestão de Cargos
                 </a>
             </div>
             <div class="exit">
@@ -44,11 +45,11 @@
             </div>
         </div>
         <div class="users">
-            <h1>GESTÃO DE USUÁRIOS</h1>
+            <h1>GESTÃO DE EMPRESAS</h1>
             <div class="search-user">
-                <h2>Pesquisar usuário</h2>
+                <h2>Pesquisar empresa</h2>
                 <input type="search" id="search-users">
-                <a onclick="getUserByName(document.getElementById('search-users').value)"><i
+                <a onclick="getCompanyByName(document.getElementById('search-users').value)"><i
                         class="fa-solid fa-magnifying-glass"></i></a>
                 <span id="error"></span>
             </div>
@@ -56,53 +57,38 @@
                 <div class="add-modal" id="add-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showAddModal()"></i>
-                        <h2 id="add-user-title">Adicionar Usuário</h2>
+                        <h2 id="add-user-title">Adicionar Empresa</h2>
                         <form id="form-user">
-                            <input type="text" id="new-user-name" placeholder="Nome" required>
-                            <input type="email" id="new-user-email" placeholder="Email" required>
-                            <input type="password" id="new-user-password" placeholder="Senha" required>
-                            <select id="new-role-select" required>
-                                <option selected disabled>Selecione um cargo</option>
-                            </select>
-                            <select id="new-company-select" required>
-                                <option selected disabled>Selecione uma empresa</option>
-                            </select>
-                            <button type="submit" onclick="addUser()">Adicionar</button>
+                            <input type="text" id="new-company-name" placeholder="Nome" required>
+                            <input type="email" id="new-company-cnpj" placeholder="CNPJ" required>
+                            <button type="submit" onclick="addCompany()">Adicionar</button>
                         </form>
                     </div>
                 </div>
-                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Usuário</button>
+                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Empresas</button>
             </div>
             <div class="update-user">
                 <div class="update-modal" id="update-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showUpdateModal()"></i>
-                        <h2 id="update-user-title">Editar Usuário</h2>
+                        <h2 id="update-user-title">Editar Empresa</h2>
                         <form id="form-user">
-                            <input type="text" id="update-user-id" placeholder="ID" disabled>
-                            <input type="text" id="update-user-name" placeholder="Nome" required>
-                            <input type="email" id="update-user-email" placeholder="Email" required>
-                            <select id="update-role-select" required>
-                                <option disabled>Selecione um cargo</option>
-                            </select>
-                            <select id="update-company-select" required>
-                                <option disabled>Selecione uma empresa</option>
-                            </select>
-                            <button type="submit" onclick="updateUser(event)">Editar</button>
+                            <input type="text" id="update-company-id" placeholder="ID" disabled>
+                            <input type="text" id="update-company-name" placeholder="Nome" required>
+                            <input type="text" id="update-company-cnpj" placeholder="CNPJ" required>
+                            <button type="submit" onclick="updateCompany(event)">Editar</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="get-all">
-                <h2>Lista de Usuários</h2>
+                <h2>Lista de Empresas</h2>
                 <table id="userTable" class="table-users">
                     <thead>
-                        <tr>
+                        <tr>    
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>Email</th>
-                            <th>Cargo</th>
-                            <th>Empresa</th>
+                            <th>CPNJ</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
@@ -113,7 +99,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/userService.js"></script>
+    <script src="../js/companyService.js"></script>
 </body>
 
 </html>

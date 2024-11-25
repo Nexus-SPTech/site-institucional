@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../css/crud.css">
+    <title>Gestão de usuários</title>
+</head>
+
+<body>
+    <div class="content">
+        <div class="nav-lateral" id="nav">
+            <div class="profile">
+                <p>Bem vindo(a), <b id="name_user"></b></p>
+            </div>
+            <div class="menu">
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
+                    Dashboard
+                </a>
+                <a onclick="mostrarinsights()">
+                    <i class="fa-duotone fa-solid fa-chart-simple"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Insights
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Gestão de Usuários
+                </a>
+                <a href="gestao-empresas.html">
+                    <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Gestão de Empresas
+                </a>
+                <a href="gestao-cargos.html">
+                    <i class="fa-solid fa-shield" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                    Gestão de Cargos
+                </a>
+            </div>
+            <div class="exit">
+                <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> Sair</p>
+            </div>
+        </div>
+        <div class="users">
+            <h1>GESTÃO DE USUÁRIOS</h1>
+            <div class="search-user">
+                <h2>Pesquisar usuário</h2>
+                <input type="search" id="search-users">
+                <a onclick="getUserByName(document.getElementById('search-users').value)"><i
+                        class="fa-solid fa-magnifying-glass"></i></a>
+                <span id="error"></span>
+            </div>
+            <div class="add-user">
+                <div class="add-modal" id="add-modal">
+                    <div class="container">
+                        <i class="fa-solid fa-xmark" onclick="showAddModal()"></i>
+                        <h2 id="add-user-title">Adicionar Usuário</h2>
+                        <form id="form-user">
+                            <input type="text" id="new-user-name" placeholder="Nome" required>
+                            <input type="email" id="new-user-email" placeholder="Email" required>
+                            <input type="password" id="new-user-password" placeholder="Senha" required>
+                            <select id="new-role-select" required>
+                                <option selected disabled>Selecione um cargo</option>
+                            </select>
+                            <select id="new-company-select" required>
+                                <option selected disabled>Selecione uma empresa</option>
+                            </select>
+                            <button type="submit" onclick="addUser()">Adicionar</button>
+                        </form>
+                    </div>
+                </div>
+                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Usuário</button>
+            </div>
+            <div class="update-user">
+                <div class="update-modal" id="update-modal">
+                    <div class="container">
+                        <i class="fa-solid fa-xmark" onclick="showUpdateModal()"></i>
+                        <h2 id="update-user-title">Editar Usuário</h2>
+                        <form id="form-user">
+                            <input type="text" id="update-user-id" placeholder="ID" disabled>
+                            <input type="text" id="update-user-name" placeholder="Nome" required>
+                            <input type="email" id="update-user-email" placeholder="Email" required>
+                            <select id="update-role-select" required>
+                                <option disabled>Selecione um cargo</option>
+                            </select>
+                            <select id="update-company-select" required>
+                                <option disabled>Selecione uma empresa</option>
+                            </select>
+                            <button type="submit" onclick="updateUser(event)">Editar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="get-all">
+                <h2>Lista de Usuários</h2>
+                <table id="userTable" class="table-users">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Cargo</th>
+                            <th>Empresa</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="../js/userService.js"></script>
+</body>
+
+</html>

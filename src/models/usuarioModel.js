@@ -18,7 +18,8 @@ function getAllUsers() {
     var instrucaoSql = `
     SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.idCargo, cargo.nomeCargo, empresa.idEmpresa, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
     LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
-    LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa;
+    LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa
+    WHERE usuario.deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
@@ -28,7 +29,7 @@ function getUserByName(nomeUsuario) {
         SELECT idUsuario, nomeUsuario, email, usuario.deletado AS isDeletedUser, cargo.idCargo, cargo.nomeCargo, empresa.idEmpresa, empresa.nomeEmpresa, empresa.deletado AS isDeletedCompany FROM usuario
         LEFT JOIN cargo ON usuario.fkCargo = cargo.idCargo
         LEFT JOIN empresa ON usuario.fkEmpresa = empresa.idEmpresa
-        WHERE nomeUsuario like "%${nomeUsuario}%";
+        WHERE nomeUsuario like "%${nomeUsuario}%" AND usuario.deletado = false;
     `;
     return database.executar(instrucaoSql);
 }
