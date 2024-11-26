@@ -45,11 +45,11 @@
             </div>
         </div>
         <div class="users">
-            <h1>GESTÃO DE Cargos</h1>
+            <h1>GESTÃO DE CARGOS</h1>
             <div class="search-user">
-                <h2>Pesquisar empresa</h2>
+                <h2>Pesquisar cargos</h2>
                 <input type="search" id="search-users">
-                <a onclick="getCompanyByName(document.getElementById('search-users').value)"><i
+                <a onclick="getRoleByName(document.getElementById('search-users').value)"><i
                         class="fa-solid fa-magnifying-glass"></i></a>
                 <span id="error"></span>
             </div>
@@ -57,11 +57,11 @@
                 <div class="add-modal" id="add-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showAddModal()"></i>
-                        <h2 id="add-user-title">Adicionar Empresa</h2>
+                        <h2 id="add-user-title">Adicionar Cargo</h2>
                         <form id="form-user">
-                            <input type="text" id="new-company-name" placeholder="Nome" required>
-                            <input type="email" id="new-company-cnpj" placeholder="CNPJ" required>
-                            <button type="submit" onclick="addCompany()">Adicionar</button>
+                            <input type="text" id="new-role-name" placeholder="Nome" required>
+                            <input type="text" id="new-role-description" placeholder="Descriçao" required>
+                            <button type="submit" onclick="addRole()">Adicionar</button>
                         </form>
                     </div>
                 </div>
@@ -71,12 +71,12 @@
                 <div class="update-modal" id="update-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showUpdateModal()"></i>
-                        <h2 id="update-user-title">Editar Empresa</h2>
+                        <h2 id="update-user-title">Editar Carrgos</h2>
                         <form id="form-user">
-                            <input type="text" id="update-company-id" placeholder="ID" disabled>
-                            <input type="text" id="update-company-name" placeholder="Nome" required>
-                            <input type="text" id="update-company-cnpj" placeholder="CNPJ" required>
-                            <button type="submit" onclick="updateCompany(event)">Editar</button>
+                            <input type="text" id="update-role-id" placeholder="ID" disabled>
+                            <input type="text" id="update-role-name" placeholder="Nome" required>
+                            <input type="text" id="update-role-description" placeholder="Descriçao" required>
+                            <button type="submit" onclick="updateRole(event)">Editar</button>
                         </form>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <tr>    
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>CPNJ</th>
+                            <th>Descrição</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/companyService.js"></script>
+    <script src="../js/roleService.js"></script>
 </body>
 
 </html>

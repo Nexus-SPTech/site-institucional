@@ -1,40 +1,40 @@
+document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
-const userName = document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 
-function addCompany() {
-    const name = document.getElementById('new-company-name').value;
-    const cnpj = document.getElementById('new-company-cnpj').value;
+function addRole() {
+    const name = document.getElementById('new-role-name').value;
+    const description = document.getElementById('new-role-description').value;
 
-    if (!name || !cnpj) {
+    if (!name || !description) {
         Swal.fire({
-            title: "Erro ao adicionar a empresa!",
+            title: "Erro ao adicionar o cargo!",
             text: "Preencha todos os campos",
             icon: "error"
         });
         return;
     }
 
-    const company = {
-        nomeEmpresa: name,
-        cnpj: cnpj,
+    const role = {
+        nomeCargo: name,
+        descricao: description,
     };
 
-    fetch(`/empresas/add`, {
+    fetch(`/cargos/add`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(company)
-    }).then(function (response) {
+        body: JSON.stringify(role)
+    }).then(response => {
         if (response.status === 200) {
 
             Swal.fire({
                 title: "Sucesso!",
-                text: "Empresa adicionada com sucesso",
+                text: "Cargo adicionado com sucesso",
                 icon: "success",
                 confirmButtonColor: '#16a34a',
                 background: "rgb(32, 32, 32)"
-            }).then((result) => {
+            }).then(result => {
                 if (result.isConfirmed) {
                     window.location.reload();
                 }
@@ -42,39 +42,38 @@ function addCompany() {
         } else {
             Swal.fire({
                 title: "Erro!",
-                text: "Erro ao adicionar empresa",
+                text: "Erro ao adicionar cargo",
                 icon: "error",
                 confirmButtonColor: '#16a34a',
                 background: "rgb(32, 32, 32)"
             });
         }
-    }).catch(function (error) {
+    }).catch(error => {
         console.log("error: ", error);
     });
 }
 
 function getAll() {
     userTable.innerHTML = '';
-    fetch(`/empresas/getAll`, {
+    fetch(`/cargos/getAll`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-    }).then(function (response) {
-        console.log("response: ", response);
+    }).then(response => {
         response.json().then(json => {
-            json.forEach(company => {
+            json.forEach(role => {
                 const row = userTable.insertRow();
                 row.innerHTML = `
-                    <td>${company.idEmpresa}</td>
-                    <td>${company.nomeEmpresa}</td>
-                    <td>${company.cnpj}</td>
-                    <td><a onclick="showUpdateModal('${company.idEmpresa}', '${company.nomeEmpresa}', '${company.cnpj}')"><i class="fa-solid fa-pen"></i></a></td>
-                    <td><a onclick="deleteCompany(${company.idEmpresa})"><i class="fa-solid fa-trash"></i></a></td>
+                    <td>${role.idCargo}</td>
+                    <td>${role.nomeCargo}</td>
+                    <td>${role.descricao}</td>
+                    <td><a onclick="showUpdateModal('${role.idCargo}', '${role.nomeCargo}', '${role.descricao}')"><i class="fa-solid fa-pen"></i></a></td>
+                    <td><a onclick="deleteRole(${role.idCargo})"><i class="fa-solid fa-trash"></i></a></td>
                 `;
             });
         })
-    }).catch(function (error) {
+    }).catch(error => {
         console.log("error: ", error);
     });
 
@@ -83,68 +82,68 @@ function getAll() {
     }, 1000);
 }
 
-function getCompanyByName(nomeEmpresa) {
-    if (!nomeEmpresa) {
+function getRoleByName(nomeCargo) {
+    if (!nomeCargo) {
         getAll();
         return;
     }
 
-    fetch(`/empresas/getByName/${nomeEmpresa}`, {
+    fetch(`/cargos/getByName/${nomeCargo}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
-    }).then(function (response) {
+    }).then(response => {
         response.json().then(json => {
             if (json.length > 0) {
                 userTable.innerHTML = '';
-                json.forEach(company => {
+                json.forEach(role => {
                     const row = userTable.insertRow();
                     row.innerHTML = `
-                        <td>${company.idEmpresa}</td>
-                        <td>${company.nomeEmpresa}</td>
-                        <td>${company.cnpj}</td>
-                        <td><a onclick="showUpdateModal('${company.idEmpresa}', '${company.nomeEmpresa}', '${company.cnpj}')"><i class="fa-solid fa-pen"></i></a></td>
-                        <td><a onclick="deleteCompany(${company.idEmpresa})"><i class="fa-solid fa-trash"></i></a></td>
+                        <td>${role.idCargo}</td>
+                        <td>${role.nomeCargo}</td>
+                        <td>${role.descricao}</td>
+                        <td><a onclick="showUpdateModal('${role.idCargo}', '${role.nomeCargo}', '${role.descricao}')"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a onclick="deleteRole(${role.idCargo})"><i class="fa-solid fa-trash"></i></a></td>
                     `;
                 });
             } else {
-                document.getElementById('error').innerHTML = "Empresa não encontrada";
+                document.getElementById('error').innerHTML = "Cargo não encontrado";
                 getAll();
             }
         });
-    }).catch(function (error) {
+    }).catch(error => {
         console.log("error: ", error);
     });
 }
 
-function updateCompany(event) {
+function updateRole(event) {
     event.preventDefault();
-    const idEmpresa = document.getElementById('update-company-id').value;
-    const name = document.getElementById('update-company-name').value;
-    const cnpj = document.getElementById('update-company-cnpj').value;
+    const idCargo = document.getElementById('update-role-id').value;
+    const name = document.getElementById('update-role-name').value;
+    const description = document.getElementById('update-role-description').value;
 
-    const company = {
-        nomeEmpresa: name,
-        cnpj: cnpj,
+    const role = {
+        nomeCargo: name,
+        descricao: description,
     };
 
-    fetch(`/empresas/update/${idEmpresa}`, {
+    fetch(`/cargos/update/${idCargo}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(company)
+        body: JSON.stringify(role)
     })
-        .then(function (response) {
+        .then(response => {
             if (response) {
                 Swal.fire({
                     title: "Sucesso!",
-                    text: "Empresa editada com sucesso",
+                    text: "Cargo editado com sucesso",
                     icon: "success",
                     confirmButtonColor: '#16a34a',
                     background: "rgb(32, 32, 32)"
-                }).then((result) => {
+                }).then(result => {
                     if (result.isConfirmed) {
                         window.location.reload();
                         getAll();
@@ -153,21 +152,21 @@ function updateCompany(event) {
             } else {
                 Swal.fire({
                     title: "Erro!",
-                    text: "Erro ao editar empresa",
+                    text: "Erro ao editar cargo",
                     icon: "error",
                     confirmButtonColor: '#16a34a',
                     background: "rgb(32, 32, 32)"
                 });
             }
         })
-        .catch(function (error) {
+        .catch(error => {
             console.log("error: ", error);
         });
 }
 
-function deleteCompany(idEmpresa) {
+function deleteRole(idCargo) {
     Swal.fire({
-        title: "Tem certeza que deseja deletar essa empresa?",
+        title: "Tem certeza que deseja deletar esse cargo?",
         text: "Essa ação não poderá ser desfeita!",
         icon: "warning",
         showCancelButton: true,
@@ -176,23 +175,23 @@ function deleteCompany(idEmpresa) {
         background: "rgb(32, 32, 32)",
         confirmButtonText: "Sim, deletar",
         cancelButtonText: "Não, cancelar"
-    }).then((result) => {
+    }).then(result => {
         if (result.isConfirmed) {
             Swal.fire({
-                title: "Deletada!",
-                text: "Essa empresa foi deletada.",
+                title: "Deletado!",
+                text: "Esse cargo foi deletado.",
                 icon: "success",
                 confirmButtonColor: '#16a34a',
                 background: "rgb(32, 32, 32)",
             });
-            fetch(`/empresas/delete/${idEmpresa}`, {
+            fetch(`/cargos/delete/${idCargo}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 }
-            }).then(function () {
+            }).then(() => {
                 getAll();
-            }).catch(function (error) {
+            }).catch(error => {
                 console.log("error: ", error);
             });
         }
@@ -209,10 +208,10 @@ function showAddModal() {
     }
 }
 
-function showUpdateModal(idEmpresa, name, cnpj) {
-    document.getElementById('update-company-id').setAttribute('value', idEmpresa);
-    document.getElementById('update-company-name').setAttribute('value', name);
-    document.getElementById('update-company-cnpj').setAttribute('value', cnpj);
+function showUpdateModal(idCargo, name, description) {
+    document.getElementById('update-role-id').setAttribute('value', idCargo);
+    document.getElementById('update-role-name').setAttribute('value', name);
+    document.getElementById('update-role-description').setAttribute('value', description);
 
     const modal = document.getElementById('update-modal');
 
