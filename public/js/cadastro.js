@@ -19,6 +19,13 @@ function cadastrar() {
     const confirmacaoSenhaVar = input_confirmarSenha.value;
     const indice_arroba = emailVar.indexOf('@');
     const indice_ponto = emailVar.indexOf('.');
+    const user = {
+        nomeUsuario: nomeVar,
+        email: emailVar,
+        senha: senhaVar,
+        idEmpresa: null,
+        idCargo: null,
+    }
 
     if (
         nomeVar == "" ||
@@ -66,16 +73,12 @@ function cadastrar() {
         });
     }
     else {
-        fetch("/usuarios/cadastrar", {
+        fetch("/usuarios/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
+            body: JSON.stringify(user),
         }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
@@ -112,7 +115,7 @@ function cadastrar() {
 let tentativas = 3;
 function entrar() {
 
-    event.preventDefault()
+    event.preventDefault();
     const emailVar = input_emailLogin.value;
     const senhaVar = input_senhaLogin.value;
 
@@ -129,7 +132,7 @@ function entrar() {
         return false;
     }
     else {
-        fetch("/usuarios/autenticar", {
+        fetch("/usuarios/authenticate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -138,44 +141,51 @@ function entrar() {
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+        }).then((response) => {
+            if (response.ok) {
+                console.log(response);
 
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    sessionStorage.ID_USUARIO = json.idUsuario;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.EMAIL_USUARIO = json.email;
-
-                    let timerInterval;
-                    Swal.fire({
-                        title: "Login Realizado!",
-                        html: "Redirecionando para dashboard em: <b></b> millisegundos.",
-                        icon: "success",
-                        background: "rgb(32, 32, 32)",
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: () => {
-                            Swal.showLoading();
-                            const timer = Swal.getPopup().querySelector("b");
-                            timerInterval = setInterval(() => {
-                                timer.textContent = `${Swal.getTimerLeft()}`;
-                            }, 100);
-                        },
-                        willClose: () => {
-                            clearInterval(timerInterval);
-                        }
-                    }).then((result) => {
-                        if (result.dismiss === Swal.DismissReason.timer) {
-                            console.log("I was closed by the timer");
-                        }
-                        setTimeout(function () {
-                            window.location = "dashboard.html";
-                        }, 500);
-                    });
-
+                response.json().then(user => {
+                    if(!user.isDeleted) {
+                        sessionStorage.ID_USUARIO = user.idUsuario;
+                        sessionStorage.NOME_USUARIO = user.nomeUsuario;
+                        sessionStorage.EMAIL_USUARIO = user.email;
+                        let timerInterval;
+                        Swal.fire({
+                            title: "Login Realizado!",
+                            html: "Redirecionando para dashboard em: <b></b> millisegundos.",
+                            icon: "success",
+                            background: "rgb(32, 32, 32)",
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                                const timer = Swal.getPopup().querySelector("b");
+                                timerInterval = setInterval(() => {
+                                    timer.textContent = `${Swal.getTimerLeft()}`;
+                                }, 100);
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval);
+                            }
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
+                            setTimeout(function () {
+                                window.location = "./dashboard/dashboard.html";
+                            }, 500);
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Não foi possível realizar o login!",
+                            text: "Este usuário está inativo!",
+                            icon: "error",
+                            color: "#FFF",
+                            confirmButtonColor: '#16a34a',
+                            background: "rgb(32, 32, 32)"
+                        });
+                    }
                 });
 
             } else {
@@ -184,7 +194,6 @@ function entrar() {
                     console.log("Houve um erro ao tentar realizar o login!");
                     tentativas--;
 
-                    // i = tentativas;
                     Swal.fire({
                         title: "Não foi possível realizar o login!",
                         text: `Credenciais incorretas! tentativas restantes: ${i - 1}`,
@@ -227,10 +236,6 @@ function entrar() {
 
                     }
                     break;
-                    resposta.text().then(texto => {
-                        console.error(texto);
-
-                    });
                 }
             }
         }).catch(function (erro) {

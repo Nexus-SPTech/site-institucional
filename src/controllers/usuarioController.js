@@ -1,7 +1,6 @@
-var usuarioModel = require("../models/usuarioModel");
+const usuarioModel = require("../models/usuarioModel");
 
-
-function autenticar(req, res) {
+function authenticate(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 
@@ -11,24 +10,18 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        usuarioModel.authenticate(email, senha)
             .then(
                 function (resultadoAutenticar) {
-                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha                                     
-                                    });
-                                
-                            
-
+                        res.json({
+                            idUsuario: resultadoAutenticar[0].idUsuario,
+                            email: resultadoAutenticar[0].email,
+                            nomeUsuario: resultadoAutenticar[0].nomeUsuario,
+                            idCargo: resultadoAutenticar[0].idCargo,
+                            isDeleted: resultadoAutenticar[0].isDeleted,
+                        });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -43,13 +36,14 @@ function autenticar(req, res) {
                 }
             );
     }
-
 }
 
-function cadastrar(req, res) {
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+function add(req, res) {
+    let nome = req.body.nomeUsuario;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let idCargo = req.body.idCargo;
+    let idEmpresa = req.body.idEmpresa;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -60,11 +54,11 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModel.add(nome, email, senha, idCargo, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    console.log(resultado)
                 }
             ).catch(
                 function (erro) {
@@ -79,7 +73,79 @@ function cadastrar(req, res) {
     }
 }
 
+function getAllUsers(req, res) {
+    usuarioModel.getAllUsers()
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao buscar os usuários! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function getUserByName(req, res) {
+    var nomeUsuario = req.params.nomeUsuario;
+
+    usuarioModel.getUserByName(nomeUsuario)
+        .then((resultado) => {
+            res.json(resultado);
+            console.log(resultado);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            console.log("\nHouve um erro ao buscar o usuário! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function updateUser(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var nome = req.body.nomeUsuario;
+    var email = req.body.email;
+    var idCargo = req.body.idCargo;
+    var idEmpresa = req.body.idEmpresa;
+
+    usuarioModel.updateUser(idUsuario, nome, email, idCargo, idEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao atualizar o usuário! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function deleteUser(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    usuarioModel.deleteUser(idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao deletar o usuário! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
-    autenticar,
-    cadastrar
+    authenticate,
+    add,
+    getAllUsers,
+    getUserByName,
+    updateUser,
+    deleteUser
 }
