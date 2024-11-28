@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dashboards.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container" onload="dados()">
+        <div class="nav-lateral" id="nav">
+            <div class="profile">
+                <p>Bem vindo(a), <b id="name_user"></b></p>
+            </div>
+            <div class="menu">
+                
+
+                <li onclick="mostrardashboard()"><i class="fa-solid fa-chart-line" style="color: #f5f5f5;"></i>
+                    Dashboard</li>
+                <li onclick="mostrarinsights()"><i class="fa-duotone fa-solid fa-chart-simple"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Insights</li>
+                <li onclick="mostrarconfig()"><i class="fa-duotone fa-solid fa-gear"
+                        style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i> Configurações</li>
+
+                      
+            </div>
+            <div class="exit">
+                <p onclick="toggleMenu()"><i class="fa-solid fa-arrow-left" style="color: #f5f5f5;"></i> voltar</p> 
+                <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> sair</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="header">
+                <div class="hamburguer" onclick="toggleMenu()">&#9776;</div>
+                <h1>Dashboard</h1>
+            </div>
+            <div class="dashboard" id="dashboard">
+                <div class="kpi">
+                    <div class="box1">
+                        <div class="box1-icone">
+                            <img width="40px" src="./assets/nexus/notas.png" alt="">
+                        </div>
+                        <div class="box1-conteudo">
+                            <h1>MELHOR APROVEITAMENTO: <b id="kpi1"></b></h1>
+                        </div>
+                    </div>
+
+                    <div class="box2">
+                        <div class="box2-icone">
+                            <img width="40px" src="./assets/nexus/materias.png" alt="">
+                        </div>
+                        <div class="box2-conteudo">
+                            <h1>MÉDIA DE ACERTO EM TODAS AS MATÉRIAS: <b id="kpi2"></b></h1>
+                        </div>
+                    </div>
+
+                    <div class="box3">
+                        <div class="box3-icone">
+                            <img width="40px" src="./assets/nexus/area.png" alt="">
+                        </div>
+                        <div class="box3-conteudo">
+                            <h1>MATÉRIA COM MAIOR DIFICULDADE DE APRENDIZADO: <B id="kpi3"></B></h1>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="grafico1">
+                </div>
+                <div id="grafico2">
+                </div>
+                <div id="grafico3">
+                    <div id="redesmunicipais"></div>
+                    <div id="estatistica-fm">
+                        <P>APROVEITAMENTO POR GÊNEROS</P>
+                        <span class="feminino">
+                            <img src="./assets/nexus/woman.png" alt="">
+                            <p>Feminino: <b id="kpiFeminino"></b> </p>
+                        </span>
+                        <span class="masculino"> <img src="./assets/nexus/man.png" alt="">
+                            <p>Masculino: <b id="kpiMasculino"></b> </p>
+                        </span>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="insights" id="insights" style="display: none;">
+                <h2>Insights</h2>
+
+                <div class="desempenho">
+                    <div class="desempenho-conteudo">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO GERAL:</h1>
+                        <p style="color: black;"> <b>Língua Portuguesa:</b> A Língua Portuguesa se destaca como a
+                            matéria com maior aproveitamento, o que pode indicar um foco maior no ensino dessa
+                            disciplina ou uma maior facilidade dos alunos em relação a ela. <br><br>
+                            <b>Dificuldade em Física:</b> Por outro lado, a Física aparece como a matéria com maior
+                            dificuldade de aprendizado. Isso pode ser um indicativo de que os estudantes encontram mais
+                            desafios nessa área, seja por falta de interesse, dificuldade de compreensão dos conceitos
+                            ou até mesmo por uma abordagem menos eficaz no ensino. <br><br>
+                            <b>Média Geral:</b> A média de acerto em todas as matérias está abaixo de 50%, o que
+                            sinaliza uma necessidade de aprimoramento no ensino em diversas áreas.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="desempenho-2">
+                    <div class="desempenho-conteudo-2">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR SÉRIE E MATÉRIA:</h1>
+                        <p style="color: black;"> <b>Variação entre as Séries:</b> O desempenho varia significativamente
+                            entre as séries, com a primeira série apresentando, em geral, um aproveitamento menor do que
+                            as séries subsequentes. Isso pode estar relacionado à adaptação ao ensino médio ou a lacunas
+                            no aprendizado das séries anteriores. <br><br>
+                            <b>Desempenho por Matéria:</b> As matérias apresentam desempenhos distintos, com algumas se
+                            destacando positivamente e outras negativamente. Essa variação pode estar relacionada à
+                            complexidade da matéria, à qualidade do ensino ou ao interesse dos alunos. <br><br>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="desempenho-3">
+                    <div class="desempenho-conteudo-2">
+                        <h1 style="color:black; font-weight: bold;">DESEMPENHO POR GÊNERO:</h1>
+                        <p style="color: black;"> <b>Leve Diferença entre os Sexos:</b> As mulheres apresentaram um
+                            levemente melhor desempenho em comparação aos homens. No entanto, essa diferença é pequena e
+                            pode não ser estatisticamente significativa. <br><br>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="desempenho-4">
+                    <div class="desempenho-conteudo-4">
+                        <h1 style="color:black; font-weight: bold;">POSSÍVEIS CAUSAS E IMPLICAÇÕES:</h1>
+                        <p style="color: black;"> <b>Qualidade do Ensino:</b> A qualidade do ensino, incluindo a
+                            formação dos professores, os recursos disponíveis nas escolas e a metodologia utilizada,
+                            exerce um papel fundamental no desempenho dos alunos. <br><br>
+                            <b>Fatores Socioeconômicos:</b> O nível socioeconômico dos alunos, o acesso a recursos como
+                            internet e computadores e o apoio familiar também influenciam o desempenho escolar. <br><br>
+                        </p>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="configuracoes" id="configuracoes" style="display: none;">
+
+                <div class="box-config" id="boxconfig">
+
+                    <div class="exit-user">
+                        <div class="img_alt">
+                            <img src="../public/assets/nexus/icons8-x-64.png" onclick="removerUsuario()">
+                        </div>
+                    </div>
+
+                    <div class="organization">
+                        <div class="user-left">
+                            <div class="icon"></div>
+                        </div>
+                        <div class="text-right">
+
+
+
+                            <p> NOME: Bob da Silva <br>
+                                CARGO: Professor <br>
+                                EMAIL: bobsilva@gmail.com</p>
+                            <div class="button-radio">
+
+
+                                <h4>Selecione a opção desejada:</h4>
+                                <p> dashboard <input type="radio" name="input_config" onclick="uncheckRadio()">
+                                    insights <input type="radio" name="input_config" onclick="uncheckRadio()">
+                                    admin <input type="radio" name="input_config" onclick="uncheckRadio()"> </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <script>
+ 
+
+    fetch(`/dash/mediaMaterias/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_1(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+
+
+            
+
+
+            fetch(`/dash/kpiMelhorAproveitamento/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_2(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+         
+            fetch(`/dash/kpiMediaAcertos/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_3(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+           
+
+            fetch(`/dash/kpiMateriaComDificuldade/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_4(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+           
+            fetch(`/dash/kpiNotasMasculino/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_5(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+        
+           
+         fetch(`/dash/kpiNotasFeminino/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_6(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+          
+
+        
+          
+
+
+            fetch(`/dash/graficoRegioesMetropolitanas/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_8(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+
+
+          
+            fetch(`/dash/graficoAproveitamento1Serie/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_9(dados);
+                    });
+                } else {
+                    console.log("Dados recebidos: ", JSON.stringify(dados));
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                    
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+            fetch(`/dash/graficoAproveitamento2Serie/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_10(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+            fetch(`/dash/graficoAproveitamento3Serie/`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (dados) {
+                        console.log("Dados recebidos: ", JSON.stringify(dados));
+
+                        plotarGrafico_11(dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado da pergunta1 ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+ 
+          
+         
+        
+         
+
+
+   
+        
+
+            function toggleMenu() {
+                const nav = document.getElementById("nav");
+                nav.classList.toggle("hidden");
+            }
+            function mostrarconfig() {
+                document.getElementById("configuracoes").style.display = "block"
+                document.getElementById("dashboard").style.display = "none";
+                document.getElementById("insights").style.display = "none";
+            }
+
+            function mostrardashboard() {
+                document.getElementById("dashboard").style.display = "block";
+                document.getElementById("insights").style.display = "none";
+                document.getElementById("configuracoes").style.display = "none"
+            }
+
+            function mostrarinsights() {
+                document.getElementById("configuracoes").style.display = "none"
+                document.getElementById("dashboard").style.display = "none";
+                document.getElementById("insights").style.display = "block";
+            }
+
+
+            function plotarGrafico_2(dados){
+            console.log("Dados recebidos no plotar: ", JSON.stringify(dados));
+
+            let disciplina = dados.map(item => item.disciplina);
+            let mediaNota = dados.map(item => item.media_nota);
+            kpi1.innerHTML +=  `${disciplina}: ${mediaNota}%`;
+         }
+
+         function plotarGrafico_3(dados){
+            console.log("Dados recebidos no plotar: ", JSON.stringify(dados));
+
+            let media_geral = dados.map(item => item.media_geral_acertos);
+            kpi2.innerHTML +=  `${media_geral}%`;
+         }
+
+         function plotarGrafico_4(dados){
+            console.log("Dados recebidos no plotar: ", JSON.stringify(dados));
+
+            let materia = dados.map(item => item.disciplina);
+            kpi3.innerHTML +=  `${materia}`;
+         }
+
+         function plotarGrafico_5(dados){
+            console.log("Dados recebidos no plotar: ", JSON.stringify(dados));
+            let notaMasculino = dados.map(item => item.media_nota);
+            kpiMasculino.innerHTML +=  `${notaMasculino}`
+         }
+
+
+         function plotarGrafico_6(dados){
+            console.log("Dados recebidos no plotar: ", JSON.stringify(dados));
+
+            let notaFeminino = dados.map(item => item.media_nota);
+            kpiFeminino.innerHTML +=  `${notaFeminino}`;
+         }
+  // ###################################################
+  function plotarGrafico_8(dados){
+                let nomeRegiao = dados.map(item=>item.regiao);
+                let mediaRegiao = dados.map(item=>item.media_notas);
+
+
+                var options = {
+                series: [{
+                    name: 'Desempenho',
+                    data: [mediaRegiao[0],mediaRegiao[1],mediaRegiao[2],mediaRegiao[4],mediaRegiao[5],mediaRegiao[6],]
+                }],
+                chart: {
+                    height: 220,
+                    width: 600,
+                    type: 'line',
+                },
+                stroke: {
+                    curve: 'smooth', // Opção para suavizar a linha
+                    width: 2
+                },
+                xaxis: {
+                    categories: [nomeRegiao[0], nomeRegiao[1], nomeRegiao[3], nomeRegiao[4], nomeRegiao[5], nomeRegiao[6]],
+                    title: {
+                        text: 'Regiões Metropolitanas'
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'Desempenho'
+                    }
+                },
+                colors: ['#1ab7ea'], // Cor da linha
+                title: {
+                    text: 'Desempenho entre Regiões Metropolitanas',
+
+                    style: {
+                        fontSize: '18px',
+                        fontWeight: 'bold',
+                        color: '#333'
+                    }
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        legend: {
+                            show: false
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
+            chart.render();
+            }
+
+
+
+  // ###################################################
+           // Variáveis globais
+let media1serie;
+let media2serie;
+let media3serie;
+// Funções para processar os dados
+function plotarGrafico_9(dados) {
+    console.log("Dados recebidos no plotarGrafico_9: ", JSON.stringify(dados));
+    disciplina1serie = dados.map(item => item.disciplina);
+    media1serie = dados.map(item => item.media_notas);
+
+}
+
+function plotarGrafico_10(dados) {
+    console.log("Dados recebidos no plotarGrafico_10: ", JSON.stringify(dados));
+    disciplina2serie = dados.map(item => item.disciplina);
+    media2serie = dados.map(item => item.media_notas);
+
+   
+}
+
+            // ##################################################
+           
+            function plotarGrafico_1(dados){
+
+let nomeDisciplina = dados.map(item => item.disciplina); 
+let mediaNota = dados.map(item => item.media_nota);
+
+
+var options = {
+series: [{
+    data: [mediaNota[0], mediaNota[1], mediaNota[2], mediaNota[3], mediaNota[4], mediaNota[5], mediaNota[6],mediaNota[7], mediaNota[8]]
+}],
+chart: {
+    type: 'bar',
+    height: 200,
+    width: 1300,
+},
+title: {
+    text: 'Aproveitamento SARESP Ensino Médio (2023)',
+    style: {
+        fontSize: '16px',
+        color: '#333'
+    }
+},
+plotOptions: {
+    bar: {
+        borderRadius: 4,
+        borderRadiusApplication: 'end',
+        horizontal: true,
+        // Configuração do degradê
+        dataLabels: {
+            position: 'bottom' // Posiciona as porcentagens
+        }
+    }
+},
+colors: ['#00bcd4', '#80d8ff'], // Cores base para o degradê
+dataLabels: {
+    enabled: true,
+    style: {
+        colors: ['#F5F5F5'], // Cor das porcentagens
+        fontSize: '0px'
+    }
+},
+fill: {
+    type: 'gradient',
+    gradient: {
+        shade: 'dark',
+        type: 'horizontal',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#80d8ff'], // Azul bebê
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 50, 100],
+        colorStops: []
+    }
+},
+xaxis: {
+    categories: ['Biologia', 'Filosofia', 'Física', 'Geografia', 'História', 'Matemática', 'Língua Portuguesa', 'Química', 'Sociologia'],
+    tickAmount: 10,
+    max: 100,
+    labels: {
+        style: {
+            colors: '#333',
+            fontSize: '14px' // Cor dos rótulos do eixo X
+        },
+        formatter: function (val) {
+            return val + "%"; // Formata os valores para exibir com "%"
+        }
+    }
+},
+yaxis: {
+    labels: {
+        style: {
+            colors: '#333',
+            fontSize: '13px' // Cor dos rótulos do eixo Y
+        }
+    }
+}
+};
+
+var chart = new ApexCharts(document.querySelector("#grafico1"), options);
+chart.render();
+} 
+           
+            // ###################################################
+                function plotarGrafico_11(dados){
+                    console.log("Dados recebidos no plotarGrafico_11: ", JSON.stringify(dados));
+    disciplina3serie = dados.map(item => item.disciplina);
+    media3serie = dados.map(item => item.media_notas);
+
+                    const options = {
+    series: [
+        {
+            name: 'Química',
+            data: [media1serie[0], media2serie[0], media3serie[0]]
+        },
+        {
+            name: 'Português',
+            data: [media1serie[1], media2serie[1], media3serie[1]]
+        },
+        {
+            name: 'Física',
+            data: [media1serie[2], media2serie[2], media3serie[2]]
+        },
+        {
+            name: 'Biologia',
+            data: [media1serie[3], media2serie[3], media3serie[3]]
+        },
+        {
+            name: 'Sociologia',
+            data: [media1serie[4], media2serie[4], media3serie[4]]
+        },
+        {
+            name: 'Matemática',
+            data: [media1serie[5], media2serie[5], media3serie[5]]
+        },
+        {
+            name: 'História',
+            data: [media1serie[6], media2serie[6], media3serie[6]]
+        },
+        {
+            name: 'Geografia',
+            data: [media1serie[7], media2serie[7], media3serie[7]]
+        },
+        {
+            name: 'Filosofia',
+            data: [media1serie[8], media2serie[8], media3serie[8]]
+        }
+    ],
+    chart: {
+        type: 'bar',
+        height: 220,
+        stacked: false,
+    },
+    xaxis: {
+        categories: ['EM-1ª série', 'EM-2ª série', 'EM-3ª série'],
+    },
+    yaxis: {
+        labels: {
+            formatter: function (val) {
+                return val + "%";
+            }
+        },
+        tickAmount: 4,
+        max: 100,
+        min: 0
+    },
+    dataLabels: {
+        enabled: true,
+        style: {
+            fontSize: '10px',
+            colors: ['#000'],
+        },
+        formatter: function (val) {
+            return val + "%";
+        }
+    },
+    title: {
+        text: 'Aproveitamento SARESP (Matérias x Séries)'
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shade: 'light',
+            type: 'vertical',
+            shadeIntensity: 0.5,
+            gradientToColors: ['#80d8ff'],
+            inverseColors: false,
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100]
+        }
+    }
+};
+
+// Renderizando o gráfico
+const chart = new ApexCharts(document.querySelector("#grafico2"), options);
+chart.render();
+           
+
+
+                }
+            
+            // ###########################################################
+           
+
+            var nome_user = sessionStorage.NOME_USUARIO;
+
+            name_user.innerHTML += `${nome_user}`;
+
+            function sair() {
+                sessionStorage.clear();
+                window.location.href = "./index.html";
+            }
+
+            function removerUsuario() {
+
+                Swal.fire({
+                    title: "Tem certeza?",
+                    text: "Tem certeza que deseja excluir o usuário!",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sim!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        boxconfig.style = `display: none`;
+                    }
+
+                })
+            }
+
+            function disableOtherRadios(selectedRadio) {
+        
+        const radioInputs = document.querySelectorAll('input[name="input_config"]');
+        radioInputs.forEach(function (radio) {
+            if (radio !== selectedRadio) {
+                radio.disabled = true;
+            }
+        });
+    }
+
+
+        </script>
+</body>
+
+</html>
