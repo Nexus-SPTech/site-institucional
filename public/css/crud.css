@@ -6,7 +6,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
 }
 
 .nav-lateral {
@@ -14,10 +13,6 @@ body {
     height: 100vh;
     background-color: #333;
     color: #f5f5f5;
-    /* display: flex;
-    flex-direction: column; */
-    /* justify-content: flex-start; */
-    /* position: fixed; */
     padding: 20px;
 }
 
@@ -54,7 +49,7 @@ body {
 }
 
 .nav-lateral .menu a:hover {
-    background-color: #b9adad;
+    background-color: #727171;
 }
 
 .nav-lateral .exit {
@@ -64,7 +59,6 @@ body {
 
 .nav-lateral .exit p {
     color: #f5f5f5;
-    font-size: 1em;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
@@ -72,7 +66,7 @@ body {
 }
 
 .nav-lateral .exit p:hover {
-    background-color: #cfc4c4;
+    background-color: #e25555;
 }
 
 .content {
@@ -84,96 +78,83 @@ body {
 .users {
     flex: 1;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #FFFAFF;
 }
 
 .users h1 {
-    font-size: 24px;
-    color: #8b2ac8;
+    font-size: 25px;
     margin-bottom: 20px;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
-/* Barra de busca e botão de adicionar */
 .search-user {
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
-    font-family: Arial, sans-serif;
 }
 
 .search-user h2 {
+    margin-top: 20px;
     font-size: 18px;
-    margin: 0;
-    color: #474444;
     font-weight: 200;
 }
 
 .search-user input {
-    width: 300px;
-    padding: 10px;
+    width: 150px;
+    padding: 8px;
     border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: 15px;
     outline: none;
     font-size: 14px;
     transition: all 0.3s ease;
 }
 
 .search-user input:focus {
-    border-color: #cccccc;
+    border-color: #ccc;
     box-shadow: 0 0 5px rgba(187, 194, 196, 0.5);
 }
 
 .search-user a {
-    background-color: #2cc4d4;
+    background-color: #16A34A;
     color: white;
-    padding: 10px 12px;
+    padding: 12px;
     border-radius: 50%;
-    text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    
 }
 
 .search-user a:hover {
-    background-color: #0798a8;
-    transform: scale(1.1);
+    background-color: #3cd875;
 }
 
 .search-user a i {
     font-size: 18px;
 }
 
-
-
-/* Botão de adicionar usuário */
 .add-user button {
-    background-color: #28a745;
-    color: white;
+    background-color: #16A34A;
+    width: 190px;
     padding: 10px 20px;
     border: none;
-    border-radius: 25px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 20px;
     transition: background-color 0.3s ease;
 }
 
 .add-user button:hover {
-    background-color: #218838;
+    background-color: #3cd875;
 }
 
 .add-user button i {
     font-size: 16px;
 }
 
-/* Tabela de usuários */
 .table-users {
     width: 100%;
     border-collapse: collapse;
@@ -181,14 +162,15 @@ body {
     cursor: pointer;
 }
 
-.table-users th, .table-users td {
+.table-users th,
+.table-users td {
     border: 1px solid #ddd;
     text-align: left;
     padding: 8px;
 }
 
 .table-users th {
-    background-color: #1999a5;
+    background-color: #16A34A;
     color: white;
     text-align: center;
 }
@@ -204,11 +186,11 @@ body {
 .table-users tr:hover {
     background-color: #ddd;
 }
+
 .table-users td {
     border-bottom: 1px solid #dee2e6;
 }
 
-/* Estilos para o status do usuário */
 .status {
     font-weight: bold;
     padding: 5px 12px;
@@ -227,7 +209,6 @@ body {
     color: #8b2ac8;
 }
 
-/* Função e perfil */
 .role,
 .profile {
     font-weight: bold;
@@ -238,7 +219,6 @@ body {
     text-align: center;
 }
 
-/* Botões de ação */
 .action-buttons {
     display: flex;
     gap: 10px;
@@ -273,82 +253,66 @@ body {
     background-color: #c82333;
 }
 
+button {
+    background-color: #16A34A;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #1e7c38;
+}
+
+form input, form select{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    color: #262626;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus {
+    border-color: #16A34A;
+}
+
 .add-modal, .update-modal {
+    display: none;
     position: fixed;
     top: 0;
-    left: 250px;
-    width: 82%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: none;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+}
 
-    .container {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        width: 400px;
-        height: 400px;
-        border-radius: 15px;
-        justify-content: center;
-        padding: 10px;
+.add-modal .container, .update-modal .container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
 
-        i {
-            cursor: pointer;
-            margin-left: 10px;
-            text-align:left;
-            font-size: 30px;
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        form {
-            height: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-evenly;
-
-            input,
-            select {
-                padding: 5px;
-                border: solid black 1px;
-                outline: none;
-                border-radius: 15px;
-                height: 30px;
-                width: 50%;
-
-                option {
-                    background-color: white;
-                    color: black;
-                }
-            }
-
-            button {
-                width: 150px;
-                background-color: #16a34a;
-                border: none;
-                outline: none;
-                height: 30px;
-                border-radius: 49px;
-                color: #fff;
-                text-transform: uppercase;
-                font-weight: 600;
-                margin: 10px 0;
-                cursor: pointer;
-                transition: 0.5s;
-            }
-
-            button:hover {
-                background-color: rgb(0, 66, 24);
-            }
-
-
-            
-        }
-    }
+.add-modal .fa-xmark, .update-modal .fa-xmark {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    color: #262626;
 }
