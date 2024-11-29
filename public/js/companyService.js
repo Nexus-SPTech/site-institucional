@@ -1,6 +1,7 @@
 const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
 const userName = document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 
+
 function addCompany() {
     const name = document.getElementById('new-company-name').value;
     const cnpj = document.getElementById('new-company-cnpj').value;

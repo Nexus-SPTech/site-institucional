@@ -224,6 +224,18 @@ GROUP BY
             `;
             return database.executar(instrucaoSql);
         }
+        function  respostaInsight(){
+            console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ")
+            var instrucaoSql = `
+          SELECT * 
+FROM nexus_ia
+ORDER BY id DESC
+LIMIT 1;        
+            `;
+            return database.executar(instrucaoSql);
+        }
+
+       
 module.exports = {
   mediaMaterias,
   kpiMelhorAproveitamento,
@@ -235,6 +247,7 @@ module.exports = {
   graficoRegioesMetropolitanas,
   graficoAproveitamento1Serie,
   graficoAproveitamento2Serie,
-  graficoAproveitamento3Serie
+  graficoAproveitamento3Serie,
+  respostaInsight
 
 };

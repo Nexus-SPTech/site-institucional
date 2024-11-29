@@ -8,6 +8,7 @@ const updateUserRoleSelect = document.getElementById('update-role-select');
 const updateUserCompanySelect = document.getElementById('update-company-select');
 
 
+
 function addUser() {
     const name = document.getElementById('new-user-name').value;
     const email = document.getElementById('new-user-email').value;
