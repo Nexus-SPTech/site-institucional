@@ -374,13 +374,14 @@ form select:focus {
 
 .insight-box1-conteudo {
     margin-top: 20px;
-    text-align: center;
+    padding: 12px;
+    
 
 }
 
 .insight-box1-conteudo p {
     font-family: 'Open Sans', sans-serif;
-    text-align: center;
+    text-align: left;
     font-size: 15px;
 }
 
@@ -414,7 +415,8 @@ form select:focus {
 
 .insight-box2-conteudo {
     margin-top: 20px;
-    text-align: center;
+    text-align: left;
+    padding: 12px;
 
 }
 
@@ -450,3 +452,4 @@ form select:focus {
     -webkit-background-clip: text;
     color: transparent;
 }
+
