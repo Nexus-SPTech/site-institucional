@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,12 +46,15 @@
             </div>
         </div>
         <div class="users">
-            <h1>GESTÃO DE USUÁRIOS</h1>
+            <h1>Gestão de usuários</h1>
+            <hr>
             <div class="search-user">
                 <h2>Pesquisar usuário</h2>
-                <input type="search" id="search-users">
-                <a onclick="getUserByName(document.getElementById('search-users').value)"><i
+                <div>
+                    <input type="search" id="search-users">
+                    <a onclick="getUserByName(document.getElementById('search-users').value)"><i
                         class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
                 <span id="error"></span>
             </div>
             <div class="add-user">

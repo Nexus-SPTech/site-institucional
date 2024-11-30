@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Empresas
                 </a>
-                <a href="#">
+                <a href="gestao-cargos.html">
                     <i class="fa-solid fa-shield" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Cargos
                 </a>
@@ -48,9 +48,11 @@
             <h1>GESTÃO DE EMPRESAS</h1>
             <div class="search-user">
                 <h2>Pesquisar empresa</h2>
-                <input type="search" id="search-users">
-                <a onclick="getCompanyByName(document.getElementById('search-users').value)"><i
+                <div>
+                    <input type="search" id="search-users">
+                    <a onclick="getCompanyByName(document.getElementById('search-users').value)"><i
                         class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
                 <span id="error"></span>
             </div>
             <div class="add-user">

@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="../css/crud.css">
-    <title>Gestão de Empresas</title>
+    <title>Gestão de Cargos</title>
 </head>
 <body>
     <div class="content">
@@ -31,7 +31,7 @@
                     <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Usuários
                 </a>
-                <a href="#">
+                <a href="gestao-empresas.html">
                     <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Gestão de Empresas
                 </a>
@@ -45,50 +45,52 @@
             </div>
         </div>
         <div class="users">
-            <h1>GESTÃO DE EMPRESAS</h1>
+            <h1>GESTÃO DE CARGOS</h1>
             <div class="search-user">
-                <h2>Pesquisar empresa</h2>
-                <input type="search" id="search-users">
-                <a onclick="getCompanyByName(document.getElementById('search-users').value)"><i
+                <h2>Pesquisar cargos</h2>
+                <div>
+                    <input type="search" id="search-users">
+                    <a onclick="getRoleByName(document.getElementById('search-users').value)"><i
                         class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
                 <span id="error"></span>
             </div>
             <div class="add-user">
                 <div class="add-modal" id="add-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showAddModal()"></i>
-                        <h2 id="add-user-title">Adicionar Empresa</h2>
+                        <h2 id="add-user-title">Adicionar Cargo</h2>
                         <form id="form-user">
-                            <input type="text" id="new-company-name" placeholder="Nome" required>
-                            <input type="email" id="new-company-cnpj" placeholder="CNPJ" required>
-                            <button type="submit" onclick="addCompany()">Adicionar</button>
+                            <input type="text" id="new-role-name" placeholder="Nome" required>
+                            <input type="text" id="new-role-description" placeholder="Descriçao" required>
+                            <button type="submit" onclick="addRole()">Adicionar</button>
                         </form>
                     </div>
                 </div>
-                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Empresas</button>
+                <button onclick="showAddModal()" id="show-form-button"><i class="fa-solid fa-plus"></i> Adicionar Cargos</button>
             </div>
             <div class="update-user">
                 <div class="update-modal" id="update-modal">
                     <div class="container">
                         <i class="fa-solid fa-xmark" onclick="showUpdateModal()"></i>
-                        <h2 id="update-user-title">Editar Empresa</h2>
+                        <h2 id="update-user-title">Editar Carrgos</h2>
                         <form id="form-user">
-                            <input type="text" id="update-company-id" placeholder="ID" disabled>
-                            <input type="text" id="update-company-name" placeholder="Nome" required>
-                            <input type="text" id="update-company-cnpj" placeholder="CNPJ" required>
-                            <button type="submit" onclick="updateCompany(event)">Editar</button>
+                            <input type="text" id="update-role-id" placeholder="ID" disabled>
+                            <input type="text" id="update-role-name" placeholder="Nome" required>
+                            <input type="text" id="update-role-description" placeholder="Descriçao" required>
+                            <button type="submit" onclick="updateRole(event)">Editar</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="get-all">
-                <h2>Lista de Empresas</h2>
+                <h2>Lista de Cargos</h2>
                 <table id="userTable" class="table-users">
                     <thead>
                         <tr>    
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>CPNJ</th>
+                            <th>Descrição</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
@@ -99,7 +101,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/companyService.js"></script>
+    <script src="../js/roleService.js"></script>
 </body>
 
 </html>

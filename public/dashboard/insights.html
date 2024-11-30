@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../css/crud.css">
     <title>Insights</title>
 </head>
+
 <body>
     <div class="content">
         <div class="nav-lateral" id="nav">
@@ -27,18 +29,23 @@
                         style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                     Insights
                 </a>
-                <a href="gestao-usuarios.html">
-                    <i class="fa-solid fa-user" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
-                    Gestão de Usuários
-                </a>
-                <a href="#">
-                    <i class="fa-solid fa-building" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
-                    Gestão de Empresas
-                </a>
-                <a href="#">
-                    <i class="fa-solid fa-shield" style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
-                    Gestão de Cargos
-                </a>
+                <div id="cruds-buttons">
+                    <a href="gestao-usuarios.html">
+                        <i class="fa-solid fa-user"
+                            style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                        Gestão de Usuários
+                    </a>
+                    <a href="#">
+                        <i class="fa-solid fa-building"
+                            style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                        Gestão de Empresas
+                    </a>
+                    <a href="#">
+                        <i class="fa-solid fa-shield"
+                            style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
+                        Gestão de Cargos
+                    </a>
+                </div>
             </div>
             <div class="exit">
                 <p onclick="sair()"><i class="fa-solid fa-right-from-bracket" style="color: #f5f5f5;"></i> Sair</p>
@@ -48,50 +55,43 @@
             <div class="insight-titulo">
                 <p>INSIGHTS <span class="gradient-text">NEXUS IA</span></p>
             </div>
-           
             <div class="conteudo-insight">
-                
-
-                
                 <div class="insight-box1">
-                
                     <div class="insight-box1-titulo">
-                    <i class="fa-solid fa-chart-simple"></i> <p>PROJEÇÕES</p>
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <p>PROJEÇÕES</p>
                     </div>
-
                     <div class="insight-box1-conteudo">
-                        <p><b>Língua Portuguesa 📚:</b> Melhor desempenho geral. Aumentar o foco na matéria pode beneficiar o aprendizado em outras disciplinas. <br><br>
+                        <p><b>Língua Portuguesa 📚:</b> Melhor desempenho geral. Aumentar o foco na matéria pode
+                            beneficiar o aprendizado em outras disciplinas. <br><br>
 
-                       <b> Física ⚛️:</b> Desempenho baixo, indicando dificuldade. Aulas práticas e interativas podem ajudar a melhorar o entendimento. <br><br>
-                        
-                    <b>Desempenho por Regiões 🌍: </b> Campinas se destaca, enquanto outras regiões apresentam resultados mais baixos. Focar em programas de apoio nas regiões com menor desempenho pode reduzir desigualdades. <br><br>
-                        
-                        <b>Aproveitamento por Gêneros 👩‍🎓👨‍🎓:</b> O desempenho feminino é ligeiramente superior. Estratégias pedagógicas personalizadas podem otimizar os resultados para ambos os gêneros. <br><br>
-                        
-                        <B>Essas projeções visam melhorar o aproveitamento geral no SARESP.</B> </p>               
-                    
+                            <b> Física ⚛️:</b> Desempenho baixo, indicando dificuldade. Aulas práticas e interativas
+                            podem ajudar a melhorar o entendimento. <br><br>
+
+                            <b>Desempenho por Regiões 🌍: </b> Campinas se destaca, enquanto outras regiões apresentam
+                            resultados mais baixos. Focar em programas de apoio nas regiões com menor desempenho pode
+                            reduzir desigualdades. <br><br>
+
+                            <b>Aproveitamento por Gêneros 👩‍🎓👨‍🎓:</b> O desempenho feminino é ligeiramente superior.
+                            Estratégias pedagógicas personalizadas podem otimizar os resultados para ambos os gêneros.
+                            <br><br>
+
+                            <b>Essas projeções visam melhorar o aproveitamento geral no SARESP.</b>
+                        </p>
+
                     </div>
-                
-
-
                 </div>
-            
                 <div class="insight-box2">
-                        <div class="insight-box2-titulo">
-                            <i class="fa-solid fa-magnifying-glass-chart"></i> <p>ANÁLISE GERAL</p>
-                        </div>
-    
-                        <div id="resposta_insight" class="insight-box2-conteudo">
-                            
-                        </div>
+                    <div class="insight-box2-titulo">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <p>ANÁLISE GERAL</p>
+                    </div>
+
+                    <div id="resposta_insight" class="insight-box2-conteudo">
+
+                    </div>
                 </div>
-
-
-            
-
             </div>
-
-
         </div>
     </div>
     <script src="../js/insights.js"></script>

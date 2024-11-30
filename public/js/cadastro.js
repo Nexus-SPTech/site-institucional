@@ -150,13 +150,14 @@ function entrar() {
                         sessionStorage.ID_USUARIO = user.idUsuario;
                         sessionStorage.NOME_USUARIO = user.nomeUsuario;
                         sessionStorage.EMAIL_USUARIO = user.email;
+                        sessionStorage.CARGO_USUARIO = user.nomeCargo;
                         let timerInterval;
                         Swal.fire({
                             title: "Login Realizado!",
                             html: "Redirecionando para dashboard em: <b></b> millisegundos.",
                             icon: "success",
                             background: "rgb(32, 32, 32)",
-                            timer: 2000,
+                            timer: 1500,
                             timerProgressBar: true,
                             didOpen: () => {
                                 Swal.showLoading();

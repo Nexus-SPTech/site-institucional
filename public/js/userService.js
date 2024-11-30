@@ -1,13 +1,11 @@
+document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
-const userName = document.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
 
 const newUserRoleSelect = document.getElementById('new-role-select');
 const newUserCompanySelect = document.getElementById('new-company-select');
 
 const updateUserRoleSelect = document.getElementById('update-role-select');
 const updateUserCompanySelect = document.getElementById('update-company-select');
-
-
 
 function addUser() {
     const name = document.getElementById('new-user-name').value;
@@ -16,11 +14,13 @@ function addUser() {
     const role = newUserRoleSelect.value;
     const company = newUserCompanySelect.value;
 
-    if (!name || !email || !password || !role || !company) {
+    if (!name || !email || !password || role == "Selecione um cargo" || company == "Selecione uma empresa") {
         Swal.fire({
             title: "Erro ao adicionar o usuário!",
             text: "Preencha todos os campos",
-            icon: "error"
+            icon: "error",
+            confirmButtonColor: '#16a34a',
+                background: "rgb(32, 32, 32)"
         });
         return;
     }
@@ -83,7 +83,7 @@ function getAll() {
                     <td>${user.nomeUsuario}</td>
                     <td>${user.email}</td>
                     <td>${user.nomeCargo || 'Não definido'}</td>
-                    <td>${user.nomeEmpresa || 'Não definida'}</td>
+                    <td>${user.isDeletedCompany ? 'Não definido' : user.nomeEmpresa}</td>
                     <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
                     <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
                 `;
@@ -92,6 +92,10 @@ function getAll() {
     }).catch(function (error) {
         console.log("error: ", error);
     });
+
+    setTimeout(() => {
+        document.getElementById('error').innerHTML = "";
+    }, 1000);
 }
 
 function getUserByName(nomeUsuario) {
@@ -123,6 +127,7 @@ function getUserByName(nomeUsuario) {
                 });
             } else {
                 document.getElementById('error').innerHTML = "Usuário não encontrado";
+                getAll();
             }
         });
     }).catch(function (error) {
@@ -319,7 +324,7 @@ function showUpdateModal(id, nome, email, cargo, empresa) {
 
 function sair() {
     sessionStorage.clear();
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 }
 
 getAll();
