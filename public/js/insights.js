@@ -25,24 +25,32 @@ fetch(`/dash/respostaInsight/`)
         resposta_insight.innerHTML = `<p>Erro ao carregar os dados: ${error.message}</p>`;
     });
 
-function plotarGrafico(dados) {
-    console.log("Dados recebidos no plotarGrafico: ", JSON.stringify(dados));
+    function plotarGrafico(dados) {
+        console.log("Dados recebidos no plotarGrafico: ", JSON.stringify(dados));
+        resposta_insight.innerHTML = ""; // Limpar conteúdo anterior
     
-    resposta_insight.innerHTML = "";
-
-   
-    dados.forEach(item => {
-        const insightDiv = document.createElement("div");
-        insightDiv.className = "insight-item";
-
-        insightDiv.innerHTML = `
-            <h3>${item.titulo || "Insight"}</h3>
-            <p>${item.resposta}</p>
-        `;
-
-        resposta_insight.appendChild(insightDiv);
-    });
-}
+        dados.forEach(item => {
+            const texto = item.resposta; // Supondo que a resposta seja a string retornada
+            const secoes = texto.split(/\*\*(.*?)\*\*/g); // Dividir em seções baseadas em `**`
+    
+            for (let i = 1; i < secoes.length; i += 2) {
+                const titulo = secoes[i].trim(); // Extrai o título (entre os `**`)
+                const conteudo = (secoes[i + 1] || "").trim(); // Extrai o conteúdo após o título
+    
+                // Criar a estrutura HTML para o título e o conteúdo
+                const secaoDiv = document.createElement("div");
+                secaoDiv.className = "insight-section";
+    
+                secaoDiv.innerHTML = `
+                    <h3>${titulo}</h3>
+                    <p>${conteudo}</p>
+                `;
+    
+                resposta_insight.appendChild(secaoDiv);
+            }
+        });
+    }
+    
 
 function sair() {
     sessionStorage.clear();
