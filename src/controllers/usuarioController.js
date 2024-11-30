@@ -19,7 +19,7 @@ function authenticate(req, res) {
                             idUsuario: resultadoAutenticar[0].idUsuario,
                             email: resultadoAutenticar[0].email,
                             nomeUsuario: resultadoAutenticar[0].nomeUsuario,
-                            idCargo: resultadoAutenticar[0].idCargo,
+                            nomeCargo: resultadoAutenticar[0].nomeCargo,
                             isDeleted: resultadoAutenticar[0].isDeleted,
                         });
                     } else if (resultadoAutenticar.length == 0) {

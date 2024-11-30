@@ -226,7 +226,7 @@ function showUpdateModal(idEmpresa, name, cnpj) {
 
 function sair() {
     sessionStorage.clear();
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 }
 
 getAll();

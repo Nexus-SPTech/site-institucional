@@ -7,8 +7,6 @@ const newUserCompanySelect = document.getElementById('new-company-select');
 const updateUserRoleSelect = document.getElementById('update-role-select');
 const updateUserCompanySelect = document.getElementById('update-company-select');
 
-
-
 function addUser() {
     const name = document.getElementById('new-user-name').value;
     const email = document.getElementById('new-user-email').value;
@@ -326,7 +324,7 @@ function showUpdateModal(id, nome, email, cargo, empresa) {
 
 function sair() {
     sessionStorage.clear();
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 }
 
 getAll();

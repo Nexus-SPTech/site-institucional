@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function authenticate(email, senha) {
     var instrucaoSql = `
-        SELECT idUsuario, nomeUsuario, email, fkCargo, deletado as isDeleted FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT idUsuario, nomeUsuario, email, nomeCargo, usuario.deletado AS isDeleted FROM usuario LEFT JOIN cargo ON idCargo = fkCargo WHERE email = '${email}' AND senha = '${senha}';
     `;
     return database.executar(instrucaoSql);
 }

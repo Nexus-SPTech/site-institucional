@@ -224,7 +224,7 @@ function showUpdateModal(idCargo, name, description) {
 
 function sair() {
     sessionStorage.clear();
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
 }
 
 getAll();
