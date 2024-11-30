@@ -45,7 +45,10 @@ router.get("/graficoAproveitamento3Serie", function (req, res) {
     dashController.graficoAproveitamento3Serie(req, res);
 });
 
- 
+router.get("/respostaInsight", function (req, res) {
+    dashController.respostaInsight(req, res);
+});
+
   
 
   

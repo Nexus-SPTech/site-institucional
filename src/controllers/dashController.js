@@ -167,6 +167,23 @@ function graficoAproveitamento3Serie(req, res){
     });
 }
 
+
+function respostaInsight(req, res){
+     
+    dashModel.respostaInsight().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado na busca de dados!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as respostas: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
    mediaMaterias,
    kpiMelhorAproveitamento,
@@ -178,7 +195,8 @@ module.exports = {
    graficoRegioesMetropolitanas,
    graficoAproveitamento1Serie,
    graficoAproveitamento2Serie,
-   graficoAproveitamento3Serie
+   graficoAproveitamento3Serie,
+   respostaInsight
 
 
 
