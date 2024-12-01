@@ -83,7 +83,7 @@ function getAll() {
                     <td>${user.nomeUsuario}</td>
                     <td>${user.email}</td>
                     <td>${user.nomeCargo || 'Não definido'}</td>
-                    <td>${user.isDeletedCompany ? 'Não definido' : user.nomeEmpresa}</td>
+                    <td>${user.isDeletedCompany || user.nomeEmpresa == 'null' ? 'Não definido' : user.nomeEmpresa}</td>
                     <td><a onclick="showUpdateModal('${user.idUsuario}', '${user.nomeUsuario}', '${user.email}', '${user.idCargo}', '${user.idEmpresa}')"><i class="fa-solid fa-pen"></i></a></td>
                     <td><a onclick="deleteUser(${user.idUsuario})"><i class="fa-solid fa-trash"></i></a></td>
                 `;
