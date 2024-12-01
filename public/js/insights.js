@@ -1,9 +1,8 @@
 const crudsButtons = document.getElementById("cruds-buttons");
 const resposta_insight = document.getElementById("resposta_insight");
 
-if (sessionStorage.CARGO_USUARIO != 'Dev' && sessionStorage.CARGO_USUARIO != 'Admin') {
-    crudsButtons.style.display = "none";
-}
+idocument.getElementById('name_user').innerHTML = sessionStorage.NOME_USUARIO;
+const userTable = document.getElementById('userTable').getElementsByTagName('tbody')[0];
 
 fetch(`/dash/respostaInsight/`)
     .then(function (resposta) {
