@@ -174,7 +174,7 @@ function entrar() {
                                 console.log("I was closed by the timer");
                             }
                             setTimeout(function () {
-                                window.location = "./dashboard/dashboard.html";
+                                window.location = "../dashboard.html";
                             }, 500);
                         });
                     } else {
