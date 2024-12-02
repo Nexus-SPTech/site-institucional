@@ -31,7 +31,8 @@ fetch(`/dash/respostaInsight/`)
         console.log("Dados recebidos no plotarGrafico: ", JSON.stringify(dados));
         resposta_insight.innerHTML = ""; // Limpar conteúdo anterior
     
-            const texto = dados.map(insigth => insigth.resposta); // Supondo que a resposta seja a string retornada
+        dados.forEach(item => {
+            const texto = item.resposta; // Supondo que a resposta seja a string retornada
             const secoes = texto.split(/\*\*(.*?)\*\*/g); // Dividir em seções baseadas em `**`
     
             for (let i = 1; i < secoes.length; i += 2) {
@@ -49,6 +50,7 @@ fetch(`/dash/respostaInsight/`)
     
                 resposta_insight.appendChild(secaoDiv);
             }
+        });
     }
     
 
