@@ -31,17 +31,17 @@
                     Insights
                 </a>
                 <div id="cruds-buttons">
-                    <a href="gestao-usuarios.html">
+                    <a href="./dashboard/gestao-usuarios.html">
                         <i class="fa-solid fa-user"
                             style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                         Gestão de Usuários
                     </a>
-                    <a href="gestao-empresas.html">
+                    <a href="./dashboard/gestao-empresas.html">
                         <i class="fa-solid fa-building"
                             style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                         Gestão de Empresas
                     </a>
-                    <a href="gestao-cargos.html">
+                    <a href="./dashboard/gestao-cargos.html">
                         <i class="fa-solid fa-shield"
                             style="--fa-primary-color: #f5f5f5; --fa-secondary-color: #f5f5f5;"></i>
                         Gestão de Cargos
@@ -166,55 +166,10 @@
                             internet e computadores e o apoio familiar também influenciam o desempenho escolar. <br><br>
                         </p>
                     </div>
-
                 </div>
-
-
-
             </div>
-
-            <div class="configuracoes" id="configuracoes" style="display: none;">
-
-                <div class="box-config" id="boxconfig">
-
-                    <div class="exit-user">
-                        <div class="img_alt">
-                            <img src="../public/assets/nexus/icons8-x-64.png" onclick="removerUsuario()">
-                        </div>
-                    </div>
-
-                    <div class="organization">
-                        <div class="user-left">
-                            <div class="icon"></div>
-                        </div>
-                        <div class="text-right">
-
-
-
-                            <p> NOME: Bob da Silva <br>
-                                CARGO: Professor <br>
-                                EMAIL: bobsilva@gmail.com</p>
-                            <div class="button-radio">
-
-
-                                <h4>Selecione a opção desejada:</h4>
-                                <p> dashboard <input type="radio" name="input_config" onclick="uncheckRadio()">
-                                    insights <input type="radio" name="input_config" onclick="uncheckRadio()">
-                                    admin <input type="radio" name="input_config" onclick="uncheckRadio()"> </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
         </div>
         <script>
-
-
             fetch(`/dash/mediaMaterias/`)
                 .then(function (resposta) {
                     if (resposta.ok) {
@@ -230,11 +185,6 @@
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
-
-
-
-
-
 
             fetch(`/dash/kpiMelhorAproveitamento/`)
                 .then(function (resposta) {
@@ -252,7 +202,6 @@
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
 
-
             fetch(`/dash/kpiMediaAcertos/`)
                 .then(function (resposta) {
                     if (resposta.ok) {
@@ -268,8 +217,6 @@
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
-
-
 
             fetch(`/dash/kpiMateriaComDificuldade/`)
                 .then(function (resposta) {
@@ -320,12 +267,6 @@
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
-
-
-
-
-
-
 
             fetch(`/dash/graficoRegioesMetropolitanas/`)
                 .then(function (resposta) {
@@ -392,15 +333,6 @@
                 .catch(function (error) {
                     console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
                 });
-
-
-
-
-
-
-
-
-
 
             function toggleMenu() {
                 const nav = document.getElementById("nav");
@@ -514,9 +446,6 @@
                 var chart = new ApexCharts(document.querySelector("#redesmunicipais"), options);
                 chart.render();
             }
-
-
-
             // ###################################################
             // Variáveis globais
             let media1serie;
@@ -534,10 +463,7 @@
                 console.log("Dados recebidos no plotarGrafico_10: ", JSON.stringify(dados));
                 disciplina2serie = dados.map(item => item.disciplina);
                 media2serie = dados.map(item => item.media_notas);
-
-
             }
-
             // ##################################################
 
             function plotarGrafico_1(dados) {
@@ -717,13 +643,8 @@
                 // Renderizando o gráfico
                 const chart = new ApexCharts(document.querySelector("#grafico2"), options);
                 chart.render();
-
-
-
             }
-
             // ###########################################################
-
 
             var nome_user = sessionStorage.NOME_USUARIO;
 
@@ -732,24 +653,6 @@
             function sair() {
                 sessionStorage.clear();
                 window.location.href = "./index.html";
-            }
-
-            function removerUsuario() {
-
-                Swal.fire({
-                    title: "Tem certeza?",
-                    text: "Tem certeza que deseja excluir o usuário!",
-                    icon: "question",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Sim!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        boxconfig.style = `display: none`;
-                    }
-
-                })
             }
 
             function disableOtherRadios(selectedRadio) {
@@ -761,8 +664,6 @@
                     }
                 });
             }
-
-
         </script>
 </body>
 
